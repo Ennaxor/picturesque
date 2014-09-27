@@ -1,0 +1,19 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+body {
+    background-color: #EBEBEB;
+	font-family: 'Raleway', sans-serif;
+}
+
+header{
+	background-color: #D1D1D1;
+	border: 1px solid #D1D1D1;
+	width:100%;
+}
+
+#advset{
+	font-size: 10px;
+}
+
+li{
+	list-style-type:none;
+}
