@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Lobster);
 @import url(http://fonts.googleapis.com/css?family=Vollkorn);
+@import url(http://fonts.googleapis.com/css?family=Roboto);
 
 body{
 	font-family: Vollkorn, serif;
@@ -65,13 +66,13 @@ header{
 	width:27px;
 }
 
-#searchContainer{
+.searchContainer{
 	margin-top:-25px;
 	padding:0;
 	position:relative;   
 }
 
-#searchContainer img{
+.searchContainer img{
 	bottom:10px;
 	height:20px;
 	left:8px;
@@ -79,9 +80,25 @@ header{
 	width:20px;
 }
 
+.searching{
+	margin-top: -20px;
+}
+
+.searchRes{
+	font-family: Roboto, sans-serif;
+}
+
+.searchRes span{
+	font-size: 21px;
+}
+
 
 /* ELEMENTOS DE LA SECCION CENTRAL */
-#boxPics{
+.back{
+	text-decoration: none;
+}
+
+.boxPics{
 	background-color:#80D1B9;
 	border-radius:0 0 4px 4px;
 	height:40px;
@@ -92,11 +109,23 @@ header{
 	width:100px;
 }
 
-#boxPics h2{
+
+.boxPics h2{
 	color:#FFF;
 	font-size:20px;
 	padding-left:5px;
 	padding-top:8px;
+}
+
+.detailPicture{
+	background-color:#CCC;
+	border:1px solid #d8d8d8;
+	border-radius:3px;
+	box-shadow:inset 0 0 0 1px #fff;	
+	height:216px;
+	margin-bottom:5px;
+	padding:1px;
+	width:260px;
 }
 
 section{
@@ -204,29 +233,27 @@ li:hover .titleImage{
 
 .btn-login {
  	background-color:#F37A29;
-	border-color:#F37A29;
 	color:#fff;
 }
 
 .btn-login:hover, .btn-login:focus, .btn-login:active{
   	background-color:#F26507;
-	border-color:#F26507;	
 }
 
-/* FORMULARIO SIGN IN*/
-#wrapper{
+/* FORMULARIO SIGN IN Y REGISTRO*/
+.wrapper{
 	margin:10px;
 	position:relative;
 	right:0;
 	width:70%;	
 }
 
-#wrapper a{
+.wrapper a{
 	color: #5F9BC6;
 	text-decoration: underline;
 }
 
-#wrapper h1{
+.wrapper .titleh1{
 	color:#F26507;
 	font-family:Arial,sans-serif;
 	font-size:35px;
@@ -234,28 +261,31 @@ li:hover .titleImage{
 	text-align:left;
 }
 
-#wrapper input{
+.wrapper input{
 	border:1px solid #B2B2B2;
 	border-radius:3px;
 	box-shadow:0 1px 4px 0 rgba(168,168,168,0.6) inset;
 	margin-top:-20px;
-	outline:none;
-	padding:10px 5px 10px 32px;
-	width:50%;	
+	outline:none;		
 }
 
-#wrapper input:active, #wrapper input:focus{
+.wrapper .usernameContainer input, .wrapper .passContainer input{
+	padding:10px 5px 10px 32px;	
+	width:30%;	
+}
+
+.wrapper input:active, .wrapper input:focus{
 	background:rgba(238,236,240,0.2);
 	border:1px solid rgba(91,90,90,0.7);
 	box-shadow:0 1px 4px 0 rgba(168,168,168,0.9) inset;
 } 
 
-#wrapper p.button input{
+.wrapper p.button input{
 	background:#F37A29;
-	border:1px solid #F37A29;
+	border:1px solid;
 	border-radius:3px;
 	box-shadow:0 1px 6px 4px rgba(0,0,0,0.07) inset, 
-				0 0 0 3px #fefefe 
+				0 0 0 3px #fefefe, 
 				0 5px 3px 3px #d2d2d2;
 	color:#fff;
 	cursor:pointer;
@@ -267,12 +297,12 @@ li:hover .titleImage{
 	width:30%;
 }
 
-#wrapper p.button input:hover{
+.wrapper p.button input:hover{
 	background: #F26507;
 }
 
-#wrapper p.button input:active,
-#wrapper p.button input:focus{
+.wrapper p.button input:active,
+.wrapper p.button input:focus{
 	background:#F26507;
 	border:1px solid #F26507;
 	box-shadow:0 1px 6px 4px rgba(0,0,0,0.2) inset;
@@ -285,16 +315,57 @@ p.login.button{
 	text-align: left;	
 }
 
-#usernameContainer, #passContainer {
+.usernameContainer, .passContainer {
     position:relative;
     padding:0;
     margin:0;    
 }
 
-#usernameContainer img, #passContainer img{
+.usernameContainer img, .passContainer img{
     position:absolute;
     bottom:13px;
     left:8px;
     width:20px;
     height:20px;    
 }
+
+.wrapper .usuRegistro input{
+	padding:10px 5px 10px 5px;
+	width:20%;
+}
+
+.radiolabel{
+	display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 13px;  
+}input[type=radio] {  
+    display: none;  
+} 
+
+/* ESTILO DE BOTON DE RADIO */
+.radiolabel:before {  
+    content: "";  
+    display: inline-block;    
+    width: 16px;  
+    height: 16px;    
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 1px;  
+    background-color: #aaa;  
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+}  
+.radio .radiolabel:before {  
+    border-radius: 8px;  
+} 
+
+input[type=radio]:checked + .radiolabel:before {  
+    content: "\2022";  
+    color: #f3f3f3;  
+    font-size: 30px;  
+    text-align: center;  
+    line-height: 18px;  
+} 

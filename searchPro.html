@@ -3,47 +3,81 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Search pictures - Picturesque</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css"/>
+
 	</head>
 
 	<body>
-		<header>
-			<div class="topMenu"> 
-				<a href="index.html" > <img src="Resources/Images/logo.png" alt="Logo"/> </a>
-				<form>
-					<span>Enter your profile</span>
-					<input type="text" id="username" placeholder="Username..."/>
-					<input type="password" id="password" placeholder="Pasword..."/>
-					<input type="submit" formmethod="get" formaction="index.html" value="Log in!"/>
-					<span>Don't have an account? Register <a href="register.html"><b>HERE</b></a></span>
-				</form>				
-			</div>
-			<div class="headerContent">
-				<h1>What are you looking for?</h1>
-				<form enctype="multipart/form-data" method="get" action="searchResults.html">
-					<span><b>TITLE</b></span><br>					
-					<input type="text" name="title" placeholder="E.G: landscape"/><br><br>
-
-					<span><b>DATE TIME</b></span><br>					
-					From: <input type="text" name="dateFrom" placeholder="dd/mm/yyyy"/><br>
-					To: <input type="text" name="dateTo" placeholder="dd/mm/yyyy"/><br><br>
-
-					<span><b>COUNTRY</b></span><br>					
-					<input type="text" name="country" placeholder="E.G: ireland..."/><br><br>
-
-					<input type="submit" value="Log in!"/>
-
-				</form>
-			</div>			
+		<header>				
+			<a href="index.html"> 
+				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
+			</a>	
+			<div class="padding">
+				<div class="headerContent">
+					<h1>What are you looking for?</h1>				
+							
+				</div>
+			</div>						
 		</header>
-		<footer>
-			Made for an awesome subject in the University of Alicante
-			<h3>Main pages</h3>
-			<ul>
-				<li><a href="index.html">Home Page</a></li>
-				<li><a href="register.html">Register now</a></li>
-				<li><a href="searchPro.html">Advanced Search</a></li>
+		<section>
+			<div class="boxPics"> <a class="back" href="index.html"><h2>Go back</h2></a></div>
+			<div class="wrapper">
+                <div class="login">
+                    <form autocomplete="on" enctype="multipart/form-data" method="get" action="searchresults.html"> 
+                        <span class="titleh1">Look for images with... </span> 
+                        <div class="usuRegistro"> 
+	                        <p>     
+	                        	<label for="title"><b>TITLE: </b> </label>                      
+	                            <input type="text" name="title" id="title" placeholder="E.G: landscape"/>                         
+	                        </p>   
+                         	<p>     
+	                        	<label for="dateFrom"><b>DATE TIME: </b> </label>                      
+	                            From: <input type="text" name="dateFrom" id="dateFrom" placeholder="dd/mm/yyyy"/>
+								To: <input type="text" name="dateTo" id="dateTo" placeholder="dd/mm/yyyy"/>               
+	                        </p>   
+	                        <p>     
+	                        	<label for="country"><b>COUNTRY: </b> </label>                      
+	                            <input type="text" name="country" id="country" placeholder="E.G: ireland..."/>             
+	                        </p>                     
+	                       	<p class="login button"> 
+                            	<input type="submit" value="Search!"/> 
+							</p>    	                 
+                        </div>                       
+                    </form>
 
-			</ul>	
+                    <form autocomplete="on"> 
+                        <span class="titleh1">Enter your profile!</span>
+                        <div class="usernameContainer"> 
+	                        <p>                             
+	                            <input class="input-normal username" type="text" name="username" required="required" placeholder="Username..."/>				
+	                            <img src="Resources/Images/user-icon.png" alt="user icon" />
+	                        </p>
+                        </div>
+                        <div class="passContainer">
+	                        <p>                                                        
+	                            <input class="input-normal password" type="password" name="password" required="required" placeholder="Pasword..."/>
+	                        </p>  
+	                        <img src="Resources/Images/pass-icon.png" alt="pass icon" />     
+                        </div> 
+                        <p>Don't have an account? Register <a href="register.html"><b>HERE</b></a></p>                  
+                        <p class="login button"> 
+                            <input type="submit" value="Login" /> 
+						</p>
+                    </form>
+        		</div>
+        	</div>
+	
+		</section>
+		<footer>
+			<div class="padding">
+				Made for an awesome subject in the University of Alicante
+				<h3>Main pages</h3>
+				<ul>
+					<li><a href="index.html">Home Page</a></li>
+					<li><a href="register.html">Register now</a></li>
+					<li><a href="searchpro.html">Advanced Search</a></li>
+				</ul>
+			</div>	
 		</footer>
 	</body>	
 </html>

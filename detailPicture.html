@@ -3,47 +3,54 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Picture Detail - Picturesque</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css"/>
 	</head>
 
 	<body>
-		<header>
-			<div class="topMenu"> 
-				<a href="index.html" > <img src="Resources/Images/logo.png" alt="Logo"/> </a>
-				
-				<span>Welcome, dear <a href="#">friend!</a>	</span> <img src="Resources/Images/avatar.png" alt="avatar"/> 
-			</div>
-			<div class="headerContent">
-				<h1>DISCOVER &amp; SHARE</h1>
-				<form>
-					<input type="search" name="searchInput" placeholder="Search..." />
-					<a href="searchResults.html">Go!</a>
-					<br>
-					<a href="searchPro.html">Advanced Settings</a>
-				</form>
-			</div>			
+		<header>				
+			<a href="index.html"> 
+				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
+			</a>	
+			<div class="padding">
+			<span>Welcome, dear <a href="#">friend!</a>	</span> 
+				<div class="headerContent">
+					<h1>DISCOVER &amp; SHARE</h1>				
+					<form enctype="multipart/form-data" method="get" action="searchresults.html">
+						<div class="searchContainer">
+							<input class="search" type="search" name="searchInput" placeholder="Search..." />
+							<img src="Resources/Images/search-icon.png" alt="search icon" />
+						</div>
+						<input class="btn btn-login" type="submit" value="Go!"/>
+						<br>
+						<a class= "btn btn-login searchAdvanced" href="searchpro.html">
+							<img src="Resources/Images/gear.png" alt="gear icon" />
+						</a>
+					</form>			
+				</div>
+			</div>						
 		</header>
+
 		<section>
-			<h2>Selected pic</h2>
-			<div>
-				<img src="Resources/Images/perro1.jpg" alt="Perro 1"/>
+			<div class="boxPics"> <a class="back" href="index.html"><h2>Go back</h2></a></div>
+			<div class="padding">
+				<img class="detailPicture" src="Resources/Images/perro1.jpg" alt="Perro 1"/>
 			
 				<p><b>Title:</b> Perro 1 <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				<p><b>From the album:</b> <a href="#"> Pets</a> </p>
-				<p><b>From the user:</b> <a href="#"> Pepito</a> </p>
-				
+				<p><b>From the user:</b> <a href="#"> Pepito</a> </p>				
 			</div>			
-			
 		</section>
+
 		<footer>
-			Made for an awesome subject in the University of Alicante
-			<h3>Main pages</h3>
-			<ul>
-				<li><a href="index.html">Home Page</a></li>
-				<li><a href="register.html">Register now</a></li>
-				<li><a href="searchPro.html">Advanced Search</a></li>
-
-
-			</ul>	
+			<div class="padding">
+				Made for an awesome subject in the University of Alicante
+				<h3>Main pages</h3>
+				<ul>
+					<li><a href="index.html">Home Page</a></li>
+					<li><a href="register.html">Register now</a></li>
+					<li><a href="searchpro.html">Advanced Search</a></li>
+				</ul>
+			</div>	
 		</footer>
 	</body>	
 </html>

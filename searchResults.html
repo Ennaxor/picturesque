@@ -3,75 +3,94 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Results of your search - Picturesque</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css"/>
 	</head>
 
 	<body>
-		<header>
-			<div class="topMenu"> 
-				<a href="index.html" > <img src="Resources/Images/logo.png" alt="Logo"/> </a>
-				<form>
-					<span>Enter your profile</span>
-					<input type="text" id="username" placeholder="Username..."/>
-					<input type="password" id="password" placeholder="Pasword..."/>
-					<input type="submit" formmethod="get" formaction="index.html" value="Log in!"/>
-					<span>Don't have an account? Register <a href="register.html"><b>HERE</b></a></span>
-				</form>				
-			</div>
-			<div class="headerContent">
-				<a href="searchPro.html"> Other search </a>
-				<h1>You searched for...</h1>
-				<form enctype="multipart/form-data">
-					<span><b>TITLE</b></span><br>					
-					Landscape <br><br>
-
-					<span><b>DATE TIME</b></span><br>					
-					From: 20/04/2013<br>
-					To: 05/08/2014<br><br>
-
-					<span><b>COUNTRY</b></span><br>					
-					Ireland<br><br>
-
-					<span><b>MATCHES</b></span><br>
-					<span><b>5</b> results</span>
-				</form>
-			</div>			
+		<header>				
+			<a href="index.html"> 
+				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
+			</a>	
+			<div class="padding">
+				<div class="headerContent searching">
+					<a href="index.html" class="btn btn-login">Other Search</a>
+					<h1>You searched for...</h1>	
+					<div class="searchRes">			
+						<span><b>TITLE</b> Landscape</span><br>							
+						<span><b>DATE TIME</b> From: 20/04/2013 - To: 05/08/2014</span><br>						
+						<span><b>COUNTRY</b> Ireland</span><br>
+						<span><b>MATCHES</b> 5 results</span>
+						
+					</div>
+				</div>
+			</div>						
 		</header>
-		<section>
-			<h2>Results</h2>
+
+		<section>			
+			<div class="boxPics"> <h2>Results</h2></div>
 			<ul>
 				<li>
-					<a href="detailPicture.html"><img src="Resources/Images/perro1.jpg" alt="Perro 1"/></a>
-					<p><b>Title:</b> Perro 1 <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<img src="Resources/Images/perro1.jpg" alt="Perro 1"/>
+					<a href="detailpicture.html"><span class="titleImage">Title: Perro 1</span></a>
+					<p><b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
 				<li>
-					<a href="detailPicture.html"><img src="Resources/Images/perro2.jpg" alt="Perro 2"/></a>
-					<p><b>Title:</b> Perro 2 <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<img src="Resources/Images/perro2.jpg" alt="Perro 2"/>
+					<a href="detailpicture.html"><span class="titleImage">Title: Perro 2</span></a>
+					<p><b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
 				<li>
-					<a href="detailPicture.html"><img src="Resources/Images/perro3.jpg" alt="Perro 3"/></a>
-					<p><b>Title:</b> Perro 3 <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<img src="Resources/Images/perro3.jpg" alt="Perro 3"/>
+					<a href="detailpicture.html"><span class="titleImage">Title: Perro 3</span></a>
+					<p><b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
 				<li>
-					<a href="detailPicture.html"><img src="Resources/Images/perro4.jpg" alt="Perro 4"/></a>
-					<p><b>Title:</b> Perro 4 <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<img src="Resources/Images/perro4.jpg" alt="Perro 4"/>
+					<a href="detailpicture.html"><span class="titleImage">Title: Perro 4</span></a>
+					<p><b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
 				<li>
-					<a href="detailPicture.html"><img src="Resources/Images/perro5.jpg" alt="Perro 5"/></a>
-					<p><b>Title:</b> Perro 5 <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<img src="Resources/Images/perro5.jpg" alt="Perro 5"/>
+					<a href="detailpicture.html"><span class="titleImage">Title: Perro 2</span></a>
+					<p><b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
 			</ul>
-			
+
+			<div class="wrapper">
+                <div class="login">
+                    <form autocomplete="on"> 
+                        <span class="titleh1">Enter your profile!</span>
+                        <div class="usernameContainer"> 
+	                        <p>                             
+	                            <input class="input-normal username" type="text" name="username" required="required" placeholder="Username..."/>				
+	                            <img src="Resources/Images/user-icon.png" alt="user icon" />
+	                        </p>
+                        </div>
+                        <div class="passContainer">
+	                        <p>                                                        
+	                            <input class="input-normal password" type="password" name="password" required="required" placeholder="Pasword..."/>
+	                        </p>  
+	                        <img src="Resources/Images/pass-icon.png" alt="pass icon" />     
+                        </div> 
+                        <p>Don't have an account? Register <a href="register.html"><b>HERE</b></a></p>                  
+                        <p class="login button"> 
+                            <input type="submit" value="Login" /> 
+						</p>
+                    </form>
+        		</div>
+        	</div>			
 		</section>
+
 		<footer>
-			Made for an awesome subject in the University of Alicante
-			<h3>Main pages</h3>
-			<ul>
-				<li><a href="index.html">Home Page</a></li>
-				<li><a href="register.html">Register now</a></li>
-				<li><a href="searchPro.html">Advanced Search</a></li>
-
-
-			</ul>	
+			<div class="padding">
+				Made for an awesome subject in the University of Alicante
+				<h3>Main pages</h3>
+				<ul>
+					<li><a href="index.html">Home Page</a></li>
+					<li><a href="register.html">Register now</a></li>
+					<li><a href="searchpro.html">Advanced Search</a></li>
+				</ul>
+			</div>	
 		</footer>
 	</body>	
 </html>
