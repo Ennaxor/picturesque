@@ -1,4 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Lobster);
+/*@import url(http://fonts.googleapis.com/css?family=Lobster);*/
+@import url(http://fonts.googleapis.com/css?family=Amatic+SC:700);
 @import url(http://fonts.googleapis.com/css?family=Vollkorn);
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 
@@ -25,8 +26,8 @@ header{
 
 .headerContent{
 	color:#FFF;
-	font-family:Lobster, cursive;
-	font-size:28px;
+	font-family:Amatic SC, cursive;
+	font-size:30px;
 	margin-top:65px;	
 }
 
@@ -107,6 +108,7 @@ header{
 	position:relative;
 	top:-17px;
 	width:100px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.7);
 }
 
 
@@ -175,11 +177,7 @@ section li p{
 /* PIE DE PÁGINA */
 footer{
 	background-color:#D2D7DB;
-	border-top:5px solid #80D1B9;
-	bottom:0;
-	height:150px;
-	left:0;
-	right:0;
+	border-top:5px solid #80D1B9;	
 	width:100%;
 	height: 100%;
 }
@@ -234,6 +232,8 @@ li:hover .titleImage{
 .btn-login {
  	background-color:#F37A29;
 	color:#fff;
+	font-family: Vollkorn, serif;
+	font-size: 18px;
 }
 
 .btn-login:hover, .btn-login:focus, .btn-login:active{
@@ -334,6 +334,9 @@ p.login.button{
 	width:20%;
 }
 
+
+
+/* ESTILO DE BOTON DE RADIO */
 .radiolabel{
 	display: inline-block;  
     cursor: pointer;  
@@ -341,11 +344,12 @@ p.login.button{
     padding-left: 25px;  
     margin-right: 15px;  
     font-size: 13px;  
-}input[type=radio] {  
+}
+
+input[type=radio] {  
     display: none;  
 } 
 
-/* ESTILO DE BOTON DE RADIO */
 .radiolabel:before {  
     content: "";  
     display: inline-block;    
