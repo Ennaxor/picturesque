@@ -4,6 +4,7 @@
 		<meta charset="utf-8" />
 		<title>Picture Detail - Picturesque</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css"/>
+		<link href="css/maquetacion.css" rel="stylesheet" type="text/css"/>
 	</head>
 
 	<body>
@@ -11,16 +12,16 @@
 			<a href="index.html"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
-			<div class="padding headerContent">
-				<span>Welcome, dear <a href="#">friend!</a>	</span> 				
-				<h1>DISCOVER &amp; SHARE</h1>				
+			<div id="detailHeader" class="padding headerContent">
+				<span id="user">Welcome, dear <a href="#">friend!</a>	</span> 				
+				<h1 id="titPage" >DISCOVER &amp; SHARE</h1>				
 				<form enctype="multipart/form-data" method="get" action="searchresults.html">
 					<div class="searchContainer">
 						<input class="search" type="search" name="searchInput" placeholder="Search..." />
 						<img src="Resources/Images/search-icon.png" alt="search icon" />
 					</div>
 					<input class="btn btn-login" type="submit" value="Go!"/>
-					<br>
+					<!--<br>-->
 					<a class= "btn btn-login searchAdvanced" href="searchpro.html">
 						<img src="Resources/Images/gear.png" alt="gear icon" />
 					</a>
@@ -33,10 +34,11 @@
 			<div class="boxPics"> <a class="back" href="index.html"><h2>Go back</h2></a></div>
 			<div class="padding">
 				<img class="detailPicture" src="Resources/Images/perro1.jpg" alt="Perro 1"/>
-			
+				<div class="dataPicture">
 				<p><b>Title:</b> Perro 1 <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				<p><b>From the album:</b> <a href="#"> Pets</a> </p>
 				<p><b>From the user:</b> <a href="#"> Pepito</a> </p>				
+				</div>
 			</div>			
 		</section>
 

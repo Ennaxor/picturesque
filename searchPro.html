@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<title>Search pictures - Picturesque</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css"/>
-
+		<link href="css/maquetacion.css" rel="stylesheet" type="text/css"/>
 	</head>
 
 	<body>
@@ -12,7 +12,7 @@
 			<a href="index.html"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
-			<div class="padding headerContent">
+			<div id="searchP" class="padding headerContent">
 				
 				<h1>What are you looking for?</h1>								
 				
@@ -22,7 +22,7 @@
 			<div class="boxPics"> <a class="back" href="index.html"><h2>Go back</h2></a></div>
 			<div class="wrapper">
                 <div class="login">
-                    <form autocomplete="on" enctype="multipart/form-data" method="get" action="searchresults.html"> 
+                    <form  id="searchParameters" autocomplete="on" enctype="multipart/form-data" method="get" action="searchresults.html"> 
                         <span class="titleh1">Look for images with... </span> 
                         <div class="usuRegistro"> 
 	                        <p>     
@@ -38,7 +38,7 @@
 	                        	<label for="country"><b>COUNTRY: </b> </label>                      
 	                            <input type="text" name="country" id="country" placeholder="E.G: ireland..."/>             
 	                        </p>                     
-	                       	<p class="login button"> 
+	                       	<p id="buttonSearch" class="login button"> 
                             	<input type="submit" value="Search!"/> 
 							</p>    	                 
                         </div>                       

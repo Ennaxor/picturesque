@@ -1,0 +1,107 @@
+/*****HEADER*****/
+
+header .searchContainer input{
+	width: 15em; 
+	display:inline-block;
+}
+
+ header .headerContent{
+	margin-left: auto ;
+	margin-right: auto ;
+	padding:0px;
+	width:290px;
+ }
+ 
+ header .btn{
+	padding:2px;
+	margin-top:2px;
+	margin-left:5px;
+	display:inline-block;
+	float:right;
+}
+
+header .searchAdvanced{
+	padding:1px;
+}	
+
+header form{
+	display:inline-block;
+	float:right;
+}
+
+header .searching{
+	float:left;
+	margin-left:30px;
+	margin-top:15px;
+	width:500px;
+}
+
+header .searchRes{
+	margin-left:20px;
+	margin-top:-30px;
+	padding:5px;
+	background-color:rgba(0,0,0,0.4);
+	border-radius:10px;
+}
+
+#otherSearch{
+	margin-top: 70px;
+}
+
+#searchP{
+	width:450px;
+	float:left;
+	margin-left:40px;
+}
+
+#user{
+	position:absolute;
+	margin-top:137px;
+	
+	
+}
+
+/******BODY****/
+
+section ul li{
+	display: inline-block;
+	margin-left: 3%;
+	margin-bottom: 3%;
+}
+
+section .padding{
+	background-color:#80D1B9;
+	border-radius:10px;
+	display:inline-block;
+	margin-left:40px;
+	margin-bottom:50px;
+	
+}
+section .padding img{
+	display:inline-block;
+}
+section .dataPicture{
+	display:inline-block;
+	margin-left:20px;
+	margin-top:50px;
+	vertical-align:top;
+	
+}
+
+.login #searchParameters{
+	margin-left:20px;
+}
+
+.usuRegistro{
+	margin-left:40px;
+}
+
+#buttonSearch{
+	padding:5px;
+	position:relative;
+	width:30em;
+	margin-left:auto;
+	margin-right:auto;
+	
+}
+

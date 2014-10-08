@@ -27,8 +27,7 @@ header{
 .headerContent{
 	color:#FFF;
 	font-family:Amatic SC, cursive;
-	font-size:30px;
-	margin-top:65px;	
+	font-size:30px;	
 }
 
 .headerContent h1{
@@ -70,7 +69,7 @@ header{
 .searchContainer{
 	margin-top:-25px;
 	padding:0;
-	position:relative;   
+	position:relative;  
 }
 
 .searchContainer img{
