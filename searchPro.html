@@ -4,7 +4,7 @@
 		<meta charset="utf-8" />
 		<title>Search pictures - Picturesque</title>
 		<link href="css/style.css" rel="stylesheet" type="text/css"/>
-		<link href="css/maquetacion.css" rel="stylesheet" type="text/css"/>
+
 	</head>
 
 	<body>
@@ -12,36 +12,35 @@
 			<a href="index.html"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
-			<div id="searchP" class="padding headerContent">
-				
-				<h1>What are you looking for?</h1>								
-				
+			<div class="padding headerContent">				
+				<h1>What are you looking for?</h1>				
 			</div>						
 		</header>
 		<section>
-			<div class="boxPics"> <a class="back" href="index.html"><h2>Go back</h2></a></div>
+			<div class="boxPics"> <a class="back" href="index.html"><h2>&lt;- Go back</h2></a></div>
 			<div class="wrapper">
                 <div class="login">
-                    <form  id="searchParameters" autocomplete="on" enctype="multipart/form-data" method="get" action="searchresults.html"> 
-                        <span class="titleh1">Look for images with... </span> 
-                        <div class="usuRegistro"> 
-	                        <p>     
-	                        	<label for="title"><b>TITLE: </b> </label>                      
-	                            <input type="text" name="title" id="title" placeholder="E.G: landscape"/>                         
-	                        </p>   
-                         	<p>     
-	                        	<label for="dateFrom"><b>DATE TIME: </b> </label>                      
-	                            From: <input type="text" name="dateFrom" id="dateFrom" placeholder="dd/mm/yyyy"/>
-								To: <input type="text" name="dateTo" id="dateTo" placeholder="dd/mm/yyyy"/>               
-	                        </p>   
-	                        <p>     
-	                        	<label for="country"><b>COUNTRY: </b> </label>                      
-	                            <input type="text" name="country" id="country" placeholder="E.G: ireland..."/>             
-	                        </p>                     
-	                       	<p id="buttonSearch" class="login button"> 
-                            	<input type="submit" value="Search!"/> 
-							</p>    	                 
-                        </div>                       
+                    <form autocomplete="on" enctype="multipart/form-data" method="get" action="searchresults.html"> 
+                   	 	<div class="wrapperSearch">
+	                        <span class="titleh1">Look for images with... </span> 
+	                        <div class="usuRegistro"> 
+		                        <p>     
+		                        	<label for="title"><b>TITLE: </b> </label>                      
+		                            <input type="text" name="title" id="title" placeholder="E.G: landscape"/>                         
+		                        </p>   
+	                         	<p>     
+		                        	<label for="dateFrom"><b>DATE TIME: </b> </label> <br>                   
+		                            From: <input type="text" name="dateFrom" id="dateFrom" placeholder="dd/mm/yyyy"/> <br>
+									To: <input type="text" name="dateTo" id="dateTo" placeholder="dd/mm/yyyy"/>               
+		                        </p>   
+		                        <p>     
+		                        	<label for="country"><b>COUNTRY: </b> </label>                      
+		                            <input type="text" name="country" id="country" placeholder="E.G: ireland..."/>             
+		                        </p>                     
+		                       	<p class="button"><input class="searchR" type="submit" value="Search!"/> </p>
+								   	                 
+	                        </div> 
+                        </div>                      
                     </form>
 
                     <form autocomplete="on"> 

@@ -27,12 +27,15 @@ header{
 .headerContent{
 	color:#FFF;
 	font-family:Amatic SC, cursive;
-	font-size:30px;	
+	font-size:33px;	
 }
 
 .headerContent h1{
 	text-shadow: 0 0 10px rgba(0,0,0,0.5);
+	text-align: center;
 }
+
+
 
 .logoBox{
 	background-color:#80D1B9;
@@ -45,51 +48,87 @@ header{
 	width:260px;
 }
 
-.search{ 
-	border:1px solid #B2B2B2;
-	border-radius:3px;
-	box-shadow:0 1px 4px 0 rgba(168,168,168,0.6) inset;
-	margin-top:-20px;
-	outline:none;
-	padding:10px 5px 10px 32px;
-	width:15%;		
-}
-
-.search:active, .search:focus{
-	border: 1px solid rgba(91, 90, 90, 0.7);		
-    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
-}  
-
 .searchAdvanced{
-	height:27px;
+	height:25px;
 	margin-top:5px;
 	width:27px;
 }
 
-.searchContainer{
-	margin-top:-25px;
-	padding:0;
-	position:relative;  
+.searchContainer{		
+	margin-left: auto;
+	margin-right: auto;	
+	background-color: white;
+	border:1px solid #B2B2B2;
+	border-radius:3px;
+	box-shadow:0 1px 4px 0 rgba(168,168,168,0.6) inset;	
+	outline:none;
+	padding:10px 5px 10px 32px;
+	width:200px;
+	height: 15px;	
+	position:relative;
 }
 
-.searchContainer img{
-	bottom:10px;
-	height:20px;
-	left:8px;
-	position:absolute;
-	width:20px;
+.searchContainer:active, .searchContainer:focus{
+	border: 1px solid rgba(91, 90, 90, 0.7);		
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+} 
+
+.searchContainer .lupa{	
+	width:20px;	
+	display: inline-block;
+	margin-left: -22px;
+	margin-top: -2px;
+	position: absolute;
+}
+
+.searchContainer .btn{
+	margin-top: 32px;
+	float: right;
+}
+
+.search{ 
+	font-size: 16px;
+	outline: none;
+	background: none;
+	border:none;
+	margin-top: -2px;
+	display: inline-block;	
+	position: absolute;
 }
 
 .searching{
 	margin-top: -20px;
 }
-
-.searchRes{
-	font-family: Roboto, sans-serif;
+.searching h1{	
+	float: left;
+	padding-left: 25px;
 }
 
-.searchRes span{
+.searchRes{
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 150px;
+	font-family: Roboto, sans-serif;	
+	background-color:rgba(0,0,0,0.4);
+	border-radius:10px;
+	padding:15px;
+	width: 40%;
+	height: 130px;
+}
+
+.searchRes li{
+	list-style-type: none;  
+	display: inline-block;
+	margin-left: 3%;
+	margin-bottom: 3%;
 	font-size: 21px;
+}
+
+#user{
+	display: inline-block;
+	position: absolute;
+	right: 15px;
+	top: 15px;	
 }
 
 
@@ -97,6 +136,7 @@ header{
 .back{
 	text-decoration: none;
 }
+
 
 .boxPics{
 	background-color:#80D1B9;
@@ -106,7 +146,7 @@ header{
 	padding-left:5px;
 	position:relative;
 	top:-17px;
-	width:100px;
+	width:120px;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.7);
 }
 
@@ -119,14 +159,33 @@ header{
 }
 
 .detailPicture{
+	display: block;
 	background-color:#CCC;
 	border:1px solid #d8d8d8;
 	border-radius:3px;
-	box-shadow:inset 0 0 0 1px #fff;	
-	height:216px;
-	margin-bottom:5px;
-	padding:1px;
-	width:260px;
+	box-shadow:inset 0 0 0 1px #fff;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.picDet{
+	margin-top: -57px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom:25px;
+	background-color: #212124;	
+	overflow:hidden
+	
+}
+
+.picDet span{
+	color: white;
+	font-size: 18px;
+}
+
+.authors{
+	margin-top: -22px;
+	float: right;
 }
 
 section{
@@ -135,6 +194,12 @@ section{
 	margin:0;
 	padding:0;
 	width:100%;
+}
+
+section ul li{
+	display: inline-block;
+	margin-left: 3%;
+	margin-bottom: 3%;
 }
 
 section ul{
@@ -171,6 +236,24 @@ section li img{
 section li p{
 	background-color: #EBEBEB;
 	margin-top: -7px;	
+}
+
+.wrapperSearch{
+	background-color: #FBCAAA;
+	margin-left: 27px;
+	padding: 20px;
+	height: 320px;
+}
+
+#dateFrom{
+	margin-top: 10px;
+}
+
+#dateTo{
+	margin-top: 10px;
+}
+.searchR{
+	float: right;
 }
 
 /* PIE DE PÁGINA */
@@ -310,8 +393,7 @@ li:hover .titleImage{
 }
 
 p.login.button{
-	margin: 5px 0;
-	text-align: left;	
+	margin: 5px 0;	
 }
 
 .usernameContainer, .passContainer {
