@@ -1,0 +1,291 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto);
+
+/**HEADER**/
+html{
+	width:100%;
+	margin: 0;
+	padding: 0;
+	font-family: Roboto,sans-serif;
+}
+header{
+	background-color: #000000;
+	color:#ffffff;
+	margin-bottom: 15px;
+	margin-top:15px;
+	
+}
+
+.logoBox{
+	height:55px;
+	width:260px;
+	position:relative;
+	margin-left: 40px;
+}
+
+.padding h1{
+	text-align:center;
+	font-size:3em;
+}
+
+.searching{
+	margin-left:40px;
+}
+.searching h1{
+	text-align:left;
+}
+
+.searching .btn{
+	width:100px;
+	padding-top:-5px;
+	position:relative;
+	bottom:-80px;
+	left:400px;
+	color:#000000;
+	background-color:#ffffff;
+}
+
+.searchRes{	
+	padding:15px;
+	width: 40%;
+	height: 130px;
+}
+
+.searchRes li{
+	list-style-type: none;  
+	display: inline-block;
+	margin-left: 3%;
+	margin-bottom: 3%;
+	font-size: 21px;
+}
+
+#user{
+	position:relative;
+	top:110px;
+	left:41px;
+}
+/*formulario de busqueda*/
+header form{
+	width:10%;
+	text-align:center;
+	margin-left:40px;
+}
+
+.search{ 
+	border:1px solid #ffffff;
+	border-radius:3px;
+	width:100%;
+	height:30px;
+	margin-bottom:3px;
+}
+
+.btn {
+	border:2px solid #ffffff;
+	border-radius:4px;
+	background-color:#000000;
+	color:#ffffff;
+	width:35px;
+	height:30px;
+	display:inline-block;
+	text-align:center;
+	vertical-align:middle;
+}
+
+
+/***BODY***/
+body{
+	background-color:#000000;
+	color:#ffffff;
+	margin: 0;
+	padding: 0;
+}
+
+section{
+	border-top:5px solid #ffffff;
+	width:100%;
+}
+
+body section ul li{
+	list-style-type:none;
+	display:inline-block;
+	margin-left:5%;
+	margin-bottom:3%;
+}
+
+li a{
+	float: left;
+	position: absolute;
+}
+
+.boxPics{
+	background-color:#ffffff;
+	color:#000000;
+	border-radius:0 0 4px 4px;
+	height:40px;
+	left:40px;
+	padding-left:5px;
+	position:relative;
+	top:-21px;
+	width:120px;
+}
+
+.back{
+	color:#000000;
+}
+
+a{
+	color:#ffffff;
+}
+
+/**Detail Picture*/
+
+.detailPicture{
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.picDet{
+	margin-top: -57px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-bottom:25px;
+	background-color: #212124;	
+	overflow:hidden
+	
+}
+
+.picDet span{
+	color: white;
+	font-size: 18px;
+}
+
+.authors{
+	margin-top: -22px;
+	float: right;
+}
+
+#FootDetailPicture{
+	margin-top:200px;
+}
+/*Formulario busqueda*/
+
+#searchParameters{
+	margin-top:15px;
+}
+.usuRegistro{
+	margin-left:60px;
+}
+
+section .padding{
+	margin-top:50px;
+	margin-left:40px;
+	margin-bottom:-120px;;
+}
+.dataPicture{
+	border: 2px solid #ffffff;
+	width:400px;
+	height:165px;
+	position: relative;
+	top:-200px;
+	left:300px;
+	padding-top:30px;
+	padding-left:15px;
+}
+
+
+
+
+/**Formulario de registro**/
+
+.wrapper{
+	margin-left:40px;
+	display:inline-block;
+	width:500px;
+	height:120px;
+	bottom:-500px;
+}
+
+.wrapper input{
+	border:1px solid #ffffff;
+	background-color:#ffffff;
+	color:#000000;
+	border-radius:3px;
+	width:100%;
+	height:30px;
+}
+
+.wrapper .button input{
+	width:80px;
+	height:34px;
+	position: relative;
+	top: -102px;
+	left:308px
+}
+
+.usuRegistro .button{
+	position: relative;
+	top:110px;
+	left:54px;
+}
+
+.usernameContainer,.passContainer{
+	display:inline-block;
+}
+.titleh1{
+	font-size:2em;
+}
+#newUser{
+	position:relative;
+	top:-20px;
+}
+
+/**Registro de nuevo usuario**/
+
+.usuRegistro .radio input{
+	width:15px;
+	height:15px;
+}
+
+#picture{
+	background-color:#000000;
+	border-color:#000000;
+	color:#ffffff;
+	position: relative;
+	top: -20px;
+	left:60px;
+}
+
+#RegNow{
+	width:100px;
+	position:relative;
+	top:-50px;
+	left:400px;
+}
+
+#logYet{
+	margin-left:60px;
+}
+/*Pie de pagina*/
+footer{
+	border-top:2px solid #ffffff;
+	width:100%;
+}
+
+footer .padding{
+	margin-top:5px;
+	margin-left:40px;
+}
+
+/** Ocultar las imagenes**/
+
+.lupa{
+	display:none;
+}
+
+.usernameContainer img{
+	display:none;
+}
+
+.passContainer img{
+	display:none;
+}
