@@ -9,6 +9,7 @@ body{
 	padding: 0;
 }
 
+
 /* CABEZA */
 header{
 	background-color:#D2D7DB;
@@ -34,7 +35,6 @@ header{
 	text-shadow: 0 0 10px rgba(0,0,0,0.5);
 	text-align: center;
 }
-
 
 
 .logoBox{
@@ -265,6 +265,13 @@ footer{
 	height: 100%;
 }
 
+.rights{
+	font-size: 13px;
+	font-style: italic;
+	float: right;
+	text-align: right;
+}
+
 /* ELEMENTOS GLOBALES */
 li .titleImage{
 	color:#FFF;
@@ -281,6 +288,15 @@ li .titleImage{
 li:hover .titleImage{
 	display: block;
 }
+
+.titlePrint{
+	display: none !important;
+}
+
+.printIn{
+	display: none;
+}
+
 
 .padding{
 	padding: 15px;
@@ -417,9 +433,6 @@ p.login.button{
 }
 
 
-
-
-
 /* ESTILO DE BOTON DE RADIO */
 .radiolabel{
 	display: inline-block;  
@@ -457,3 +470,6 @@ input[type=radio]:checked + .radiolabel:before {
     text-align: center;  
     line-height: 18px;  
 } 
+
+
+/* PRINT SECTION */
