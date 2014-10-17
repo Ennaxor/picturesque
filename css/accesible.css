@@ -116,6 +116,11 @@ li a{
 	position: absolute;
 }
 
+.search:focus, .btn:focus{
+	background-color: yellow;
+}
+
+
 .boxPics{
 	background-color:#ffffff;
 	color:#000000;
@@ -128,13 +133,21 @@ li a{
 	width:120px;
 }
 
+
 .back{
 	color:#000000;
 }
 
 a{
 	color:#ffffff;
+
 }
+
+a:focus{
+	color: yellow;
+}
+
+
 
 /**Detail Picture*/
 
@@ -282,10 +295,10 @@ footer .padding{
 	display:none;
 }
 
-.usernameContainer img{
+.usernameContainer img, .passContainer img, .titleImage, .printIn{
 	display:none;
 }
 
-.passContainer img{
-	display:none;
+.titlePrint{
+	display: inline-block !important;
 }
