@@ -238,13 +238,34 @@ section li p{
 	margin-top: -7px;	
 }
 
-.wrapperSearch{
-	background-color: #FBCAAA;
-	margin-left: 27px;
+.WSadvanced{
 	padding: 20px;
-	height: 320px;
+	width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.wrapperSearch{
+	border: 2px solid #FBCAAA;
+	background-color:#FBCAAA;
+	box-shadow:5px 5px 5px 5px rgba(104,171,151,0.6);	
+	padding:5px;
+	width:50%;
+	min-width:480px;
+	height:320px;
+	margin-left: auto;
+    margin-right: auto;
+	margin-bottom:40px;
+}
+
+
+#dateFields{
+	margin-left:20px;
+}
+
+#dateTitle{
+	margin-left:-20px;
+}
 
 #dateFrom{
 	margin-top: 10px;
@@ -344,7 +365,7 @@ li:hover .titleImage{
 	margin:10px;
 	position:relative;
 	right:0;
-	width:70%;	
+	width:99%;
 }
 
 .wrapper a{
@@ -370,7 +391,8 @@ li:hover .titleImage{
 
 .wrapper .usernameContainer input, .wrapper .passContainer input{
 	padding:10px 5px 10px 32px;	
-	width:30%;	
+	width:15%;
+	min-width:200px;	
 }
 
 .wrapper input:active, .wrapper input:focus{
@@ -510,6 +532,10 @@ input[type=radio]:checked + .radiolabel:before {
 	float:left;
 }
 
+#loginButton{
+	width:15%;
+	min-width:200px;
+}
 
 /*JAVASCRIPT ELEMENTS */
 #usernameError, #passError, #spaceError{
