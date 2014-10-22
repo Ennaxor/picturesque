@@ -504,7 +504,16 @@ input[type=radio]:checked + .radiolabel:before {
 	height:520px;
 	margin-left: auto;
     margin-right: auto;
-	}
+}
+
 #logYet{
 	float:left;
 }
+
+
+/*JAVASCRIPT ELEMENTS */
+#usernameError, #passError, #spaceError{
+	color: red;
+	font-size: 12px;
+}
+
