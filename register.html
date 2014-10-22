@@ -9,8 +9,9 @@
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
 		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>
 
+		<script src="js/regisrto.js"></script>
 	</head>
-	<body>
+	<body onload="fillDate()">
 		<header>				
 			<a href="index.html"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
@@ -22,24 +23,28 @@
 		<section>
 			<div class="wrapper loginR">
                 <div class="login aux">
-                    <form autocomplete="on" enctype="multipart/form-data" method="get" action="index.html"> 
+                    <form autocomplete="on"  onSubmit="return checkform(this)"> 
                         <span class="titleh1">Register as a new user</span> 
                         <div class="usuRegistro"> 
 	                        <p>     
 	                        	<label for="username">User name: </label>                        
-	                            <input type="text" name="username" required="required" id="username"/>                           
+	                            <input type="text" name="username"  id="username" onkeyup="nospaces(this)" onkeydown="reseting()"/>  
+								<span id="usernameRegisterError"></span>								
 	                        </p>                        
 	                        <p>          
 	                        	<label for="password">Password: </label>                                              
-	                            <input type="password" name="password" required="required" id="password"/>
+	                            <input type="password" name="password"  id="password"/>
+								<span id="passwordRegisterError"></span>
 	                        </p>  
 	                        <p>          
 	                        	<label for="password2">Repeat Password: </label>                                              
-	                            <input type="password" name="password" required="required" id="password2"/>
+	                            <input type="password" name="password2"  id="password2"/>
+								<span id="repeatPasswordRegisterError"></span>
 	                        </p>  	
 	                        <p>          
 	                        	<label for="email">Email: </label>                                              
-	                            <input type="text" name="email" required="required" id="email"/>
+	                            <input type="text" name="email"  id="email"/>
+								<span id="emailRegisterError"></span>
 	                        </p> 
 	                        <p class="radio">          
 	                        	<label>Gender: </label>  
@@ -47,64 +52,18 @@
 	                        	<label for="man" class="radiolabel"> Man </label>
 								<input id="woman" type="radio" name="genderType" value="Woman">  
 								<label for="woman" class="radiolabel">Woman </label>
+								<span id="genderRegisterError"></span>
 	                        </p>  
 
 	                        <p>          
 	                        	<label>Date of birth: </label>
-								<select>
-									<option value="1"> 1 </option>
-									<option value="2"> 2 </option>
-									<option value="3"> 3 </option>
-									<option value="4"> 4 </option>
-									<option value="5"> 5 </option>
-									<option value="6"> 6 </option>
-									<option value="7"> 7 </option>
-									<option value="8"> 8 </option>
-									<option value="9"> 9 </option>
-									<option value="10"> 10 </option>
-									<option value="11"> 11 </option>
-									<option value="12"> 12 </option>
-									<option value="13"> 13 </option>
-									<option value="14"> 14 </option>
-									<option value="15"> 15 </option>
-									<option value="16"> 16 </option>
-									<option value="17"> 17 </option>
-									<option value="18"> 18 </option>
-									<option value="19"> 19 </option>
-									<option value="20"> 20 </option>
-									<option value="21"> 21 </option>
-									<option value="22"> 22 </option>
-									<option value="23"> 23 </option>
-									<option value="24"> 24 </option>
-									<option value="25"> 25 </option>
-									<option value="26"> 26 </option>
-									<option value="27"> 27 </option>
-									<option value="28"> 28 </option>
-									<option value="29"> 29 </option>
-									<option value="30"> 30 </option>
-									<option value="31"> 31 </option>
+								<select id="day" name="day">
 								</select>
-								<select>
-									<option value="January"> January </option>
-									<option value="February"> February </option>
-									<option value="March"> March </option>
-									<option value="April"> April </option>
-									<option value="May"> May </option>
-									<option value="June"> June </option>
-									<option value="July"> July </option>
-									<option value="August"> August </option>
-									<option value="September"> September </option>
-									<option value="October"> October </option>
-									<option value="November"> November </option>
-									<option value="December"> December </option>
+								<select id="month" name="month">
 								</select>
-								<select>
-									<option value="1900"> 1900 </option>
-									<option value="1901"> 1901 </option>
-									<option value="1902"> 1902 </option>
-									<option value="1903"> 1903 </option>
-									<option value="1904"> 1904 </option>
+								<select id="year" name="year">
 								</select>
+								<span id="dateRegisterError"></span>
 	                        </p>    
 	                         <p>          
 	                        	<label for="city">City: </label>                                              
@@ -144,3 +103,5 @@
 		</footer>
 	</body>
 	</html>
+	
+	<!--enctype="multipart/form-data" method="get" action="index.html"-->

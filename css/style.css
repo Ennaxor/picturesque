@@ -458,6 +458,10 @@ p.login.button{
 	min-width:80px;
 }
 
+.usuRegistro input:focus{
+	background:rgba(104,171,151,0.2);
+}
+
 .usuRegistro{
 	padding:10px;
 }	
@@ -536,6 +540,10 @@ input[type=radio]:checked + .radiolabel:before {
 	width:15%;
 	min-width:200px;
 }
+#day, #month, #year{
+	height:35px;
+	border-radius:3px;
+}	
 
 /*JAVASCRIPT ELEMENTS */
 #usernameError, #passError, #spaceError{
