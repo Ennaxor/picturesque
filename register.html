@@ -23,31 +23,31 @@
 		<section>
 			<div class="wrapper loginR">
                 <div class="login aux">
-                    <form autocomplete="on"  onSubmit="return checkform(this)"> 
+                    <form autocomplete="on" onSubmit="return checkform(this)"> 
                         <span class="titleh1">Register as a new user</span> 
                         <div class="usuRegistro"> 
 	                        <p>     
-	                        	<label for="username">User name: </label>                        
+	                        	<label for="username">User name*: </label>                        
 	                            <input type="text" name="username"  id="username" onkeyup="nospaces(this)" onkeydown="reseting()"/>  
 								<span id="usernameRegisterError"></span>								
 	                        </p>                        
 	                        <p>          
-	                        	<label for="password">Password: </label>                                              
+	                        	<label for="password">Password*: </label>                                              
 	                            <input type="password" name="password"  id="password"/>
 								<span id="passwordRegisterError"></span>
 	                        </p>  
 	                        <p>          
-	                        	<label for="password2">Repeat Password: </label>                                              
+	                        	<label for="password2">Repeat Password*: </label>                                              
 	                            <input type="password" name="password2"  id="password2"/>
 								<span id="repeatPasswordRegisterError"></span>
 	                        </p>  	
 	                        <p>          
-	                        	<label for="email">Email: </label>                                              
+	                        	<label for="email">Email*: </label>                                              
 	                            <input type="text" name="email"  id="email"/>
 								<span id="emailRegisterError"></span>
 	                        </p> 
 	                        <p class="radio">          
-	                        	<label>Gender: </label>  
+	                        	<label>Gender*: </label>  
 	                        	<input id="man" type="radio" name="genderType" value="Man" checked="checked">
 	                        	<label for="man" class="radiolabel"> Man </label>
 								<input id="woman" type="radio" name="genderType" value="Woman">  
@@ -56,7 +56,7 @@
 	                        </p>  
 
 	                        <p>          
-	                        	<label>Date of birth: </label>
+	                        	<label>Date of birth*: </label>
 								<select id="day" name="day">
 								</select>
 								<select id="month" name="month">
@@ -76,8 +76,11 @@
 	                        <p>          
 	                        	<label for="picture">Picture: </label>                                              
 	                            <input type="file" name="picture" id="picture"/>
-	                        </p>                       
+	                        </p>    
+	                        <p><span class="obligated">*Obligatory fields</span></p>                   
                         </div> 
+
+
 						
                         <p id="logYet">Already have an account? Login <a href="index.html"><b>HERE</b></a></p>                  
                         <p class="login button printOut buttonR"> 

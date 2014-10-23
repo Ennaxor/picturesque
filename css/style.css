@@ -1,7 +1,7 @@
-/*@import url(http://fonts.googleapis.com/css?family=Lobster);*/
+/*@import url(http://fonts.googleapis.com/css?family=Lobster);
 @import url(http://fonts.googleapis.com/css?family=Amatic+SC:700);
 @import url(http://fonts.googleapis.com/css?family=Vollkorn);
-@import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url(http://fonts.googleapis.com/css?family=Roboto);*/
 
 body{
 	font-family: Vollkorn, serif;
@@ -529,10 +529,10 @@ input[type=radio]:checked + .radiolabel:before {
 	border: 2px solid #FBCAAA;
 	background-color:#FBCAAA;
 	box-shadow:5px 5px 5px 5px rgba(104,171,151,0.6);	
-	padding:5px;
+	padding:10px;
 	width:50%;
 	min-width:480px;
-	height:520px;
+	height:570px;
 	margin-left: auto;
     margin-right: auto;
 }
@@ -548,6 +548,11 @@ input[type=radio]:checked + .radiolabel:before {
 #day, #month, #year{
 	height:35px;
 	border-radius:3px;
+}
+
+.obligated{
+	
+	color: red;
 }	
 
 /*JAVASCRIPT ELEMENTS */
