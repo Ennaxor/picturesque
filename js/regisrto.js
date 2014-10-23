@@ -196,28 +196,13 @@ function checkform(myform){
 	var month=myform.elements["month"];
 	var year=myform.elements["year"];
 		checkDate(day,month,year);
-	return true;
+	return false;
 
 }
 
 function nospaces(object){
 	if(object.value.match(/\s/g) || object.value.match(/\./g)  ){
-	
-		switch (object.name){
-			case "username":
-				document.getElementById("usernameRegisterError").innerHTML = "No spaces allowed*";
-				break;
-			case "password":
-				document.getElementById("passwordRegisterError").innerHTML = "No spaces allowed*";
-				break;
-			case "password2":
-				document.getElementById("repeatPasswordRegisterError").innerHTML = "No spaces allowed*";
-				break;
-			case "email":
-				document.getElementById("emailRegisterError").innerHTML = "No spaces allowed*";
-				break;				
-		}
-        
+        document.getElementById("spaceError").innerHTML = "No spaces allowed*";
         object.value= "";
     }
 }
