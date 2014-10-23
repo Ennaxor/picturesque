@@ -202,7 +202,22 @@ function checkform(myform){
 
 function nospaces(object){
 	if(object.value.match(/\s/g) || object.value.match(/\./g)  ){
-        document.getElementById("spaceError").innerHTML = "No spaces allowed*";
+	
+		switch (object.name){
+			case "username":
+				document.getElementById("usernameRegisterError").innerHTML = "No spaces allowed*";
+				break;
+			case "password":
+				document.getElementById("passwordRegisterError").innerHTML = "No spaces allowed*";
+				break;
+			case "password2":
+				document.getElementById("repeatPasswordRegisterError").innerHTML = "No spaces allowed*";
+				break;
+			case "email":
+				document.getElementById("emailRegisterError").innerHTML = "No spaces allowed*";
+				break;				
+		}
+        
         object.value= "";
     }
 }

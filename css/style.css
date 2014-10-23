@@ -466,6 +466,11 @@ p.login.button{
 	padding:10px;
 }	
 
+.usuRegistro  span{
+	color: red;
+	font-size: 12px;
+}
+
 
 /* ESTILO DE BOTON DE RADIO */
 .radiolabel{
