@@ -129,6 +129,10 @@ function checkEmail(email){
 		document.getElementById("emailRegisterError").innerHTML = "Please provide your email*";
 		return false;
 	}
+	else if(fragments.length<2){
+		document.getElementById("emailRegisterError").innerHTML = "You forgot the '@' symbol*";
+		return false;
+	}
 	else if(fragments[0].length<2 || fragments[0].length>4){
 		document.getElementById("emailRegisterError").innerHTML = "The domain of the email has to be between 2 and 4 letters*";
 		return false;
@@ -160,28 +164,32 @@ function checkDate(day,month,year){
 			return false;
 		}	
 	}
+	if(day.value>27 && month.value == "February"){
+		document.getElementById("dateRegisterError").innerHTML = "February only has 27 days*";
+				return false;
+	}
 	
 	if(day.value>30){
 		switch (month.value){
 			case "April":
-				document.getElementById("dateRegisterError").innerHTML = "This month only has 30 days this year*";
+				document.getElementById("dateRegisterError").innerHTML = "This month only has 30 days*";
 				return false;
 				break;
 			case "June":
-				document.getElementById("dateRegisterError").innerHTML = "This month only has 30 days this year*";
+				document.getElementById("dateRegisterError").innerHTML = "This month only has 30 days*";
 				return false;
 				break;
 			case "September":
-				document.getElementById("dateRegisterError").innerHTML = "This month only has 30 days this year*";
+				document.getElementById("dateRegisterError").innerHTML = "This month only has 30 days*";
 				return false;
 				break;
 			case "November":
-				document.getElementById("dateRegisterError").innerHTML = "This month only has 30 days this year*";
+				document.getElementById("dateRegisterError").innerHTML = "This month only has 30 days*";
 				return false;
 				break;
 		}
 	}
-	
+	return true;
 
 }
 
@@ -198,11 +206,11 @@ function checkform(myform){
 	var gender = myform.elements["genderType"];
 		checkGender(gender);
 		
-	var day=myform.elements["day"];
-	var month=myform.elements["month"];
-	var year=myform.elements["year"];
-		checkDate(day,month,year);
-	if( booluser == true && boolpass == true && boolpass2 == true && boolmail == true){
+	var day = myform.elements["day"];
+	var month = myform.elements["month"];
+	var year = myform.elements["year"];
+		booldate = checkDate(day,month,year);
+	if( booluser == true && boolpass == true && boolpass2 == true && boolmail == true && booldate == true){
 		return true;	
 	}
 	else{
@@ -211,7 +219,7 @@ function checkform(myform){
 }
 
 function nospaces(object){
-	if(object.value.match(/\s/g) || object.value.match(/\./g)  ){
+	if(object.value.match(/\s/g)  ){
 		switch (object.name){
 			case "username":
 				document.getElementById("usernameRegisterError").innerHTML = "No spaces allowed*";
