@@ -7,9 +7,7 @@
 		<link href="css/accesible.css" rel="alternate stylesheet" type="text/css" title="Estilo Accesible"/>
 
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
-		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>
-
-		<script src="js/regisrto.js"></script>
+		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>		
 	</head>
 	<body onload="fillDate()">
 		<header>				
@@ -57,11 +55,11 @@
 
 	                        <p>          
 	                        	<label>Date of birth*: </label>
-								<select id="day" name="day">
+								<select id="day" name="day" onchange="reseting(this)">
 								</select>
-								<select id="month" name="month">
+								<select id="month" name="month" onchange="reseting(this)">
 								</select>
-								<select id="year" name="year">
+								<select id="year" name="year" onchange="reseting(this)">
 								</select>
 								<span id="dateRegisterError"></span>
 	                        </p>    
@@ -87,6 +85,8 @@
                         <p class="login button printOut buttonR"> 
                             <input id="RegNow" type="submit" value="Register now!"/> 
 						</p>
+
+						<!-- PRINT BUTTON -->
 						<button class="printIn">Register now!</button>
                     </form>
         		</div>
@@ -105,7 +105,6 @@
 		
 			</div>	
 		</footer>
+		<script src="js/register.js"></script>
 	</body>
 	</html>
-	
-	<!--enctype="multipart/form-data" method="get" action="index.html"-->

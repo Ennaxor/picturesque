@@ -550,9 +550,8 @@ input[type=radio]:checked + .radiolabel:before {
 	border-radius:3px;
 }
 
-.obligated{
-	
-	color: red;
+.obligated{	
+	color: #000 !important;
 }	
 
 /*JAVASCRIPT ELEMENTS */

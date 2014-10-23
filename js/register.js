@@ -1,9 +1,34 @@
+function checkform(myform){
+	var username = myform.elements["username"];
+		booluser = checkUserName(username);
+	var password = myform.elements["password"];
+		boolpass = checkPassword(password);
+	var repeatPassword = myform.elements["password2"];
+		boolpass2 = checkRepeatPassword(repeatPassword,password);
+	var email = myform.elements["email"];
+		boolmail = checkEmail(email);
+	var gender = myform.elements["genderType"];
+		checkGender(gender);
+		
+	var day = myform.elements["day"];
+	var month = myform.elements["month"];
+	var year = myform.elements["year"];
+		booldate = checkDate(day,month,year);
+	if(booluser == true && boolpass == true && boolpass2 == true && boolmail == true && booldate == true){
+		return true;	
+	}
+	else{
+		return false;
+	}
+}
+
+
 function fillDate(){	
 	var days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
 	var months =["January","February","March","April","May","June","July","August","September","October","November","December"];
-	var years = Array.apply(null,Array(200));
+	var years = Array.apply(null,Array(115));
 	
-	for (var i=0;i<200;i++){
+	for (var i=0;i<115;i++){
 		years[i]=1900+i;
 	}
 	
@@ -121,24 +146,37 @@ function checkRepeatPassword(repeatPassword,password){
 	return true;
 }
 
-function checkEmail(email){
-	
-	var splitemail=email;
-	var fragments=splitemail.value.split("@");
+function checkEmail(email){	
 	if(email.value == ""){
 		document.getElementById("emailRegisterError").innerHTML = "Please provide your email*";
-		return false;
+        return false;
 	}
-	else if(fragments.length<2){
-		document.getElementById("emailRegisterError").innerHTML = "You forgot the '@' symbol*";
-		return false;
-	}
-	else if(fragments[0].length<2 || fragments[0].length>4){
-		document.getElementById("emailRegisterError").innerHTML = "The domain of the email has to be between 2 and 4 letters*";
-		return false;
-	}	
-	
-	return true;
+    else{
+        var splitA=email.value.split("@");
+        if(splitA.length != 2){
+            document.getElementById("emailRegisterError").innerHTML = "That doesn't look like an email..";
+            return false;
+        }
+        else{
+            var splitB=splitA[1].split(".");
+            if(splitB.length < 2){
+                document.getElementById("emailRegisterError").innerHTML = "That doesn't look like an email..";
+                return false;
+            }
+            else{
+                var domainLength = splitB[splitB.length-1].length;
+                if(domainLength < 2 || domainLength > 4){
+                    document.getElementById("emailRegisterError").innerHTML = "Email's main domain must be between 2 and 4 chars";
+                    return false;
+                }
+                else{
+                    //SUCCESS!!!
+                    document.getElementById("emailRegisterError").innerHTML = "";
+                    return true;
+                }
+            }
+        }
+    }
 }
 
 function checkGender(gender){
@@ -193,31 +231,6 @@ function checkDate(day,month,year){
 
 }
 
-
-function checkform(myform){
-	var username = myform.elements["username"];
-		booluser = checkUserName(username);
-	var password = myform.elements["password"];
-		boolpass = checkPassword(password);
-	var repeatPassword = myform.elements["password2"];
-		boolpass2 = checkRepeatPassword(repeatPassword,password);
-	var email = myform.elements["email"];
-		boolmail = checkEmail(email);
-	var gender = myform.elements["genderType"];
-		checkGender(gender);
-		
-	var day = myform.elements["day"];
-	var month = myform.elements["month"];
-	var year = myform.elements["year"];
-		booldate = checkDate(day,month,year);
-	if( booluser == true && boolpass == true && boolpass2 == true && boolmail == true && booldate == true){
-		return true;	
-	}
-	else{
-		return false;
-	}
-}
-
 function nospaces(object){
 	if(object.value.match(/\s/g)  ){
 		switch (object.name){
@@ -238,10 +251,30 @@ function nospaces(object){
     }
 }
 
-function reseting(){
-	document.getElementById("usernameRegisterError").innerHTML = "";
-	document.getElementById("passwordRegisterError").innerHTML = "";
-	document.getElementById("repeatPasswordRegisterError").innerHTML = "";
-	document.getElementById("emailRegisterError").innerHTML = "";
-	document.getElementById("genderRegisterError").innerHTML = "";
+function reseting(object){
+	switch (object.name){
+			case "username":
+				document.getElementById("usernameRegisterError").innerHTML = "";
+				break;
+			case "password":
+				document.getElementById("passwordRegisterError").innerHTML = "";
+				break;
+			case "password2":
+				document.getElementById("repeatPasswordRegisterError").innerHTML = "";
+				break;	
+			case "email":
+				document.getElementById("emailRegisterError").innerHTML = "";
+				break;
+			case "day":
+				document.getElementById("dateRegisterError").innerHTML = "";
+				break;
+			case "month":
+				document.getElementById("dateRegisterError").innerHTML = "";
+				break;
+			case "year":
+				document.getElementById("dateRegisterError").innerHTML = "";
+				break;
+	}
+
+	
 }
