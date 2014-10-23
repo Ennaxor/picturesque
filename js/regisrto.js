@@ -57,6 +57,7 @@ function checkUserName(username){
 			}
 		}
 	}
+	return true;
 }
 
 function checkPassword(password){
@@ -103,7 +104,8 @@ function checkPassword(password){
 			document.getElementById("passwordRegisterError").innerHTML = "Password must contain at least One UpperCase letter, One LowerCase letter and One Number*";
 			return false;
 		}
-	}	
+	}
+	return true;
 }
 
 function checkRepeatPassword(repeatPassword,password){
@@ -115,6 +117,8 @@ function checkRepeatPassword(repeatPassword,password){
 		document.getElementById("passwordRegisterError").innerHTML = "Password doesn't match*";
 		return false;
 	}
+	
+	return true;
 }
 
 function checkEmail(email){
@@ -129,6 +133,8 @@ function checkEmail(email){
 		document.getElementById("emailRegisterError").innerHTML = "The domain of the email has to be between 2 and 4 letters*";
 		return false;
 	}	
+	
+	return true;
 }
 
 function checkGender(gender){
@@ -181,34 +187,53 @@ function checkDate(day,month,year){
 
 
 function checkform(myform){
-	var username=myform.elements["username"];
-		checkUserName(username);
-	var password=myform.elements["password"];
-		checkPassword(password);
-	var repeatPassword=myform.elements["password2"];
-		checkRepeatPassword(repeatPassword,password);
-	var email=myform.elements["email"];
-		checkEmail(email);
-	var gender=myform.elements["genderType"];
+	var username = myform.elements["username"];
+		booluser = checkUserName(username);
+	var password = myform.elements["password"];
+		boolpass = checkPassword(password);
+	var repeatPassword = myform.elements["password2"];
+		boolpass2 = checkRepeatPassword(repeatPassword,password);
+	var email = myform.elements["email"];
+		boolmail = checkEmail(email);
+	var gender = myform.elements["genderType"];
 		checkGender(gender);
 		
 	var day=myform.elements["day"];
 	var month=myform.elements["month"];
 	var year=myform.elements["year"];
 		checkDate(day,month,year);
-	return false;
-
+	if( booluser == true && boolpass == true && boolpass2 == true && boolmail == true){
+		return true;	
+	}
+	else{
+		return false;
+	}
 }
 
 function nospaces(object){
 	if(object.value.match(/\s/g) || object.value.match(/\./g)  ){
-        document.getElementById("spaceError").innerHTML = "No spaces allowed*";
+		switch (object.name){
+			case "username":
+				document.getElementById("usernameRegisterError").innerHTML = "No spaces allowed*";
+				break;
+			case "password":
+				document.getElementById("passwordRegisterError").innerHTML = "No spaces allowed*";
+				break;
+			case "password2":
+				document.getElementById("repeatPasswordRegisterError").innerHTML = "No spaces allowed*";
+				break;	
+			case "email":
+				document.getElementById("emailRegisterError").innerHTML = "No spaces allowed*";
+				break;
+		}
         object.value= "";
     }
 }
 
 function reseting(){
-	document.getElementById("usernameError").innerHTML = "";
-	document.getElementById("passError").innerHTML = "";
-	document.getElementById("spaceError").innerHTML = "";
+	document.getElementById("usernameRegisterError").innerHTML = "";
+	document.getElementById("passwordRegisterError").innerHTML = "";
+	document.getElementById("repeatPasswordRegisterError").innerHTML = "";
+	document.getElementById("emailRegisterError").innerHTML = "";
+	document.getElementById("genderRegisterError").innerHTML = "";
 }

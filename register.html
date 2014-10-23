@@ -33,17 +33,17 @@
 	                        </p>                        
 	                        <p>          
 	                        	<label for="password">Password*: </label>                                              
-	                            <input type="password" name="password"  id="password"/>
+	                            <input type="password" name="password"  id="password" onkeyup="nospaces(this)" onkeydown="reseting()"/>
 								<span id="passwordRegisterError"></span>
 	                        </p>  
 	                        <p>          
 	                        	<label for="password2">Repeat Password*: </label>                                              
-	                            <input type="password" name="password2"  id="password2"/>
+	                            <input type="password" name="password2"  id="password2"onkeyup="nospaces(this)" onkeydown="reseting()"/>
 								<span id="repeatPasswordRegisterError"></span>
 	                        </p>  	
 	                        <p>          
 	                        	<label for="email">Email*: </label>                                              
-	                            <input type="text" name="email"  id="email"/>
+	                            <input type="text" name="email"  id="email"onkeyup="nospaces(this)" onkeydown="reseting()"/>
 								<span id="emailRegisterError"></span>
 	                        </p> 
 	                        <p class="radio">          
