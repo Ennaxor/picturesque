@@ -69,10 +69,6 @@ function checkUserName(username){
 	var alphabet= /^[a-zA-Z]+$/;
 	var numbers=/^[0-9]+$/;
 	
-	var numbersArrays = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-	var alphaArray= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
-	"A","B","C","D","E","F","G","H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];	
-
 	if(username.value == ""){
 		document.getElementById("usernameRegisterError").innerHTML = "Please provide your username*";
 		return false;
@@ -84,7 +80,7 @@ function checkUserName(username){
 	else {
 		for(var i=0; i<username.value.length; i++){
 			var char1 = username.value.charAt(i);
-			if(isInArray(char1, alphaArray) || isInArray(char1, numbersArrays)){
+			if((char1 >= "a" && char1 <= "z") || (char1 >= "A" && char1 <= "Z") || (char1 >= "0" && char1 <= "9")){
 			
 			}
 			//if(char1.match(alphabet) || char1.match(numbers))
@@ -109,11 +105,6 @@ function checkPassword(password){
 	var contalphmax=0;
 	var numbers=/^[0-9]+$/;
 	var contnumbers=0;
-
-	var numbersArraysA = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-	var alphaArrayMinus= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-	var alphaArrayMax = ["A","B","C","D","E","F","G","H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-	
 	
 	if(password.value == ""){
 		document.getElementById("passwordRegisterError").innerHTML = "Please provide your password*";
@@ -127,24 +118,24 @@ function checkPassword(password){
 	else {
 		for(var i=0; i<password.value.length; i++){
 			var char1 = password.value.charAt(i);
-			if(isInArray(char1, alphaArrayMinus)){
+			if(char1 >= "a" && char1 <= "z"){
 				contalphmin++;
 			}
-			else if(isInArray(char1, alphaArrayMax)){
+			else if(char1 >= "A" && char1 <= "Z"){
 				contalphmax++;
 			}
-			/*else if(isInArray(char1, numbersArrays){
-			//	contnumbers++;
-			}*//*
+			else if(char1 >= "0" && char1 <= "9"){
+				contnumbers++;
+			}/*
 			if(char1.match(alphabetminus)){
 				contalphmin++;
 			}
 			else if(char1.match(alphabetmaxi)){
 				contalphmax++;
-			}*/
+			}
 			else if(char1.match(numbers)){
 				contnumbers++;
-			}
+			}*/
 			else if(char1=='_'){
 			
 			}
@@ -263,23 +254,27 @@ function checkDate(day,month,year){
 }
 
 function nospaces(object){
-	if(object.value.match(/\s/g)  ){
-		switch (object.name){
-			case "username":
-				document.getElementById("usernameRegisterError").innerHTML = "No spaces allowed*";
-				break;
-			case "password":
-				document.getElementById("passwordRegisterError").innerHTML = "No spaces allowed*";
-				break;
-			case "password2":
-				document.getElementById("repeatPasswordRegisterError").innerHTML = "No spaces allowed*";
-				break;	
-			case "email":
-				document.getElementById("emailRegisterError").innerHTML = "No spaces allowed*";
-				break;
-		}
-        object.value= "";
-    }
+	//if(object.value.match(/\s/g)){
+	for(var i=0; i<object.value.length; i++){
+		var char1 = object.value.charAt(i);
+		if(char1 == " "){
+			switch (object.name){
+				case "username":
+					document.getElementById("usernameRegisterError").innerHTML = "No spaces allowed*";
+					break;
+				case "password":
+					document.getElementById("passwordRegisterError").innerHTML = "No spaces allowed*";
+					break;
+				case "password2":
+					document.getElementById("repeatPasswordRegisterError").innerHTML = "No spaces allowed*";
+					break;	
+				case "email":
+					document.getElementById("emailRegisterError").innerHTML = "No spaces allowed*";
+					break;
+			}
+	        object.value= "";
+	    }
+	}
 }
 
 function reseting(object){
