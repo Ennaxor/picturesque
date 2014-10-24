@@ -1,3 +1,8 @@
+/* GLOBAL VARIABLES */
+
+
+/* END */
+
 function checkform(myform){
 	var username = myform.elements["username"];
 		booluser = checkUserName(username);
@@ -63,6 +68,11 @@ function fillDate(){
 function checkUserName(username){
 	var alphabet= /^[a-zA-Z]+$/;
 	var numbers=/^[0-9]+$/;
+	
+	var numbersArrays = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+	var alphaArray= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",
+	"A","B","C","D","E","F","G","H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];	
+
 	if(username.value == ""){
 		document.getElementById("usernameRegisterError").innerHTML = "Please provide your username*";
 		return false;
@@ -74,16 +84,22 @@ function checkUserName(username){
 	else {
 		for(var i=0; i<username.value.length; i++){
 			var char1 = username.value.charAt(i);
-			if(char1.match(alphabet) || char1.match(numbers)){
+			if(isInArray(char1, alphaArray) || isInArray(char1, numbersArrays)){
 			
 			}
-			 else {
+			//if(char1.match(alphabet) || char1.match(numbers))
+
+			else {
 				document.getElementById("usernameRegisterError").innerHTML = "Please use English alphabet*";
-			 return false;
+			 	return false;
 			}
 		}
 	}
 	return true;
+}
+
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
 }
 
 function checkPassword(password){
@@ -93,6 +109,11 @@ function checkPassword(password){
 	var contalphmax=0;
 	var numbers=/^[0-9]+$/;
 	var contnumbers=0;
+
+	var numbersArraysA = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+	var alphaArrayMinus= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+	var alphaArrayMax = ["A","B","C","D","E","F","G","H", "I", "J", "K", "L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+	
 	
 	if(password.value == ""){
 		document.getElementById("passwordRegisterError").innerHTML = "Please provide your password*";
@@ -106,12 +127,21 @@ function checkPassword(password){
 	else {
 		for(var i=0; i<password.value.length; i++){
 			var char1 = password.value.charAt(i);
+			if(isInArray(char1, alphaArrayMinus)){
+				contalphmin++;
+			}
+			else if(isInArray(char1, alphaArrayMax)){
+				contalphmax++;
+			}
+			/*else if(isInArray(char1, numbersArrays){
+			//	contnumbers++;
+			}*//*
 			if(char1.match(alphabetminus)){
 				contalphmin++;
 			}
 			else if(char1.match(alphabetmaxi)){
 				contalphmax++;
-			}
+			}*/
 			else if(char1.match(numbers)){
 				contnumbers++;
 			}
