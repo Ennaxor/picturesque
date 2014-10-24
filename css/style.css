@@ -554,9 +554,4 @@ input[type=radio]:checked + .radiolabel:before {
 	color: #000 !important;
 }	
 
-/*JAVASCRIPT ELEMENTS */
-#usernameError, #passError, #spaceError{
-	color: red;
-	font-size: 12px;
-}
 

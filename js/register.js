@@ -207,9 +207,17 @@ function checkGender(gender){
 		document.getElementById("genderRegisterError").innerHTML = "Please provide your gender*";
 		return false;
 	}
+	else document.getElementById("genderRegisterError").innerHTML = "";
 }
 
 function checkDate(day,month,year){
+
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth();
+	var yyyy = today.getFullYear();
+	var months =["January","February","March","April","May","June","July","August","September","October","November","December"];
+
 
 	var leapyears = Array.apply(null,Array(50));
 	var firstyear=1900;
@@ -219,13 +227,13 @@ function checkDate(day,month,year){
 	}
 	
 	for (var i=0;i<50;i++){
-		if(year.value == leapyears[i] && day.value>28 && month.value == "February" ){
-			document.getElementById("dateRegisterError").innerHTML = "February only has 28 days this year*";
+		if(year.value == leapyears[i] && day.value>29 && month.value == "February" ){
+			document.getElementById("dateRegisterError").innerHTML = "February only has 29 days this year*";
 			return false;
 		}	
 	}
-	if(day.value>27 && month.value == "February"){
-		document.getElementById("dateRegisterError").innerHTML = "February only has 27 days*";
+	if(day.value>28 && month.value == "February"){
+		document.getElementById("dateRegisterError").innerHTML = "February only has 28 days*";
 				return false;
 	}
 	
@@ -248,6 +256,22 @@ function checkDate(day,month,year){
 				return false;
 				break;
 		}
+	}
+
+	if(year.value >= yyyy){
+		var posMonthSelected = months.indexOf(month.value);
+		if(mm > posMonthSelected){
+
+		}
+		else{
+			if(mm == posMonthSelected){
+				if(day.value > dd) {
+					document.getElementById("dateRegisterError").innerHTML = "Please provide a valid date*";
+				}
+			}
+			else document.getElementById("dateRegisterError").innerHTML = "Please provide a valid date*";
+		}
+		return false;
 	}
 	return true;
 
