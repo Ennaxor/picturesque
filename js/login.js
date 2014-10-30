@@ -13,14 +13,11 @@ function checkform(myform){
 }
 
 function nospaces(object){
-	//if(object.value.match(/\s/g)){
-	for(var i=0; i<object.value.length; i++){
-		var char1 = object.value.charAt(i);
-		if(char1 == " "){
-        	document.getElementById("spaceError").innerHTML = "No spaces allowed*";
-        	object.value= "";
-    	}
-    }
+	if(object.value.match(/\s/g)){	
+		document.getElementById("spaceError").innerHTML = "No spaces allowed*";
+		object.value= "";
+	}
+    
 }
 
 function reseting(){

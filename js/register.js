@@ -1,8 +1,3 @@
-/* GLOBAL VARIABLES */
-
-
-/* END */
-
 function checkform(myform){
 	var username = myform.elements["username"];
 		booluser = checkUserName(username);
@@ -24,8 +19,13 @@ function checkform(myform){
 		return true;	
 	}
 	else{
+		//FOCUS INPUT
+		document.getElementById("username").focus();
 		return false;
 	}
+
+
+
 }
 
 
@@ -79,11 +79,10 @@ function checkUserName(username){
 	}
 	else {
 		for(var i=0; i<username.value.length; i++){
-			var char1 = username.value.charAt(i);
-			if((char1 >= "a" && char1 <= "z") || (char1 >= "A" && char1 <= "Z") || (char1 >= "0" && char1 <= "9")){
-			
+			var char1 = username.value.charAt(i);			
+			if(char1.match(alphabet) || char1.match(numbers)){
+
 			}
-			//if(char1.match(alphabet) || char1.match(numbers))
 
 			else {
 				document.getElementById("usernameRegisterError").innerHTML = "Please use English alphabet*";
@@ -117,16 +116,7 @@ function checkPassword(password){
 	
 	else {
 		for(var i=0; i<password.value.length; i++){
-			var char1 = password.value.charAt(i);
-			if(char1 >= "a" && char1 <= "z"){
-				contalphmin++;
-			}
-			else if(char1 >= "A" && char1 <= "Z"){
-				contalphmax++;
-			}
-			else if(char1 >= "0" && char1 <= "9"){
-				contnumbers++;
-			}/*
+			var char1 = password.value.charAt(i);			
 			if(char1.match(alphabetminus)){
 				contalphmin++;
 			}
@@ -135,7 +125,7 @@ function checkPassword(password){
 			}
 			else if(char1.match(numbers)){
 				contnumbers++;
-			}*/
+			}
 			else if(char1=='_'){
 			
 			}
@@ -201,8 +191,7 @@ function checkEmail(email){
     }
 }
 
-function checkGender(gender){
-	
+function checkGender(gender){	
 	if(gender.value == ""){
 		document.getElementById("genderRegisterError").innerHTML = "Please provide your gender*";
 		return false;
@@ -278,27 +267,23 @@ function checkDate(day,month,year){
 }
 
 function nospaces(object){
-	//if(object.value.match(/\s/g)){
-	for(var i=0; i<object.value.length; i++){
-		var char1 = object.value.charAt(i);
-		if(char1 == " "){
-			switch (object.name){
-				case "username":
-					document.getElementById("usernameRegisterError").innerHTML = "No spaces allowed*";
-					break;
-				case "password":
-					document.getElementById("passwordRegisterError").innerHTML = "No spaces allowed*";
-					break;
-				case "password2":
-					document.getElementById("repeatPasswordRegisterError").innerHTML = "No spaces allowed*";
-					break;	
-				case "email":
-					document.getElementById("emailRegisterError").innerHTML = "No spaces allowed*";
-					break;
-			}
-	        object.value= "";
-	    }
-	}
+	if(object.value.match(/\s/g)){
+		switch (object.name){
+			case "username":
+				document.getElementById("usernameRegisterError").innerHTML = "No spaces allowed*";
+				break;
+			case "password":
+				document.getElementById("passwordRegisterError").innerHTML = "No spaces allowed*";
+				break;
+			case "password2":
+				document.getElementById("repeatPasswordRegisterError").innerHTML = "No spaces allowed*";
+				break;	
+			case "email":
+				document.getElementById("emailRegisterError").innerHTML = "No spaces allowed*";
+				break;
+		}
+        object.value= "";
+    }	
 }
 
 function reseting(object){

@@ -8,7 +8,6 @@
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
 		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>
 
-		<script src="js/main.js"></script>
 	</head>
 
 	<body>
@@ -29,32 +28,47 @@
 
 		<section>			
 			<div class="boxPics"><a class="back" href="searchpro.html"><h2>&lt;- Other</h2></a></div>
-			<ul>
+			<br>
+			<span class="orderText">
+				Order by 
+				<button class="btn btn-order" id="orderTitle" onclick="orderby(this)">Title ~</button> 
+				<button class="btn btn-order" id="orderDate" onclick="orderby(this)">Date ~</button>
+				<button class="btn btn-order country" id="orderCountry" onclick="orderby(this)">Country ~</button>
+			</span>
+			<br>
+			<br>
+
+			<ul id="searchResults">
 				<li>
 					<img src="Resources/Images/perro1.jpg" alt="Perro 1"/>
-					<a href="detailpicture.html"><span class="titleImage">Title: Perro 1</span></a>
-					<p><b class="titlePrint">Title: Perro 1</b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<a href="detailpicture.html"><span class="titleImage">Boba</span></a>
+					<p><b class="titlePrint">Title: Perro 1</b> <b>Date: </b><span class="dateField">20/05/2014</span><b> Country:</b> 
+					<span class="countryField">Spain</span></p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro2.jpg" alt="Perro 2"/>
-					<a href="detailpicture.html"><span class="titleImage">Title: Perro 2</span></a>
-					<p><b class="titlePrint">Title: Perro 2</b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<a href="detailpicture.html"><span class="titleImage">Bubita</span></a>
+					<p><b class="titlePrint">Title: Perro 2</b> <b>Date: </b><span class="dateField">01/01/1993</span><b> Country:</b> 
+					<span class="countryField">England</span> </p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro3.jpg" alt="Perro 3"/>
-					<a href="detailpicture.html"><span class="titleImage">Title: Perro 3</span></a>
+					<a href="detailpicture.html"><span class="titleImage">Salomón</span></a>
 					
-					<p><b class="titlePrint">Title: Perro 3 </b><b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<p><b class="titlePrint">Title: Perro 3 </b><b>Date: </b><span class="dateField">19/05/2014</span><b> Country:</b> 
+					<span class="countryField">Mars</span> </p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro4.jpg" alt="Perro 4"/>
-					<a href="detailpicture.html"><span class="titleImage">Title: Perro 4</span></a>
-					<p><b class="titlePrint">Title: Perro 4 </b><b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<a href="detailpicture.html"><span class="titleImage">Cigüeña</span></a>
+					<p><b class="titlePrint">Title: Perro 4 </b><b>Date: </b><span class="dateField">18/05/2014</span><b> Country:</b> 
+					<span class="countryField">Spaniard</span></p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro5.jpg" alt="Perro 5"/>
-					<a href="detailpicture.html"><span class="titleImage">Title: Perro 2</span></a>
-					<p><b class="titlePrint">Title: Perro 5 </b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<a href="detailpicture.html"><span class="titleImage">Salmy</span></a>
+					<p><b class="titlePrint">Title: Perro 5 </b> <b>Date: </b><span class="dateField">12/03/2014</span><b> Country:</b> 
+					<span class="countryField">Canada</span> </p>
 				</li>
 			</ul>
 
@@ -103,5 +117,8 @@
 		
 			</div>	
 		</footer>
+
+		<script src="js/order.js"></script>
+
 	</body>	
 </html>

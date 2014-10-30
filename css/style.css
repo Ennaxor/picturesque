@@ -360,6 +360,29 @@ li:hover .titleImage{
   	background-color:#F26507;
 }
 
+.btn-order{
+	position: relative;
+	background-color: #F37A29;
+	color: white;
+	text-align: left !important;
+	height: 30px !important;
+	width: 65px !important;
+	margin-top: -13px;
+	margin-left: 5px;
+}
+
+.country{
+	width: 85px !important;
+}
+
+.btn-order:focus{
+	color:  white;
+}
+.btn-order:hover{
+  	background-color:#F26507;
+  	color:  white;
+}
+
 /* FORMULARIO SIGN IN Y REGISTRO*/
 .wrapper{
 	margin:10px;
@@ -553,5 +576,12 @@ input[type=radio]:checked + .radiolabel:before {
 .obligated{	
 	color: #000 !important;
 }	
+
+/*ORDER ELEMENTS*/
+
+.orderText{
+	padding-left: 40px;
+	font-style: italic; 
+}
 
 
