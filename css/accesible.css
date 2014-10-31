@@ -12,7 +12,6 @@ header{
 	color:#ffffff;
 	margin-bottom: 15px;
 	margin-top:15px;
-	
 }
 
 .logoBox{
@@ -206,6 +205,24 @@ section .padding{
 }
 
 
+.currentStyle{
+	display:none;
+}
+
+.currentAccesibleStyle{
+	margin-left:40px;
+	width:300px;
+	
+}
+
+.btnStyle{
+	width:100px;
+}
+
+#principal {
+	margin-left:15%;
+}
+
 
 
 /**Formulario de registro**/
@@ -302,3 +319,19 @@ footer .padding{
 .titlePrint{
 	display: inline-block !important;
 }
+
+.btn-order{
+	position: relative;
+	background-color: black;
+	color: white;
+	text-align: left !important;
+	height: 30px !important;
+	width: 65px !important;
+	margin-top: -13px;
+	margin-left: 5px;
+}
+
+.country{
+	width: 85px !important;
+}
+

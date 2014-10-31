@@ -10,11 +10,23 @@
 
 	</head>
 
-	<body>
+	<body onLoad="cargarPagina()">
 		<header class="specialHeader">				
 			<a href="index.html"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
+			<div class="currentStyle">
+				<button class="btn btn-login btnStyle" id="cangestyle" >Style </button>
+				<ul id="webstyle">
+					<li id="principal" onclick="getStringFromObject(this)"> <p>Principal</p></li>
+					<li id="accesible" onclick="getStringFromObject(this)"> <p>Accesible</p></li>			
+				</ul>
+			</div>
+			<div class="currentAccesibleStyle">
+				<p> Pick the Style: </p>
+				<button class="btn btn-login btnStyle" id="principal" onclick="getStringFromObject(this)" >Principal </button>
+				<button class="btn btn-login btnStyle" id="accesible" onclick="getStringFromObject(this)" >Accesible </button>
+			</div>
 			<div class="padding headerContent searching">
 				<h1>You searched for...</h1>	
 				<ul class="searchRes">			
@@ -119,6 +131,6 @@
 		</footer>
 
 		<script src="js/order.js"></script>
-
+		<script src="js/style.js"></script>
 	</body>	
 </html>

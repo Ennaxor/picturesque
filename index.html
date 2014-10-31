@@ -3,18 +3,29 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Home Page - Picturesque</title>
-		
-		<link href="css/accesible.css" rel="alternate stylesheet" type="text/css" title="Estilo Accesible"/>
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
-		<link href="css/print.css" rel="stylesheet" type="text/css" media="print"/>
+		<link href="css/accesible.css" rel="stylesheet" type="text/css" title="Estilo Accesible" disabled="true" />
+		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" />
 
 	</head>
 
-	<body>
+	<body onLoad="cargarPagina()">
 		<header>				
 			<a href="index.html"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
+			<div class="currentStyle">
+				<button class="btn btn-login btnStyle" id="cangestyle" >Style </button>
+				<ul id="webstyle">
+					<li id="principal" onclick="getStringFromObject(this)"> <p>Principal</p></li>
+					<li id="accesible" onclick="getStringFromObject(this)"> <p>Accesible</p></li>			
+				</ul>
+			</div>
+			<div class="currentAccesibleStyle">
+				<p> Pick the Style: </p>
+				<button class="btn btn-login btnStyle" id="principal" onclick="getStringFromObject(this)" >Principal </button>
+				<button class="btn btn-login btnStyle" id="accesible" onclick="getStringFromObject(this)" >Accesible </button>
+			</div>
 			<div class="padding headerContent">				
 					<h1>DISCOVER &amp; SHARE</h1>				
 					<form enctype="multipart/form-data" method="get" action="searchresults.html">					
@@ -106,6 +117,7 @@
 			</div>	
 		</footer>
 		
+		<script src="js/style.js"></script>
 		<script src="js/login.js"></script>
 	</body>	
 </html>

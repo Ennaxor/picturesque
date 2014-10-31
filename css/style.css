@@ -83,6 +83,7 @@ header{
 
 .searchContainer .btn{
 	margin-top: 32px;
+	margin-left: 10px;
 	float: right;
 }
 
@@ -127,7 +128,7 @@ header{
 #user{
 	display: inline-block;
 	position: absolute;
-	right: 15px;
+	right: 150px;
 	top: 15px;	
 }
 
@@ -382,6 +383,53 @@ li:hover .titleImage{
   	background-color:#F26507;
   	color:  white;
 }
+
+.currentStyle{
+	float:right;
+	width:100px;
+	height:100px;
+	padding:10px;
+}
+.currentAccesibleStyle{
+	display:none;
+}
+.btnStyle{
+	width:100%;
+	border: 2px solid black;
+}
+
+.currentStyle:hover #webstyle{
+	display:block;
+}
+#webstyle{
+	display:none;
+	list-style-type:none;
+	margin-left:-39%;
+	margin-top:-5px;
+	color:#000;
+	width:98%;
+}
+
+#webstyle li{
+	background-color:#FBCAAA;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	width:100%;
+	font-family: Vollkorn, serif;
+	font-size: 12px;
+	float:left;
+}
+
+#webstyle li p{
+	margin-left:5px;
+}
+
+#webstyle li p:hover{
+	margin-left:5px;
+	color:#fff;
+}
+
 
 /* FORMULARIO SIGN IN Y REGISTRO*/
 .wrapper{
