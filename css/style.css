@@ -394,40 +394,41 @@ li:hover .titleImage{
 	display:none;
 }
 .btnStyle{
-	width:100%;
-	border: 2px solid black;
+	width:70%;
+	font-size: 14px;
 }
 
 .currentStyle:hover #webstyle{
 	display:block;
 }
+
 #webstyle{
 	display:none;
 	list-style-type:none;
 	margin-left:-39%;
 	margin-top:-5px;
 	color:#000;
-	width:98%;
+	width:58%;
 }
 
 #webstyle li{
 	background-color:#FBCAAA;
-	border-left: 1px solid black;
-	border-right: 1px solid black;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid white;
 	width:100%;
 	font-family: Vollkorn, serif;
 	font-size: 12px;
-	float:left;
+	float: left;
+	padding-left: 10px;
 }
 
-#webstyle li p{
-	margin-left:5px;
+#webstyle li:active{	
+	background-color: #FAA369;
 }
 
-#webstyle li p:hover{
-	margin-left:5px;
+#webstyle li:hover{
+	cursor: pointer;	
 	color:#fff;
+	background-color: #FAA369;
 }
 
 

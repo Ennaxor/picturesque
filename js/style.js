@@ -1,5 +1,5 @@
 function changeStyle(name){
-	//alert(name);
+	
 	var nombre= "Estilo ";
 	nombre=nombre+name;
 	var arrayLink = document.getElementsByTagName("link");
@@ -8,7 +8,7 @@ function changeStyle(name){
 			if(arrayLink[i].title.toLowerCase() == nombre.toLowerCase()){
 				setCookie("style",name,365);
 				arrayLink[i].disabled=false;
-				//alert(document.cookie);
+				
 			}
 			else{
 				arrayLink[i].disabled=true;
@@ -21,22 +21,19 @@ function changeStyle(name){
 }
 
 function getStringFromObject(object){
-	var name=object.id;
-	//alert(name);
+	var name=object.id;	
 	changeStyle(name);
 }
 
 function cargarPagina(){
 	var aux= getCookie("style");
-	alert(aux.value);
+	
 	if(aux!=""){
 		//alert(aux);
 		var object = document.getElementById(aux);
-		alert(object.value);
-		//alert(object.value);
+		
 	}
 	else{
-		alert("HOLA");
 		aux="principal";
 	}
 	
