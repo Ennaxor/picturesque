@@ -28,12 +28,19 @@ function getStringFromObject(object){
 
 function cargarPagina(){
 	var aux= getCookie("style");
-	if(aux!=null){
+	alert(aux.value);
+	if(aux!=""){
 		//alert(aux);
 		var object = document.getElementById(aux);
+		alert(object.value);
 		//alert(object.value);
-		changeStyle(aux);
 	}
+	else{
+		alert("HOLA");
+		aux="principal";
+	}
+	
+	changeStyle(aux);
 }
 
 

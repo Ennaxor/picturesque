@@ -158,10 +158,11 @@ a:focus{
 
 .picDet{
 	margin-top: -57px;
-	margin-right: auto;
-	margin-left: auto;
+	margin-right:	60px;
+	margin-left: 60px;
 	margin-bottom:25px;
-	background-color: #212124;	
+	padding: 10px;
+	border: 1px solid white;
 	overflow:hidden
 	
 }
@@ -229,10 +230,9 @@ section .padding{
 
 .wrapper{
 	margin-left:40px;
-	display:inline-block;
 	width:500px;
 	height:120px;
-	bottom:-500px;
+	margin-bottom:150px;
 }
 
 .wrapper input{
@@ -247,19 +247,16 @@ section .padding{
 .wrapper .button input{
 	width:80px;
 	height:34px;
-	position: relative;
-	top: -102px;
-	left:308px
 }
 
-.usuRegistro .button{
-	position: relative;
-	top:110px;
-	left:54px;
+#loginButton{
+	position:relative;
+	float:right;
 }
 
 .usernameContainer,.passContainer{
-	display:inline-block;
+	width:40%;
+	min-width:150px;
 }
 .titleh1{
 	font-size:2em;
