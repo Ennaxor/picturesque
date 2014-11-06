@@ -5,7 +5,8 @@ function changeStyle(name){
 	var arrayLink = document.getElementsByTagName("link");
 	for (var i=0; i< arrayLink.length;i++){
 		if(arrayLink[i].getAttribute('rel')!=null && arrayLink[i].getAttribute('rel').indexOf('stylesheet') != -1 && arrayLink[i].getAttribute('media')!= 'print') {
-			if(arrayLink[i].title.toLowerCase() == nombre.toLowerCase()){
+			var nombre2= arrayLink[i].title+"A";
+			if(arrayLink[i].title.toLowerCase() == nombre.toLowerCase() || nombre2.toLowerCase() == nombre.toLowerCase()){
 				setCookie("style",name,365);
 				arrayLink[i].disabled=false;
 				
@@ -31,6 +32,7 @@ function cargarPagina(){
 	if(aux!=""){
 		//alert(aux);
 		var object = document.getElementById(aux);
+		
 		
 	}
 	else{
