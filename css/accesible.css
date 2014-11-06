@@ -267,6 +267,19 @@ section .padding{
 }
 
 /**Registro de nuevo usuario**/
+.loginR,.WSadvanced{
+	width:40%;
+	height:80%;
+	min-height:500px;
+	min-width:700px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+}
+
+.ASWrapper{
+	margin-bottom:650px;
+}
 
 .usuRegistro .radio input{
 	width:15px;
@@ -315,6 +328,10 @@ footer .padding{
 
 .titlePrint{
 	display: inline-block !important;
+}
+
+.orderText{
+	margin-left:40px;
 }
 
 .btn-order{
