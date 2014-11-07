@@ -10,6 +10,8 @@
 		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>
 
 		<script src="js/main.js"></script>
+		<script src="js/style.js"></script>
+		<script src="js/loginPopUp.js"></script>
 
 	</head>
 
@@ -30,10 +32,12 @@
 				<button class="btn btn-login btnStyle" id="principalA" onclick="getStringFromObject(this)" >Principal </button>
 				<button class="btn btn-login btnStyle" id="accesibleA" onclick="getStringFromObject(this)" >Accesible </button>
 			</div>
+			<button class="btn btn-login " id="loginPopUp" onClick="showLogin()" >Login</button>
 			<div class="padding headerContent">				
 				<h1>What are you looking for?</h1>				
 			</div>						
 		</header>
+		<div id="popUpLogin"></div>
 		<section>
 			<div class="boxPics"> <a class="back" href="index.html"><h2>&lt;- Go back</h2></a></div>
 			<div class="wrapper ASWrapper">
@@ -62,32 +66,7 @@
 						</div>                      
 					</form>
 					</div>
-                   <form class="printOut" name="loginForm" autocomplete="on" onSubmit="return checkform(this)"> 
-                        <span class="titleh1">Enter your profile!</span>
-						<br>
-                        <div class="usernameContainer"> 
-	                        <p> 
-	                            <input class="input-normal username" type="text" id="username" name="username" placeholder="Username..." onkeyup="nospaces(this)"
-	                            onkeydown="reseting()" />
-	                            <span id="usernameError"></span>
-	                            <img src="Resources/Images/user-icon.png" alt="user icon" />
-	                        </p>
-                        </div>
-
-                        <div class="passContainer">
-	                        <p> 
-	                           <input class="input-normal password" type="password" id="password" name="password" placeholder="Pasword..." 
-	                           onkeyup="nospaces(this)" onkeydown="reseting()"/>
-	                           <span id="passError"></span>
-	                        </p>  
-	                        <img src="Resources/Images/pass-icon.png" alt="pass icon" />     
-                        </div> 
-                        <span id="spaceError"></span>
-                        <p>Don't have an account? Register <a href="register.html"><b>HERE</b></a></p>                  
-                        <p class="login button"> 
-                            <input id="loginButton" type="submit" value="Login" /> 
-						</p>
-                    </form>
+                 
         		</div>
         	</div>
 	
@@ -105,6 +84,6 @@
 		
 			</div>	
 		</footer>
-		<script src="js/style.js"></script>
+		
 	</body>	
 </html>

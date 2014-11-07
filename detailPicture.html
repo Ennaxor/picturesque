@@ -8,6 +8,8 @@
 		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>
 
 		<script src="js/main.js"></script>
+		<script src="js/style.js"></script>
+		<script src="js/loginPopUp.js"></script>
 	</head>
 
 	<body onLoad="cargarPagina()">
@@ -22,11 +24,13 @@
 					<li id="accesible" onclick="getStringFromObject(this)"> <p>Accesible</p></li>			
 				</ul>
 			</div>
+			
 			<div class="currentAccesibleStyle">
 				<p> Pick the Style: </p>
 				<button class="btn btn-login btnStyle" id="principalA" onclick="getStringFromObject(this)" >Principal </button>
 				<button class="btn btn-login btnStyle" id="accesibleA" onclick="getStringFromObject(this)" >Accesible </button>
 			</div>
+			<button class="btn btn-login " id="loginPopUp" onClick="showLogin()" >Login</button>
 			<div class="padding headerContent">
 				<span id="user">Welcome, dear <a href="#">friend!</a>	</span> 				
 				<h1>DISCOVER &amp; SHARE</h1>				
@@ -44,7 +48,7 @@
 				
 			</div>						
 		</header>
-
+	<div id="popUpLogin"></div>
 		<section>
 			<div class="boxPics"> <a class="back" href="index.html"><h2>&lt;- Go back</h2></a></div>
 			<div class="padding picDet">
@@ -72,6 +76,6 @@
 		
 			</div>	
 		</footer>
-		<script src="js/style.js"></script>
+		
 	</body>	
 </html>
