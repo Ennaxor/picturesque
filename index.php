@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Home Page - Picturesque</title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" type="text/css" title="Estilo Principal"/>
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
 		<link href="css/accesible.css" rel="alternate stylesheet" type="text/css" title="Estilo Accesible"  />
 		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" />
@@ -26,7 +26,7 @@
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
 			
-			<button id="loginPopUp" onClick="showLogin();">Sign in! <i class="fa fa-sign-in"></i></button>
+			<button id="loginPopUp" onClick="showLogin();"><i class="fa fa-sign-in"></i> Sign in! </button>
 
 			<div class="currentAccesibleStyle">
 				<p> Pick the Style: </p>

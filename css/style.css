@@ -710,7 +710,7 @@ input[type=radio]:checked + .radiolabel:before {
 	border: none;
 	border-radius:0 0 4px 4px;
 	position:relative;
-	width: 80px;
+	width: 100px;
 	height: 40px;
 	color: white;	
 	font-family: Vollkorn, serif;
