@@ -3,22 +3,20 @@ function showLogin(){
 	var plantilla=document.getElementById("overlay-back");
 	var close=document.getElementById("closePopUp");
 
-	div.style.visibility = "visible";
+	div.className = "visible";
 	plantilla.style.visibility = "visible";
 
 
 	plantilla.onclick = function()
 	{
-		div.style.visibility = "hidden";
+		div.className = "";
 		plantilla.style.visibility = "hidden";
 	}
 
 	close.onclick = function(){
-		div.style.visibility = "hidden";
+		div.className = "";
 		plantilla.style.visibility = "hidden";
 	}
-
-
 }
 
 
