@@ -60,7 +60,7 @@
 		</header>	
 	
 		<section>			
-			<div class="boxPics"> <h2>Last pics</h2></div>	
+			<div class="boxPics"> <h2>Last pics <i class="fa fa-camera-retro"></i></h2> </div>	
 			
 			<ul>
 				<li>

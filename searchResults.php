@@ -4,6 +4,7 @@
 		<meta charset="utf-8" />
 		<title>Results of your search - Picturesque</title>
 		<link href="css/accesible.css" rel="alternate stylesheet" type="text/css" title="Estilo Accesible"/>
+		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" type="text/css" title="Estilo Principal"/>
 
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
 		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>
@@ -36,7 +37,7 @@
 				<button class="btn btn-login btnStyle" id="principalA" onclick="getStringFromObject(this)" >Principal </button>
 				<button class="btn btn-login btnStyle" id="accesibleA" onclick="getStringFromObject(this)" >Accesible </button>
 			</div>
-			<button class="btn btn-login " id="loginPopUp" onClick="showLogin()" >Login</button>
+			<button id="loginPopUp" onClick="showLogin();"><i class="fa fa-sign-in"></i> Sign in! </button>
 			<div class="padding headerContent searching">
 				<h1>You searched for...</h1>	
 				<ul class="searchRes">			
@@ -48,7 +49,7 @@
 			</div>						
 		</header>
 		<section>			
-			<div class="boxPics"><a class="back" href="searchpro.php"><h2>&lt;- Other</h2></a></div>
+			<div class="boxPics"><a class="back" href="searchpro.php"><h2><i class="fa fa-arrow-left"></i> Other</h2></a></div>
 			<br>
 			<span class="orderText">
 				Order by 
