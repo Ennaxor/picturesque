@@ -15,7 +15,7 @@ function checkform(myform){
 	var year = myform.elements["year"];
 		booldate = checkDate(day,month,year);
 	if(booluser == true && boolpass == true && boolpass2 == true && boolmail == true && booldate == true){
-		document.location.href = 'index.html';
+		//document.location.href = "register.php";
 		return true;	
 	}
 	else{

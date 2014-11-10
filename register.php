@@ -45,7 +45,7 @@
 		<section>
 			<div class="wrapper loginR">
                 <div class="login aux">
-                    <form autocomplete="on" onSubmit="checkform(this); return false;"> 
+                    <form autocomplete="on" onSubmit="return checkform(this);" action="successregister.php" method="GET"> 
                         <span class="titleh1">Register as a new user</span> 
                         <div class="usuRegistro"> 
 	                        <p>     
