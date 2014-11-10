@@ -12,8 +12,16 @@
 		<script src="js/loginPopUp.js"></script>
 	</head>
 	<body onload="fillDate(); cargarPagina()">
+
+		<div id="popUpLogin">
+			<?php
+      			include 'login.html';      			
+    		?>
+		</div>
+		<div id="overlay-back"></div>
+
 		<header>				
-			<a href="index.html"> 
+			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
 			<div class="currentStyle">
@@ -28,12 +36,11 @@
 				<button class="btn btn-login btnStyle" id="principalA" onclick="getStringFromObject(this)" >Principal </button>
 				<button class="btn btn-login btnStyle" id="accesibleA" onclick="getStringFromObject(this)" >Accesible </button>
 			</div>
-			<button class="btn btn-login " id="loginPopUp" onClick="showLogin()" >Login</button>
+			<button class="btn btn-login" id="loginPopUp" onClick="showLogin()" >Login</button>
 			<div class="padding headerContent">				
 					<h1>DISCOVER &amp; SHARE</h1>				
 			</div>						
 		</header>
-		<div id="popUpLogin"></div>
 		<section>
 			<div class="wrapper loginR">
                 <div class="login aux">
@@ -95,7 +102,7 @@
 	                        <p><span class="obligated">**Password must contain at least One UpperCase letter, One LowerCase letter and One Number</span></p>                 
                         </div> 
 
-						<p id="logYet">Already have an account? Login <a href="index.html"><b>HERE</b></a></p>                  
+						<p id="logYet">Already have an account? Login <span class="fake-link" onClick="showLogin()"><b>HERE</b></span></p>                  
                         <p class="login button printOut buttonR"> 
                             <input id="RegNow" type="submit" value="Register now!"/> 
 						</p>
@@ -107,18 +114,9 @@
         	</div>
 		</section>
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
-		<footer>
-			<div class="padding">				
-				<h3>Main pages</h3>
-				<ul>
-					<li><a href="index.html">Home Page</a></li>
-					<li><a href="register.html">Register now</a></li>
-					<li><a href="searchpro.html">Advanced Search</a></li>
-				</ul>
-				<span class="rights printOut">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
-		
-			</div>	
-		</footer>
+		<?php
+			require_once("footer.php");
+		?>
 		<script src="js/register.js"></script>
 		
 	</body>

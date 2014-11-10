@@ -13,6 +13,13 @@
 	</head>
 
 	<body onLoad="cargarPagina()">
+		<div id="popUpLogin">
+			<?php
+      			include 'login.html';      			
+    		?>
+		</div>
+		<div id="overlay-back"></div>
+
 		<header class="specialHeader">				
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
@@ -40,9 +47,8 @@
 				</ul>			
 			</div>						
 		</header>
-	<div id="popUpLogin"></div>
 		<section>			
-			<div class="boxPics"><a class="back" href="searchpro.html"><h2>&lt;- Other</h2></a></div>
+			<div class="boxPics"><a class="back" href="searchpro.php"><h2>&lt;- Other</h2></a></div>
 			<br>
 			<span class="orderText">
 				Order by 
@@ -91,18 +97,9 @@
 		</section>
 
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
-		<footer>
-			<div class="padding">				
-				<h3>Main pages</h3>
-				<ul>
-					<li><a href="index.php">Home Page</a></li>
-					<li><a href="register.html">Register now</a></li>
-					<li><a href="searchpro.html">Advanced Search</a></li>
-				</ul>
-				<span class="rights printOut">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
-		
-			</div>	
-		</footer>
+		<?php
+			require_once("footer.php");
+		?>
 
 		<script src="js/order.js"></script>
 		

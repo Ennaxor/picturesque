@@ -1,10 +1,26 @@
 function showLogin(){
-	var div=document.getElementById("popUpLogin")
-	div.style.visibility="visible";
-	div.innerHTML='<object width="400" height="400" data="login.html" type="text/html">';
+	var div=document.getElementById("popUpLogin");
+	var plantilla=document.getElementById("overlay-back");
+	var close=document.getElementById("closePopUp");
+
+	div.style.visibility = "visible";
+	plantilla.style.visibility = "visible";
+
+
+	plantilla.onclick = function()
+	{
+		div.style.visibility = "hidden";
+		plantilla.style.visibility = "hidden";
+	}
+
+	close.onclick = function(){
+		div.style.visibility = "hidden";
+		plantilla.style.visibility = "hidden";
+	}
+
+
 }
 
-function closePopUpLogin(){
-	window.open("register.html","_parent");
-}
+
+/* FADE IN STUFF */
 

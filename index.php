@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Home Page - Picturesque</title>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
 		<link href="css/accesible.css" rel="alternate stylesheet" type="text/css" title="Estilo Accesible"  />
 		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" />
@@ -12,43 +13,51 @@
 	</head>
 
 	<body>
+		<div id="popUpLogin">
+			<?php
+      			include 'login.html';      			
+    		?>
+		</div>
+		<div id="overlay-back"></div>
+
+
 		<header>				
-			<a href="index.html"> 
+			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
 			
-			<div class="currentStyle">
-				<button class="btn btn-login btnStyle" id="cangestyle">Style</button>
-				<ul id="webstyle">
-					<li id="principal" onclick="getStringFromObject(this)"> <p>Principal</p></li>
-					<li id="accesible" onclick="getStringFromObject(this)"> <p>Accesible</p></li>			
-				</ul>
-			</div>
+			<button id="loginPopUp" onClick="showLogin();">Sign in! <i class="fa fa-sign-in"></i></button>
+
 			<div class="currentAccesibleStyle">
 				<p> Pick the Style: </p>
 				<button class="btn btn-login btnStyle" id="principalA" onclick="getStringFromObject(this)" >Principal </button>
 				<button class="btn btn-login btnStyle" id="accesibleA" onclick="getStringFromObject(this)" >Accesible </button>
 			</div>
 			
-			<button class="btn btn-login " id="loginPopUp" onClick="showLogin()" >Login</button>
-			
 			<div class="padding headerContent">				
-					<h1>DISCOVER &amp; SHARE</h1>				
-					<form enctype="multipart/form-data" method="get" action="searchresults.html">					
+					<h1>DISCOVER &amp; SHARE </h1>	
+
+					<form enctype="multipart/form-data" method="get" action="searchresults.php">					
 						<div class="searchContainer">							
 							<img class="lupa" src="Resources/Images/search-icon.png" alt="search icon" />
 							<input class="search" type="search" name="searchInput" placeholder="Search..." />
 
 							<input class="btn btn-login" type="submit" value="Go!"/>
-							<a class= "btn btn-login searchAdvanced" href="searchpro.html">
+							<a class= "btn btn-login searchAdvanced" href="searchpro.php">
 								<img src="Resources/Images/gear.png" alt="gear icon" />
 							</a>
 						</div>						
-					</form>					
-			</div>						
-		</header>
-		
-		<div id="popUpLogin"></div>
+					</form>	
+			</div>	
+
+			<div class="currentStyle">
+				<button class="btn btn-login btnStyle" id="cangestyle">Style</button>
+				<ul id="webstyle">
+					<li id="principal" onclick="getStringFromObject(this)"> <p>Principal</p></li>
+					<li id="accesible" onclick="getStringFromObject(this)"> <p>Accesible</p></li>			
+				</ul>
+			</div>					
+		</header>	
 	
 		<section>			
 			<div class="boxPics"> <h2>Last pics</h2></div>	
@@ -85,18 +94,11 @@
 						
 		</section>
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
-		<footer>
-			<div class="padding">				
-				<h3>Main pages</h3>
-				<ul>
-					<li><a href="index.html">Home Page</a></li>
-					<li><a href="register.html">Register now</a></li>
-					<li><a href="searchpro.html">Advanced Search</a></li>
-				</ul>
-				<span class="rights printOut">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>		
-			</div>	
-		</footer>
 		
+
+		<?php
+			require_once("footer.php");
+		?>		
 		
 		<script src="js/login.js"></script>
 	</body>	
