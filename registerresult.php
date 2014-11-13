@@ -48,7 +48,7 @@
                     <!--<span class="titleh1">Success on your registration</span> -->
                       
 					  <?php
-						if($_GET["username"]=="Pepe" || $_GET["username"]=="Pepa"){
+						if($_GET["username"]!="Pepe" || $_GET["username"]!="Pepa"){
 							echo "Success on your registration <br>";
 							echo "<br>";
 							

@@ -27,6 +27,8 @@
 			</a>	
 			
 			<button id="loginPopUp" onClick="showLogin();"><i class="fa fa-sign-in"></i> Sign in! </button>
+			
+			
 
 			<div class="currentAccesibleStyle">
 				<p> Pick the Style: </p>

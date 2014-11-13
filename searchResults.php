@@ -41,7 +41,17 @@
 			<div class="padding headerContent searching">
 				<h1>You searched for...</h1>	
 				<ul class="searchRes">			
-					<li><b>TITLE</b><br> <?php print_r($_GET["title"]) ?></li>							
+					<li><b>TITLE</b><br> 
+					<?php 
+						//print_r(empty($_GET["title"]));
+						if(empty($_GET["title"])==0){
+							print_r($_GET["title"]);
+						}
+						else{
+							echo ('empty') ;
+						}
+					?>
+							</li>							
 					<li><b>DATE TIME</b><br>
 					From:
 					<?php 
@@ -71,7 +81,16 @@
 						print_r($_GET["yearto"]);
 					?>
 					</li>					
-					<li><b>COUNTRY</b> <br><?php print_r($_GET["country"]) ?></li>
+					<li><b>COUNTRY</b> <br>
+					<?php 
+						//print_r(empty($_GET["title"]));
+						if(empty($_GET["country"])==0){
+							print_r($_GET["country"]);
+						}
+						else{
+							echo ('empty') ;
+						}
+					?></li>
 					<li><b>MATCHES</b> <br> 5 results</li>		
 										
 				</ul>			
