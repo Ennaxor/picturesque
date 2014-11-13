@@ -19,6 +19,12 @@ function showLogin(){
 	}
 }
 
+function goBack(object){
+
+	document.location.href = "register.php";
+
+}
+
 
 /* FADE IN STUFF */
 

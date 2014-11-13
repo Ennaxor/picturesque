@@ -45,39 +45,44 @@
 		<section>
 			<div class="wrapper loginR">
                 <div class="login auxRS">
-                    <span class="titleh1">Success on your registration</span> 
+                    <!--<span class="titleh1">Success on your registration</span> -->
                       
 					  <?php
-						echo "<br>";
-						echo "<br>";
-						
-						echo "Username: " ;	
-						print_r($_GET["username"]);
-						echo "<br>";
-						
-						echo "Email: " ;	
-						print_r($_GET["email"]);
-						echo "<br>";
-						
-						echo "Birth date: " ;	
-						print_r($_GET["day"]);
-						echo "/";
-						print_r($_GET["month"]);
-						echo "/";
-						print_r($_GET["year"]);
-						echo "<br>";
-						
-						echo "Gender: " ;	
-						print_r($_GET["genderType"]);
-						echo "<br>";
-						
-						echo "City: " ;	
-						print_r($_GET["city"]);
-						echo "<br>";
-						
-						echo "Country: " ;	
-						print_r($_GET["country"]);
-						echo "<br>";
+						if($_GET["username"]=="Pepe" || $_GET["username"]=="Pepa"){
+							echo "Success on your registration <br>";
+							echo "<br>";
+							
+							echo "Username: " ;	
+							print_r($_GET["username"]);
+							echo "<br>";
+							
+							echo "Email: " ;	
+							print_r($_GET["email"]);
+							echo "<br>";
+							
+							echo "Birth date: " ;	
+							print_r($_GET["day"]);
+							echo "/";
+							print_r($_GET["month"]);
+							echo "/";
+							print_r($_GET["year"]);
+							echo "<br>";
+							
+							echo "Gender: " ;	
+							print_r($_GET["genderType"]);
+							echo "<br>";
+							
+							echo "City: " ;	
+							print_r($_GET["city"]);
+							echo "<br>";
+							
+							echo "Country: " ;	
+							print_r($_GET["country"]);
+							echo "<br>";
+						}
+						else{
+							require_once("registroerroneo.html");
+						}
 						
 						
 					?>
