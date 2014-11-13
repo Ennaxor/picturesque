@@ -17,6 +17,11 @@
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
+
+			<?php
+  				include 'logged.html';      			
+			?>	
+			
 			<div class="currentStyle">
 				<button class="btn btn-login btnStyle" id="cangestyle">Style</button>
 				<ul id="webstyle">
@@ -30,9 +35,9 @@
 				<button class="btn btn-login btnStyle" id="principalA" onclick="getStringFromObject(this)" >Principal </button>
 				<button class="btn btn-login btnStyle" id="accesibleA" onclick="getStringFromObject(this)" >Accesible </button>
 			</div>
-			<button class="btn btn-login " id="loginPopUp" onClick="showLogin()" >Login</button>
+
+
 			<div class="padding headerContent">
-				<span id="user">Welcome, dear <a href="#">friend!</a>	</span> 				
 				<h1>DISCOVER &amp; SHARE</h1>				
 				<form enctype="multipart/form-data" method="get" action="searchresults.html">					
 						<div class="searchContainer">							
@@ -48,7 +53,7 @@
 				
 			</div>						
 		</header>
-	<div id="popUpLogin"></div>
+		
 		<section>
 			<div class="boxPics"> <a class="back" href="index.php"><h2>&lt;- Go back</h2></a></div>
 			<div class="padding picDet">

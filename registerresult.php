@@ -16,7 +16,7 @@
 
 		<div id="popUpLogin">
 			<?php
-      			include 'login.html';      			
+      			include 'login.php';      			
     		?>
 		</div>
 		<div id="overlay-back"></div>
@@ -45,10 +45,9 @@
 		<section>
 			<div class="wrapper loginR">
                 <div class="login auxRS">
-                    <!--<span class="titleh1">Success on your registration</span> -->
-                      
+                
 					  <?php
-						if($_POST["username"]!="Pepe" || $_POST["username"]!="Pepa"){
+						if($_POST["username"]!="Pepe" && $_POST["username"]!="Pepa"){
 
 							echo "Success on your registration <br>";
 							echo "<br>";

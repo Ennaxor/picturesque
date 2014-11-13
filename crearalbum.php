@@ -19,7 +19,7 @@
 	<body onLoad="cargarPagina(),fillAlbumDate()">
 		<div id="popUpLogin">
 			<?php
-      			include 'login.html';      			
+      			include 'login.php';      			
     		?>
 		</div>
 		<div id="popUpAlbum">
@@ -52,12 +52,12 @@
 		</header>
 
 		<section>
-			<div class="boxPics"> <a class="back" href="index.php"><h2><i class="fa fa-arrow-left"></i>  Go back</h2></a></div>
+			<div class="boxPics"> <a class="back" href="profile.php"><h2><i class="fa fa-arrow-left"></i>  Go back</h2></a></div>
 			<div class="wrapper ASWrapper">
                 <div class="login WSadvanced">				
 					<form autocomplete="on" method="get" id="albumform" onsubmit="showAlbum();return false" > 
 						<div class="wrapperSearch">
-							<span class="titleh1">Fill the fields... </span> 
+							<span class="titleh1">Complete the fields... </span> 
 							<div class="usuRegistro"> 
 								<p>     
 									<label for="title"><b>TITLE: </b> </label>                      

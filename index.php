@@ -67,29 +67,29 @@
 			<ul>
 				<li>
 					<img src="Resources/Images/perro1.jpg" alt="Perro 1"/>
-					<a class="titleImage" href="detailpicture.html"><span class="titleImage">Title: Perro 1</span></a>
-					<p><b class="titlePrint"><a href="detailpicture.html">Title: Perro 1</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<a class="titleImage" href="detailpicture.php?id=01"><span class="titleImage">Title: Perro 1</span></a>
+					<p><b class="titlePrint"><a href="detailpicture.php?id=01">Title: Perro 1</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro2.jpg" alt="Perro 2"/>
-					<a class="titleImage" href="detailpicture.html"><span class="titleImage">Title: Perro 2</span></a>
-					<p><b class="titlePrint"><a href="detailpicture.html">Title: Perro 2</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<a class="titleImage" href="detailpicture.php?id=02"><span class="titleImage">Title: Perro 2</span></a>
+					<p><b class="titlePrint"><a href="detailpicture.php?id=02">Title: Perro 2</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro3.jpg" alt="Perro 3"/>
-					<a class="titleImage" href="detailpicture.html"><span class="titleImage">Title: Perro 3</span></a>
+					<a class="titleImage" href="detailpicture.php?id=03"><span class="titleImage">Title: Perro 3</span></a>
 					
-					<p><b class="titlePrint"><a href="detailpicture.html">Title: Perro 3</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<p><b class="titlePrint"><a href="detailpicture.php?id=03">Title: Perro 3</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro4.jpg" alt="Perro 4"/>
-					<a class="titleImage" href="detailpicture.html"><span class="titleImage">Title: Perro 4</span></a>
-					<p><b class="titlePrint"><a href="detailpicture.html">Title: Perro 4</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<a class="titleImage" href="detailpicture.php?id=04"><span class="titleImage">Title: Perro 4</span></a>
+					<p><b class="titlePrint"><a href="detailpicture.php?id=04">Title: Perro 4</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro5.jpg" alt="Perro 5"/>
-					<a class="titleImage" href="detailpicture.html"><span class="titleImage">Title: Perro 5</span></a>
-					<p><b class="titlePrint"><a href="detailpicture.html">Title: Perro 5</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
+					<a class="titleImage" href="detailpicture.php?id=05"><span class="titleImage">Title: Perro 5</span></a>
+					<p><b class="titlePrint"><a href="detailpicture.php?id=05">Title: Perro 5</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
 			</ul>
 

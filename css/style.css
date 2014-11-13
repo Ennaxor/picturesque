@@ -28,7 +28,7 @@ header{
 	background-repeat:no-repeat;
 	background-size:200%;
 	border-top:15px solid #80D1B9;
-	height:420px;
+	
 	left:0;
 	right:0;
 	top:0;
@@ -39,11 +39,19 @@ header{
 	color:#FFF;
 	font-family:Amatic SC, cursive;
 	font-size:33px;	
+	height:350px;
 }
 
 .headerContent h1{
 	text-shadow: 0 0 10px rgba(0,0,0,0.5);
 	text-align: center;
+}
+
+.headerUser{
+	color:#FFF;
+	font-family:Amatic SC, cursive;
+	font-size:33px;
+	height: 100px;
 }
 
 
@@ -184,7 +192,7 @@ header{
 	margin-top: -57px;
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom:25px;
+	margin-bottom:0;
 	background-color: #212124;	
 	overflow:hidden
 	
@@ -428,6 +436,16 @@ li:hover .titleImage{
 	height:100px;
 	padding:10px;
 }
+.currentStyleProfile{
+	position: absolute;
+	right: 0px;
+	top: 150px;
+	width:100px;
+	height:100px;
+	padding:10px;
+
+}
+
 .currentAccesibleStyle{
 	display:none;
 }
@@ -435,6 +453,34 @@ li:hover .titleImage{
 	width:70%;
 	font-size: 14px;
 }
+
+.btnModify{
+	margin-top: -13px;
+	width: 80px;
+	font-size: 14px;
+	display: inline-block;
+}
+
+.btnNew{
+	margin-top: -13px;
+	width: 100px;
+	font-size: 14px;
+	display: inline-block;
+}
+.btnNew a{
+	color: white;
+	text-decoration: none;
+}
+
+#deleteUser{
+	margin-left: 75px;
+	color: #1A1A1A;
+	font-style: italic;
+}
+#deleteUser:hover{
+	color:#F37A29;
+}
+
 
 .currentStyle:hover #webstyle{
 	display:block;
@@ -792,6 +838,34 @@ input[type=radio]:checked + .radiolabel:before {
 	outline: 0;
 }
 
+
+#userbutton{
+	font-size: 17px;
+	background-color:#80D1B9;
+	border: none;
+	border-radius:0 0 4px 4px;
+	position:relative;
+	width: 230px;
+	height: 40px;
+	color: white;	
+	font-family: Vollkorn, serif;
+	float: right;
+	right: 35px;
+	top: -4px;
+}
+
+#userbutton:focus{
+	outline: 0;
+}
+
+.userDetails{
+	text-decoration: underline;
+	color: white;
+}
+.fa-sign-out{
+	color: #F26507;
+}
+
 #returnButton{
 	font-size: 18px;
 	background-color:#F37A29;
@@ -841,4 +915,71 @@ input[type=radio]:checked + .radiolabel:before {
 	max-height:70px;
 }
 
+#infoerror{
+	color: red;
+}
 
+.titleProfiles{
+	position: relative;
+	left: 81px;
+	color: #1A1A1A;
+
+	font-family: Vollkorn, serif;
+	
+}
+
+.userInfo{
+	position: relative;
+	left: 81px;
+	
+}
+
+#photoUser{
+	width: 140px;
+	height: 140px;
+	border:1px solid #d8d8d8;
+	border-radius:3px;
+	box-shadow:inset 0 0 0 1px #fff;
+
+}
+
+.usernameUser{
+	color: #1A1A1A;
+	font-style: italic;
+	font-size: 36px;
+	padding-left: 15px;
+	position: absolute;
+	top: -8px;
+}
+
+.genderUser{
+	color: #1A1A1A;
+	position: absolute;
+	font-size: 24px;
+	left: 160px;
+	top: 14px;
+}
+
+.emailUser{
+	color: #1A1A1A;
+	position: absolute;
+	font-size: 24px;
+	left: 160px;
+	top: 38px;
+}
+
+.dateUser{
+	color: #1A1A1A;
+	position: absolute;
+	font-size: 18px;
+	left: 160px;
+	top: 75px;
+}
+
+.cityUser{
+	color: #1A1A1A;
+	position: absolute;
+	font-size: 18px;
+	left: 160px;
+	top: 100px;
+}

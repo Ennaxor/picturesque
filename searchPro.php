@@ -19,7 +19,7 @@
 	<body onLoad="cargarPagina(), fillDate()">
 		<div id="popUpLogin">
 			<?php
-      			include 'login.html';      			
+      			include 'login.php';      			
     		?>
 		</div>
 		<div id="overlay-back"></div>

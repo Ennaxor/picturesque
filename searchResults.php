@@ -16,7 +16,7 @@
 	<body onLoad="cargarPagina()">
 		<div id="popUpLogin">
 			<?php
-      			include 'login.html';      			
+      			include 'login.php';      			
     		?>
 		</div>
 		<div id="overlay-back"></div>
@@ -111,32 +111,32 @@
 			<ul id="searchResults">
 				<li>
 					<img src="Resources/Images/perro1.jpg" alt="Perro 1"/>
-					<a href="detailpicture.html"><span class="titleImage">Boba</span></a>
+					<a href="detailpicture.php?id=boba"><span class="titleImage">Boba</span></a>
 					<p><b class="titlePrint">Title: Perro 1</b> <b>Date: </b><span class="dateField">20/05/2014</span><b> Country:</b> 
 					<span class="countryField">Spain</span></p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro2.jpg" alt="Perro 2"/>
-					<a href="detailpicture.html"><span class="titleImage">Bubita</span></a>
+					<a href="detailpicture.php?id=bubita"><span class="titleImage">Bubita</span></a>
 					<p><b class="titlePrint">Title: Perro 2</b> <b>Date: </b><span class="dateField">01/01/1993</span><b> Country:</b> 
 					<span class="countryField">England</span> </p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro3.jpg" alt="Perro 3"/>
-					<a href="detailpicture.html"><span class="titleImage">Salomón</span></a>
+					<a href="detailpicture.php?id=salomon"><span class="titleImage">Salomón</span></a>
 					
 					<p><b class="titlePrint">Title: Perro 3 </b><b>Date: </b><span class="dateField">19/05/2014</span><b> Country:</b> 
 					<span class="countryField">Mars</span> </p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro4.jpg" alt="Perro 4"/>
-					<a href="detailpicture.html"><span class="titleImage">Cigüeña</span></a>
+					<a href="detailpicture.php?id=ciguena"><span class="titleImage">Cigüeña</span></a>
 					<p><b class="titlePrint">Title: Perro 4 </b><b>Date: </b><span class="dateField">18/05/2014</span><b> Country:</b> 
 					<span class="countryField">Spaniard</span></p>
 				</li>
 				<li>
 					<img src="Resources/Images/perro5.jpg" alt="Perro 5"/>
-					<a href="detailpicture.html"><span class="titleImage">Salmy</span></a>
+					<a href="detailpicture.php?id=salmy"><span class="titleImage">Salmy</span></a>
 					<p><b class="titlePrint">Title: Perro 5 </b> <b>Date: </b><span class="dateField">12/03/2014</span><b> Country:</b> 
 					<span class="countryField">Canada</span> </p>
 				</li>
