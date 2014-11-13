@@ -16,7 +16,7 @@
 
 	</head>
 
-	<body onLoad="cargarPagina(),fillDate()">
+	<body onLoad="cargarPagina(), fillDate()">
 		<div id="popUpLogin">
 			<?php
       			include 'login.html';      			
@@ -59,14 +59,14 @@
 									<input type="text" name="title" id="title" placeholder="E.G: landscape"/>                         
 								</p>   
 								<p id="dateFields">     
-									<label for="dateFrom" id="dateTitle"><b>DATE TIME: </b> </label> <br>                   
+									<label for="dateFrom" id="dateTitle"><b>DATE TIME: </b> </label> <br>  <br>                
 									From: <select id="dayfrom" name="dayfrom" onchange="reseting(this)">
 											</select>
 											<select id="monthfrom" name="monthfrom" onchange="reseting(this)">
 											</select>
 											<select id="yearfrom" name="yearfrom" onchange="reseting(this)">
-											</select> <br>
-									To: <select id="dayto" name="dayto" onchange="reseting(this)">
+											</select> <br> 
+									To:    <select id="dayto" name="dayto" onchange="reseting(this)">
 											</select>
 											<select id="monthto" name="monthto" onchange="reseting(this)">
 											</select>

@@ -48,36 +48,37 @@
                     <!--<span class="titleh1">Success on your registration</span> -->
                       
 					  <?php
-						if($_GET["username"]!="Pepe" || $_GET["username"]!="Pepa"){
+						if($_POST["username"]!="Pepe" || $_POST["username"]!="Pepa"){
+
 							echo "Success on your registration <br>";
 							echo "<br>";
 							
 							echo "Username: " ;	
-							print_r($_GET["username"]);
+							print_r($_POST["username"]);
 							echo "<br>";
 							
 							echo "Email: " ;	
-							print_r($_GET["email"]);
+							print_r($_POST["email"]);
 							echo "<br>";
 							
 							echo "Birth date: " ;	
-							print_r($_GET["day"]);
+							print_r($_POST["day"]);
 							echo "/";
-							print_r($_GET["month"]);
+							print_r($_POST["month"]);
 							echo "/";
-							print_r($_GET["year"]);
+							print_r($_POST["year"]);
 							echo "<br>";
 							
 							echo "Gender: " ;	
-							print_r($_GET["genderType"]);
+							print_r($_POST["genderType"]);
 							echo "<br>";
 							
 							echo "City: " ;	
-							print_r($_GET["city"]);
+							print_r($_POST["city"]);
 							echo "<br>";
 							
 							echo "Country: " ;	
-							print_r($_GET["country"]);
+							print_r($_POST["country"]);
 							echo "<br>";
 						}
 						else{

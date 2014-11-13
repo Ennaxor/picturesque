@@ -79,11 +79,11 @@
 
 	                        <p>          
 	                        	<label>Date of birth*: </label>
-								<select id="day" name="day" onchange="reseting(this)">
+								<select class="SelectStyle" id="day" name="day" onchange="reseting(this)">
 								</select>
-								<select id="month" name="month" onchange="reseting(this)">
+								<select class="SelectStyle" id="month" name="month" onchange="reseting(this)">
 								</select>
-								<select id="year" name="year" onchange="reseting(this)">
+								<select class="SelectStyle" id="year" name="year" onchange="reseting(this)">
 								</select>
 								<span id="dateRegisterError"></span>
 	                        </p>    
