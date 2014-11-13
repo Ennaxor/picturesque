@@ -41,10 +41,39 @@
 			<div class="padding headerContent searching">
 				<h1>You searched for...</h1>	
 				<ul class="searchRes">			
-					<li><b>TITLE</b><br> Landscape</li>							
-					<li><b>DATE TIME</b><br> From: 20/04/2013 - To: 05/08/2014</li>					
-					<li><b>COUNTRY</b> <br>Ireland</li>
-					<li><b>MATCHES</b> <br> 5 results</li>					
+					<li><b>TITLE</b><br> <?php print_r($_GET["title"]) ?></li>							
+					<li><b>DATE TIME</b><br>
+					From:
+					<?php 
+						$montharrya = array("January","February","March","April","May","June","July","August","September","October","November","December");
+						print_r($_GET["dayfrom"]);
+						echo("/");
+						for($i=0;$i<11;$i++){
+							if($_GET["monthfrom"]==$montharrya[$i]){
+								$mes=$i+1;
+								echo ("$mes/");
+							}
+						}
+						print_r($_GET["yearfrom"]);
+						
+					?> 
+					- To: 
+					<?php 
+						
+						print_r($_GET["dayto"]);
+						echo("/");
+						for($i=0;$i<11;$i++){
+							if($_GET["monthto"]==$montharrya[$i]){
+								$mes=$i+1;
+								echo ("$mes/");
+							}
+						}
+						print_r($_GET["yearto"]);
+					?>
+					</li>					
+					<li><b>COUNTRY</b> <br><?php print_r($_GET["country"]) ?></li>
+					<li><b>MATCHES</b> <br> 5 results</li>		
+										
 				</ul>			
 			</div>						
 		</header>
@@ -60,7 +89,7 @@
 			<br>
 			<br>
 
-			<ul id="searchResults">
+			<!--<ul id="searchResults">
 				<li>
 					<img src="Resources/Images/perro1.jpg" alt="Perro 1"/>
 					<a href="detailpicture.html"><span class="titleImage">Boba</span></a>
@@ -92,10 +121,26 @@
 					<p><b class="titlePrint">Title: Perro 5 </b> <b>Date: </b><span class="dateField">12/03/2014</span><b> Country:</b> 
 					<span class="countryField">Canada</span> </p>
 				</li>
-			</ul>
-
+			</ul>-->
+		<?php
+			$fotosNombre= array("Boba","Bubita","Salomón","Cigüeña","Salmy");
+			$fotosURL= array("perro1.jpg","perro2.jpg","perro3.jpg","perro4.jpg","perro5.jpg");
+			for($i=0;$i<5;$i++){
+				if($fotosNombre[$i] == $_GET["title"]){
+					
+					echo "<ul><li>";
+					include("Resources/Images/$fotosURL[$i]") ;
+					echo "</li></ul>";
+				
+				}
+			}
+		?>
+		
+		
 					
 		</section>
+		
+		
 
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
 		<?php

@@ -10,13 +10,13 @@
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
 		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>
 
-		<script src="js/main.js"></script>
+		<script src="js/fillDate.js"></script>
 		<script src="js/style.js"></script>
 		<script src="js/loginPopUp.js"></script>
 
 	</head>
 
-	<body onLoad="cargarPagina()">
+	<body onLoad="cargarPagina(),fillDate()">
 		<div id="popUpLogin">
 			<?php
       			include 'login.html';      			
@@ -60,8 +60,18 @@
 								</p>   
 								<p id="dateFields">     
 									<label for="dateFrom" id="dateTitle"><b>DATE TIME: </b> </label> <br>                   
-									From: <input type="text" name="dateFrom" id="dateFrom" placeholder="dd/mm/yyyy"/> <br>
-									To: <input type="text" name="dateTo" id="dateTo" placeholder="dd/mm/yyyy"/>               
+									From: <select id="dayfrom" name="dayfrom" onchange="reseting(this)">
+											</select>
+											<select id="monthfrom" name="monthfrom" onchange="reseting(this)">
+											</select>
+											<select id="yearfrom" name="yearfrom" onchange="reseting(this)">
+											</select> <br>
+									To: <select id="dayto" name="dayto" onchange="reseting(this)">
+											</select>
+											<select id="monthto" name="monthto" onchange="reseting(this)">
+											</select>
+											<select id="yearto" name="yearto" onchange="reseting(this)">
+											</select>              
 								</p>   
 								<p>     
 									<label for="country"><b>COUNTRY: </b> </label>                      
