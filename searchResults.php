@@ -89,7 +89,7 @@
 			<br>
 			<br>
 
-			<!--<ul id="searchResults">
+			<ul id="searchResults">
 				<li>
 					<img src="Resources/Images/perro1.jpg" alt="Perro 1"/>
 					<a href="detailpicture.html"><span class="titleImage">Boba</span></a>
@@ -121,22 +121,7 @@
 					<p><b class="titlePrint">Title: Perro 5 </b> <b>Date: </b><span class="dateField">12/03/2014</span><b> Country:</b> 
 					<span class="countryField">Canada</span> </p>
 				</li>
-			</ul>-->
-		<?php
-			$fotosNombre= array("Boba","Bubita","Salomón","Cigüeña","Salmy");
-			$fotosURL= array("perro1.jpg","perro2.jpg","perro3.jpg","perro4.jpg","perro5.jpg");
-			for($i=0;$i<5;$i++){
-				if($fotosNombre[$i] == $_GET["title"]){
-					
-					echo "<ul><li>";
-					include("Resources/Images/$fotosURL[$i]") ;
-					echo "</li></ul>";
-				
-				}
-			}
-		?>
-		
-		
+			</ul>
 					
 		</section>
 		
