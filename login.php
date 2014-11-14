@@ -18,13 +18,7 @@
     }
 
 ?>
-
-<?php 
-    if(isset($_GET['login'])) { ?> 
-            <script>
-           showLogin();</script>
-
-<?php } ?>   
+  
 
 <div class="wrapperP wrapper printOut">
     <div class="login loginP">
