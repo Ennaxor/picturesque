@@ -3,6 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Picture Detail - Picturesque</title>		
+		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" type="text/css" title="Estilo Principal"/>
+
 		<link href="css/accesible.css" rel="alternate stylesheet" type="text/css" title="Estilo Accesible"/>
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
 		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>
@@ -53,7 +55,7 @@
 				
 			</div>						
 		</header>
-		
+
 		<section>
 			<div class="boxPics"> <a class="back" href="index.php"><h2>&lt;- Go back</h2></a></div>
 			<div class="padding picDet">

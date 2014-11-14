@@ -1,7 +1,7 @@
 <?php
-    if(isset($_POST["username"]) && isset($_POST["password"])){
-        $u = $_POST["username"];
-        $p = $_POST["password"];       
+    if(isset($_POST["usernameL"]) && isset($_POST["passwordL"])){
+        $u = $_POST["usernameL"];
+        $p = $_POST["passwordL"];       
 
         if(($u =="Pepe" && $p =="123") || ($u =="Pepa" && $p =="123")){
            $host = $_SERVER['HTTP_HOST'];
@@ -27,7 +27,7 @@
 			<a class="btn btn-login" id="closePopUp"> <i class="fa fa-times"></i></a>
             <div class="usernameContainer"> 
                 <p> 
-                    <input class="input-normal username" type="text" id="username" name="username" placeholder="Username..." onkeyup="nospaces(this)"
+                    <input class="input-normal username" type="text" id="usernameL" name="username" placeholder="Username..." onkeyup="nospaces(this)"
                     onkeydown="reseting()" />
                     <img src="Resources/Images/user-icon.png" alt="user icon" />
                     <span id="usernameError" style="font-size:9px; color:red;"></span>
@@ -36,7 +36,7 @@
 			
             <div class="passContainer">
                 <p> 
-                   <input class="input-normal password" type="password" id="password" name="password" placeholder="Pasword..." 
+                   <input class="input-normal password" type="password" id="password" name="passwordL" placeholder="Pasword..." 
                    onkeyup="nospaces(this)" onkeydown="reseting()"/>
                    <img src="Resources/Images/pass-icon.png" alt="pass icon" /> 
                    <span id="passError" style="font-size:9px; color:red;"></span>
