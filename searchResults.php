@@ -44,12 +44,17 @@
 				<ul class="searchRes">			
 					<li><b>TITLE</b><br> 
 					<?php 
-						//print_r(empty($_GET["title"]));
-						if(empty($_GET["title"])==0){
-							print_r($_GET["title"]);
+						
+						if(empty($_GET["searchInput"])==0){
+							print_r($_GET["searchInput"]);
 						}
 						else{
-							echo ('empty') ;
+							if(empty($_GET["title"])==0){
+								print_r($_GET["title"]);
+							}
+							else{
+								echo ('empty') ;
+							}
 						}
 					?>
 							</li>							

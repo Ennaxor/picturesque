@@ -42,7 +42,7 @@
 					<form enctype="multipart/form-data" method="get" action="searchresults.php">					
 						<div class="searchContainer">							
 							<img class="lupa" src="Resources/Images/search-icon.png" alt="search icon" />
-							<input class="search" type="search" name="searchInput" placeholder="Search..." />
+							<input class="search" type="text" name="searchInput" id="searchInput" placeholder="Search..." />
 
 							<input class="btn btn-login" type="submit" value="Go!"/>
 							<a class= "btn btn-login searchAdvanced" href="searchpro.php">
