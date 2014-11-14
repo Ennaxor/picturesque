@@ -56,29 +56,38 @@
 					From:
 					<?php 
 						$montharrya = array("January","February","March","April","May","June","July","August","September","October","November","December");
-						print_r($_GET["dayfrom"]);
-						echo("/");
-						for($i=0;$i<11;$i++){
-							if($_GET["monthfrom"]==$montharrya[$i]){
-								$mes=$i+1;
-								echo ("$mes/");
+						if(empty($_GET["dayfrom"])==0 || empty($_GET["monthfrom"])==0 || empty($_GET["yearfrom"])==0){
+							print_r($_GET["dayfrom"]);
+							echo("/");
+							for($i=0;$i<11;$i++){
+								if($_GET["monthfrom"]==$montharrya[$i]){
+									$mes=$i+1;
+									echo ("$mes/");
+								}
 							}
+							print_r($_GET["yearfrom"]);
 						}
-						print_r($_GET["yearfrom"]);
+						else{
+							echo ('empty') ;
+						}
 						
 					?> 
 					- To: 
 					<?php 
-						
-						print_r($_GET["dayto"]);
-						echo("/");
-						for($i=0;$i<11;$i++){
-							if($_GET["monthto"]==$montharrya[$i]){
-								$mes=$i+1;
-								echo ("$mes/");
+						if(empty($_GET["dayto"])==0 || empty($_GET["monthto"])==0 || empty($_GET["yearto"])==0){
+							print_r($_GET["dayto"]);
+							echo("/");
+							for($i=0;$i<11;$i++){
+								if($_GET["monthto"]==$montharrya[$i]){
+									$mes=$i+1;
+									echo ("$mes/");
+								}
 							}
+							print_r($_GET["yearto"]);
 						}
-						print_r($_GET["yearto"]);
+						else{
+							echo("empty");
+						}
 					?>
 					</li>					
 					<li><b>COUNTRY</b> <br>
