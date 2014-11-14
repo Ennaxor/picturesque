@@ -16,7 +16,6 @@
         echo '<script>document.onreadystatechange = function(){ showLogin(); }</script>';
 
     }
-
 ?>
   
 
@@ -27,7 +26,7 @@
 			<a class="btn btn-login" id="closePopUp"> <i class="fa fa-times"></i></a>
             <div class="usernameContainer"> 
                 <p> 
-                    <input class="input-normal username" type="text" id="usernameL" name="username" placeholder="Username..." onkeyup="nospaces(this)"
+                    <input class="input-normal username" type="text" id="username" name="usernameL" placeholder="Username..." onkeyup="nospaces(this)"
                     onkeydown="reseting()" />
                     <img src="Resources/Images/user-icon.png" alt="user icon" />
                     <span id="usernameError" style="font-size:9px; color:red;"></span>

@@ -454,6 +454,8 @@ li:hover .titleImage{
 	font-size: 14px;
 }
 
+
+
 .btnModify{
 	margin-top: -13px;
 	width: 80px;
@@ -595,6 +597,10 @@ p.login.button{
 }
 .loginP, .wrapperP{
 	width:350px;
+}
+
+.loginR, .wrapperR{
+	width:550px;
 }
 #popUpLogin{
 	visibility: hidden;
@@ -880,6 +886,15 @@ input[type=radio]:checked + .radiolabel:before {
 	text-decoration: underline;
 }
 
+#returnButton:hover{
+	cursor: pointer;
+}
+
+.btnReturn{
+	width: 85px;
+	float:right;
+}
+
 #day, #month, #year{
 	height:35px;
 	border-radius:3px;
@@ -984,4 +999,24 @@ input[type=radio]:checked + .radiolabel:before {
 	font-size: 18px;
 	left: 160px;
 	top: 100px;
+}
+
+.errorRegistration{
+	text-align: center;
+	font-size: 18px;
+	font-style: italic;
+
+}
+
+.registerCorrect{
+	padding-left: 25px;
+	font-size: 18px;
+	font-style: italic;
+}
+
+.btnHome{
+	width: 150px !important;
+	float: right;
+	margin-top: -25px;
+	
 }
