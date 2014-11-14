@@ -1,8 +1,7 @@
 <?php
     if(isset($_POST["username"]) && isset($_POST["password"])){
         $u = $_POST["username"];
-        $p = $_POST["password"];
-       
+        $p = $_POST["password"];       
 
         if(($u =="Pepe" && $p =="123") || ($u =="Pepa" && $p =="123")){
            $host = $_SERVER['HTTP_HOST'];
@@ -14,10 +13,18 @@
         else{
            $info = "Wrong parameters - No such user";
         }
+        echo '<script>document.onreadystatechange = function(){ showLogin(); }</script>';
+
     }
 
 ?>
 
+<?php 
+    if(isset($_GET['login'])) { ?> 
+            <script>
+           showLogin();</script>
+
+<?php } ?>   
 
 <div class="wrapperP wrapper printOut">
     <div class="login loginP">
