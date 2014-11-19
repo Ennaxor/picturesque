@@ -815,8 +815,7 @@ input[type=radio]:checked + .radiolabel:before {
 
 .registerButton{	
 	display: inline-block;
-	margin-top: 60px;
-
+	margin-top: 5px;
 }
 
 #loginPopUp{
@@ -931,9 +930,9 @@ input[type=radio]:checked + .radiolabel:before {
 }
 
 #infoerror{
+	display: inline-block;
 	color: red;
-	position: absolute;
-	top: 182px;
+	margin-top: 20px;
 }
 
 .titleProfiles{
@@ -1019,4 +1018,8 @@ input[type=radio]:checked + .radiolabel:before {
 	float: right;
 	margin-top: -25px;
 	
+}
+
+.checkBox{
+	margin-top: 6px;
 }

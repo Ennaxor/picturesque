@@ -46,6 +46,8 @@
                     if(isset($info)) echo $info;
                 ?>
             </span>
+
+            <div class="checkBox"><input  type="checkbox" name="remember" id="remember" value="Rememberme" > <label for="remember">Remember me</label></div>
             
             <p class="registerButton">Don't have an account? Register <a href="register.php" class="registerLink"><b>HERE</b></a></p>                  
 
