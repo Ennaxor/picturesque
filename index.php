@@ -3,6 +3,22 @@
 	<?php
 		require_once 'head.php'; 
 		$webTitle = "Home Page - Picturesque";		
+
+		if(isset($_GET["signout"])){
+            $_SESSION = array();
+             $cookie_name = 'authenticated';
+            
+			if(isset($_COOKIE[$cookie_name])) {
+				setcookie($cookie_name, '', time() - 42000, '/');
+			}
+
+            session_destroy();
+            $host = $_SERVER['HTTP_HOST'];
+            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            $extra = 'index.php';
+            header("Location: http://$host$uri/$extra");
+
+        }
 	?>
 
 	<body>
