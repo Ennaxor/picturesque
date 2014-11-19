@@ -1,20 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<title>Picture Detail - Picturesque</title>		
-		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" type="text/css" title="Estilo Principal"/>
+	<?php 
+		$webTitle = "Picture Detail - Picturesque";
+		require_once 'head.php'; 
+	?>
 
-		<link href="css/accesible.css" rel="alternate stylesheet" type="text/css" title="Estilo Accesible"/>
-		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
-		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>
-
-		<script src="js/main.js"></script>
-		<script src="js/style.js"></script>
-		<script src="js/loginPopUp.js"></script>
-	</head>
-
-	<body onLoad="cargarPagina()">
+	<body>
 		<header>				
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 

@@ -1,22 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
-	<head>
-		<meta charset="utf-8" />
-		<title>Search pictures - Picturesque</title>
+	<?php 
+		$webTitle = "Search Pictures - Picturesque";
+		require_once 'head.php'; 
+	?>
 
-		<link href="css/accesible.css" rel="alternate stylesheet" type="text/css" title="Estilo Accesible"/>
-		<link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css" type="text/css" title="Estilo Principal"/>
-
-		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" title="Estilo Principal" />
-		<link href="css/print.css" rel="stylesheet" type="text/css" media="print" title="Estilo Para Impresión"/>
-
-		<script src="js/fillDate.js"></script>
-		<script src="js/style.js"></script>
-		<script src="js/loginPopUp.js"></script>
-
-	</head>
-
-	<body onLoad="cargarPagina(), fillDate()">
+	<body onLoad="fillDate()">
 		<div id="popUpLogin">
 			<?php
       			include 'login.php';      			
