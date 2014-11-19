@@ -26,8 +26,8 @@
 
         if(isset($_GET["signout"])){
             $_SESSION = array();
-            $cookie_name = 'authenticated';
-            setcookie($cookie_name, false, time() - (86800 * 30), '/');
+            
+
             session_destroy();
             $host = $_SERVER['HTTP_HOST'];
             $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
