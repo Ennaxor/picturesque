@@ -45,7 +45,9 @@
  			</h2>
 			<div class="userInfo">
 				<img id="photoUser" src="Resources/Images/add_user.png" alt="User avatar"/>
-				<span class="usernameUser">Salomon McKenzy</span>
+				<span class="usernameUser">
+					<?php echo $_SESSION['authenticated'] ?>
+				</span>
 				<p class="genderUser">Female</p>
 				<p class="emailUser">roxanne@hotmail.com</p>
 				<p class="dateUser">29/04/1994</p>
