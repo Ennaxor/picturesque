@@ -2,7 +2,13 @@
 <html lang="es">
 	<?php 
 		require_once 'head.php';
-		$webTitle = "My Profile - Picturesque";		 
+		$webTitle = "My Profile - Picturesque";	
+		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
+			$host = $_SERVER['HTTP_HOST'];
+            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            $extra = 'index.php';
+            header("Location: http://$host$uri/$extra");
+		}
 	?>
 	<body>		
 		
