@@ -6,8 +6,14 @@
             if(($u =="Pepe" && $p =="123") || ($u =="Pepa" && $p =="123")){
                 if(isset($_POST["remember"]) && $_POST["remember"] == true){
                     $cookie_name = 'authenticated';
+					$cookie_date_name = 'date';
+					$cookie_time_name = 'time';
                     $cookie_value = $u;
+					$cookie_date_value = date('d/m/Y', time());
+					$cookie_time_value = date('H:i:s', time());
                     setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/');
+					setcookie($cookie_date_name,$cookie_date_value,time()+(86400*30),'/');
+					setcookie($cookie_time_name,$cookie_time_value,time()+(86400*30),'/');
                 }  
 
                 $_SESSION["authenticated"] = $u;              

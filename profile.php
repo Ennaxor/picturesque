@@ -39,6 +39,21 @@
 		<section>			
 			<div class="boxPics"> <h2>My profile <i class="fa fa-thumb-tack"></i></h2> </div>	
 
+			
+			<div class="time">
+				<p> Hola <?php echo $_COOKIE['authenticated'] ?> su ultima visita fue <?php echo $_COOKIE['date'] ?> a las <?php echo $_COOKIE['time'] ?>
+				</p>
+				<?php
+					$cookie_date_name = 'date';
+					$cookie_time_name = 'time';
+					$cookie_date_value = date('d/m/Y', time());
+					$cookie_time_value = date('H:i:s', time());
+					setcookie($cookie_date_name,$cookie_date_value,time()+(86400*30),'/');
+					setcookie($cookie_time_name,$cookie_time_value,time()+(86400*30),'/');
+				?>
+			
+			</div>
+			
 			<h2 class="titleProfiles">My Account <i class="fa fa-database"></i>
 			 <button class="btn btn-login btnModify"><i class="fa fa-pencil-square-o"></i>
 			 Modify</button>
@@ -46,13 +61,16 @@
 			<div class="userInfo">
 				<img id="photoUser" src="Resources/Images/add_user.png" alt="User avatar"/>
 				<span class="usernameUser">
-					<?php echo $_SESSION['authenticated'] ?>
+					<?php echo $_COOKIE['authenticated'] ?>
 				</span>
 				<p class="genderUser">Female</p>
 				<p class="emailUser">roxanne@hotmail.com</p>
 				<p class="dateUser">29/04/1994</p>
 				<p class="cityUser">Alicante</p>
 			</div>
+			
+			
+			
 			<br>
 			<h2 class="titleProfiles">My Albums <i class="fa fa-picture-o"></i>
 			<button class="btn btn-login btnNew">
