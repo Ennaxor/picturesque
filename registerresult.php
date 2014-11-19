@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
-		$webTitle = "Successful Register - Picturesque";
 		require_once 'head.php'; 
+		$webTitle = "Successful Register - Picturesque";
+		
 	?>
 	<body onload="fillDate();">
 

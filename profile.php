@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
-		$webTitle = "My Profile - Picturesque";
-		require_once 'head.php'; 
+		require_once 'head.php';
+		$webTitle = "My Profile - Picturesque";		 
 	?>
 	<body>		
 		
@@ -10,9 +10,8 @@
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>				
-			<?php
-  				include 'logged.html';      			
-			?>					
+			<?php if (isset($_COOKIE['authenticated']) || isset($_SESSION['authenticated'])) include 'logged.html';   ?>
+
 			<div class="currentStyleProfile">
 				<button class="btn btn-login btnStyle" id="cangestyle">Style</button>
 				<ul id="webstyle">

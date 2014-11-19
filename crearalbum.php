@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
-		$webTitle = "Create your album- Picturesque";
 		require_once 'head.php'; 
+		$webTitle = "Create your album- Picturesque";		
 	?>
 
-	<body onLoad="fillAlbumDate()">
-		<div id="popUpLogin">
-			<?php
-      			include 'login.php';      			
-    		?>
-		</div>
+	<body onLoad="fillAlbumDate()">		
 		<div id="popUpAlbum">
 			<?php
       			include 'album.html';  
@@ -21,6 +16,7 @@
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
+			<?php if (isset($_COOKIE['authenticated']) || isset($_SESSION['authenticated'])) include 'logged.html';   ?>
 
 			<div class="currentStyle">
 				<button class="btn btn-login btnStyle" id="cangestyle">Style</button>
@@ -34,7 +30,6 @@
 				<button class="btn btn-login btnStyle" id="principalA" onclick="getStringFromObject(this)" >Principal </button>
 				<button class="btn btn-login btnStyle" id="accesibleA" onclick="getStringFromObject(this)" >Accesible </button>
 			</div>
-			<button id="loginPopUp" onClick="showLogin();"><i class="fa fa-sign-in"></i> Sign in! </button>
 			<div class="padding headerContent">				
 				<h1>Create your own album...</h1>				
 			</div>						

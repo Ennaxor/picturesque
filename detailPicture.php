@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
-		$webTitle = "Picture Detail - Picturesque";
 		require_once 'head.php'; 
+		$webTitle = "Picture Detail - Picturesque";		
 	?>
 
 	<body>
@@ -12,7 +12,7 @@
 			</a>	
 
 			<?php
-  				include 'logged.html';      			
+			 if (isset($_COOKIE['authenticated']) || isset($_SESSION['authenticated'])) include 'logged.html'; 
 			?>	
 			
 			<div class="currentStyle">

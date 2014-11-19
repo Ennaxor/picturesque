@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-	<?php 
-		$webTitle = "Home Page - Picturesque";
+	<?php
 		require_once 'head.php'; 
+		$webTitle = "Home Page - Picturesque";		
 	?>
 
 	<body>
 		<div id="popUpLogin">
 			<?php
-      			include 'login.php';      			
+      			if (!isset($_COOKIE['authenticated']) || !isset($_SESSION['authenticated'])) include 'login.php';       			     			
     		?>
 		</div>
 		<div id="overlay-back"></div>
@@ -16,8 +16,12 @@
 		<header>				
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
-			</a>				
-			<button id="loginPopUp" onClick="showLogin();"><i class="fa fa-sign-in"></i> Sign in! </button>
+			</a>	
+			<?php if (isset($_COOKIE['authenticated']) || isset($_SESSION['authenticated'])) include 'logged.html';   ?>	
+
+			<?php if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) 
+			echo "<button id=\"loginPopUp\" onClick=\"showLogin();\"><i class=\"fa fa-sign-in\"></i> Sign in! </button>" ?>
+
 			<div class="currentAccesibleStyle">
 				<p> Pick the Style: </p>
 				<button class="btn btn-login btnStyle" id="principalA" onclick="getStringFromObject(this)" >Principal </button>

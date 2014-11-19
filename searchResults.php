@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
-		$webTitle = "Results of your search- Picturesque";
 		require_once 'head.php'; 
+		$webTitle = "Results of your search- Picturesque";		
 	?>
 
 	<body>
 		<div id="popUpLogin">
 			<?php
-      			include 'login.php';      			
+      			if (!isset($_COOKIE['authenticated']) || !isset($_SESSION['authenticated'])) include 'login.php';       			     			
     		?>
 		</div>
 		<div id="overlay-back"></div>
@@ -17,6 +17,10 @@
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
+			<?php if (isset($_COOKIE['authenticated']) || isset($_SESSION['authenticated'])) include 'logged.html';   ?>	
+
+			<?php if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) 
+			echo "<button id=\"loginPopUp\" onClick=\"showLogin();\"><i class=\"fa fa-sign-in\"></i> Sign in! </button>" ?>
 			<div class="currentStyle">
 				<button class="btn btn-login btnStyle" id="cangestyle">Style</button>
 				<ul id="webstyle">
@@ -29,7 +33,6 @@
 				<button class="btn btn-login btnStyle" id="principalA" onclick="getStringFromObject(this)" >Principal </button>
 				<button class="btn btn-login btnStyle" id="accesibleA" onclick="getStringFromObject(this)" >Accesible </button>
 			</div>
-			<button id="loginPopUp" onClick="showLogin();"><i class="fa fa-sign-in"></i> Sign in! </button>
 			<div class="padding headerContent searching">
 				<h1>You searched for...</h1>	
 				<ul class="searchRes">			

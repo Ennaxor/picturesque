@@ -1,25 +1,41 @@
-<?php
-    
+<?php    
+        if(isset($_POST["usernameL"]) && isset($_POST["passwordL"])){
+            $u = $_POST["usernameL"];
+            $p = $_POST["passwordL"];  
 
+            if(($u =="Pepe" && $p =="123") || ($u =="Pepa" && $p =="123")){
+                if(isset($_POST["remember"]) && $_POST["remember"] == true){
+                    $cookie_name = 'authenticated';
+                    $cookie_value = $u;
+                    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/');
+                }  
 
+                $_SESSION["authenticated"] = $u;              
 
-    if(isset($_POST["usernameL"]) && isset($_POST["passwordL"])){
-        $u = $_POST["usernameL"];
-        $p = $_POST["passwordL"];       
+                $host = $_SERVER['HTTP_HOST'];
+                $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+                $extra = 'profile.php';
+                header("Location: http://$host$uri/$extra");
+                exit;
+            }
+            else{
+               $info = "Wrong parameters - No such user";
+            }
+            echo '<script>document.onreadystatechange = function(){ showLogin(); }</script>';
+        }
 
-        if(($u =="Pepe" && $p =="123") || ($u =="Pepa" && $p =="123")){
-           $host = $_SERVER['HTTP_HOST'];
+        if(isset($_GET["signout"])){
+            $_SESSION = array();
+            $cookie_name = 'authenticated';
+            setcookie($cookie_name, false, time() - (86800 * 30), '/');
+            session_destroy();
+            $host = $_SERVER['HTTP_HOST'];
             $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-            $extra = 'profile.php';
+            $extra = 'index.php';
             header("Location: http://$host$uri/$extra");
-            exit;
-        }
-        else{
-           $info = "Wrong parameters - No such user";
-        }
-        echo '<script>document.onreadystatechange = function(){ showLogin(); }</script>';
 
-    }
+        }
+        
 ?>
   
 
