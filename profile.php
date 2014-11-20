@@ -41,13 +41,16 @@
 
 			
 			<h2 class="titleProfiles">My Account <i class="fa fa-database"></i>
-			 <button class="btn btn-login btnModify"><i class="fa fa-pencil-square-o"></i>
+			<button class="btn btn-login btnModify"><i class="fa fa-pencil-square-o"></i>
 			 Modify</button>
  			</h2>
 			<div class="userInfo">
 				<img id="photoUser" src="Resources/Images/add_user.png" alt="User avatar"/>
 				<span class="usernameUser">
-					<?php echo $_COOKIE['authenticated'] ?>
+					<?php if(!isset($_COOKIE['authenticated']) && isset($_SESSION['authenticated'])) echo $_SESSION['authenticated'];
+						else echo $_COOKIE['authenticated'];
+					 ?>
+
 				</span>
 				<p class="genderUser">Female</p>
 				<p class="emailUser">roxanne@hotmail.com</p>
