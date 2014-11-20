@@ -33,9 +33,9 @@
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
-			<?php if (isset($_COOKIE['authenticated']) || isset($_SESSION['authenticated'])) include 'logged.html';   ?>	
+			<?php if (isset($_SESSION['authenticated'])) include 'logged.html';   ?>	
 
-			<?php if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) 
+			<?php if (!isset($_SESSION['authenticated'])) 
 			echo "<button id=\"loginPopUp\" onClick=\"showLogin();\"><i class=\"fa fa-sign-in\"></i> Sign in! </button>" ?>
 
 			<div class="currentAccesibleStyle">
