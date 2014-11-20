@@ -405,6 +405,22 @@ li:hover .titleImage{
   	background-color:#F26507;
 }
 
+.btn-continue{
+	position: absolute;
+	top: 180px;
+	right: 190px;
+	color: white !important;
+	text-decoration: none !important;
+}
+
+.btn-signoutC{
+	position: absolute;
+	top: 180px;
+	right: 20px;
+	color: white !important;
+	text-decoration: none !important;
+}
+
 .btn-order{
 	position: relative;
 	background-color: #F37A29;
@@ -1044,4 +1060,13 @@ input[type=radio]:checked + .radiolabel:before {
 	float:right;
 	margin-right:40px;
 	margin-top:50px;
+}
+
+.textVisit{
+	font-size: 21px;
+	text-align: center;
+	position: absolute;
+	top: 65px;
+	left: 30px;
+	font-style: italic;
 }

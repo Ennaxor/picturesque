@@ -3,10 +3,10 @@
 	<?php
 		require_once 'head.php'; 
 		$webTitle = "Home Page - Picturesque";		
-
+ 		$cookie_name = 'authenticated';
+            
 		if(isset($_GET["signout"])){
             $_SESSION = array();
-             $cookie_name = 'authenticated';
             
 			if(isset($_COOKIE[$cookie_name])) {
 				setcookie($cookie_name, '', time() - 42000, '/');
@@ -17,16 +17,26 @@
             $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
             $extra = 'index.php';
             header("Location: http://$host$uri/$extra");
+        }
+        if(isset($_GET["signin"])){
+          	$_SESSION["authenticated"] = $_COOKIE[$cookie_name];      
 
+            $host = $_SERVER['HTTP_HOST'];
+            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            $extra = 'index.php';
+            header("Location: http://$host$uri/$extra");
         }
 	?>
 
 	<body>
 		<div id="popUpLogin">
 			<?php
-      			if (!isset($_COOKIE['authenticated']) || !isset($_SESSION['authenticated'])) include 'login.php';       			     			
+      			if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) include 'login.php';   
+      			else if(isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) include 'rememberlogin.php';			     			
     		?>
+
 		</div>
+
 		<div id="overlay-back"></div>
 
 		<header>				
