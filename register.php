@@ -86,7 +86,8 @@
 	                        </p>    
 	                        <p>          
 	                        	<label for="country">Country: </label>                                              
-	                            <input type="text" name="country" id="country"/>
+								<select id="country" name="country" onchange="reseting(this)"></select>                 
+
 	                        </p>  
 	                        <p>          
 	                        	<label for="picture">Picture: </label>                                              

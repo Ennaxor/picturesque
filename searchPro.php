@@ -66,8 +66,8 @@
 											</select>              
 								</p>   
 								<p>     
-									<label for="country"><b>COUNTRY: </b> </label>                      
-									<input type="text" name="country" id="country" placeholder="E.G: ireland..."/>             
+									<label for="country"><b>COUNTRY: </b> </label>     
+									<select id="country" name="country" onchange="reseting(this)"></select>                 
 								</p>                     
 								<p class="button printOut"><input class="searchR" type="submit" value="Search!"/> </p>
 								
