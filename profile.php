@@ -9,6 +9,23 @@
             $extra = 'index.php';
             header("Location: http://$host$uri/$extra");
 		}
+		
+		//Conectar con la base de datos
+		$identificador = @mysqli_connect('localhost','web','','pibd');
+		if(!$identificador){
+			echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+			echo "</p>";
+			exit;
+		}
+		
+		$sentencia= "select * from albumes,usuarios where usuarios.idUsuario=albumes.Usuario and NomUsuario='$_COOKIE[authenticated]'";
+		$usuario= "select * from usuarios,sexo where NomUsuario='$_COOKIE[authenticated]' and usuarios.sexo=sexo.idGenero";
+				
+		if(!($resultado = @mysqli_query($identificador,$sentencia)) || !($resultado2 = @mysqli_query($identificador,$usuario)) ){
+			echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+			echo "</p>";
+			exit;
+		}
 	?>
 	<body>		
 		
@@ -45,17 +62,27 @@
 			 Modify</button>
  			</h2>
 			<div class="userInfo">
-				<img id="photoUser" src="Resources/Images/add_user.png" alt="User avatar"/>
+				<?php 
+					$user = mysqli_fetch_assoc($resultado2);
+					if($user['Foto']==null){
+						echo "<img id='photoUser' src='Resources/Images/add_user.png' alt='User avatar'/>";
+					}
+					else{
+						echo "<img id='photoUser' src='$user[Foto]' alt='User avatar'/>";
+					}				
+				
+				?>
+				
 				<span class="usernameUser">
 					<?php if(!isset($_COOKIE['authenticated']) && isset($_SESSION['authenticated'])) echo $_SESSION['authenticated'];
 						else echo $_COOKIE['authenticated'];
 					 ?>
 
 				</span>
-				<p class="genderUser">Female</p>
-				<p class="emailUser">roxanne@hotmail.com</p>
-				<p class="dateUser">29/04/1994</p>
-				<p class="cityUser">Alicante</p>
+				<p class="genderUser"><?php  echo "$user[Tipo]";?></p>
+				<p class="emailUser"><?php echo "$user[Email]";?></p>
+				<p class="dateUser"><?php echo "$user[FNacimiento]";?></p>
+				<p class="cityUser"><?php echo "$user[Ciudad]";?></p>
 			</div>
 			
 			
@@ -65,7 +92,7 @@
 			<button class="btn btn-login btnNew">
 			 <i class="fa fa-plus"></i><a href="crearalbum.php"> New Album</a></button>
 			</h2>
-			<ul>
+			<!--<ul>
 				<li style="height:150px; width:176px;">
 					<img src="Resources/Images/perro1.jpg" alt="Perro 1"/>
 					<a class="titleImage" href="detailpicture.php"><span class="titleImage">Album: dogs</span></a>
@@ -78,7 +105,20 @@
 					<img src="Resources/Images/perro3.jpg" alt="Perro 3"/>
 					<a class="titleImage" href="detailpicture.php"><span class="titleImage">Album: cats</span></a>					
 				</li>				
-			</ul>
+			</ul>-->
+			
+			<?php 
+				
+				echo "<ul>";
+				while ($fila = @mysqli_fetch_assoc($resultado)){
+					echo "<li>";
+						echo "<a class='titleImage' href='detailalbum.php?id=$fila[idAlbum]'><span class='titleImage'>Album: $fila[TituloAlbum]</span></a>";
+					echo "</li>";
+				}
+				echo "</ul>";
+			
+			
+			?>
 
 			<a href="#" id="deleteUser">Delete account</a>		
 			<br><br>	

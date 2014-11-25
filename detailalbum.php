@@ -54,10 +54,16 @@
 		</header>
 
 		<section>
-			<div class="boxPics"> <a class="back" href="index.php"><h2>&lt;- Go back</h2></a></div>
-			<div class="padding picDet">
 			
-				<?php
+			<div class="albumMenu">
+				<div class="goBack"> <a class="back" href="profile.php"><h2>&lt;- Go back</h2></a></div>
+				
+				<div class="addPhoto"> <a class="back" href="addphoto.php"><h2>Add Photo</h2></a></div>
+			</div>
+			
+			<div class="padding picDet">
+		
+				<?php 
 					$identificador = @mysqli_connect('localhost','web','','pibd');
 					$i=0;
 					if(!$identificador){
@@ -65,22 +71,35 @@
 						echo "</p>";
 						exit;
 					}
-					$sentencia= "select * from fotos,paises,albumes,usuarios where idFoto=$_GET[id] and fotos.pais=paises.idPais and fotos.Album=albumes.idAlbum and usuarios.idUsuario=albumes.Usuario";
+					
+					$sentencia= "select * from fotos, paises,albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id]";
+					
 					if(!($resultado = @mysqli_query($identificador,$sentencia))){
 						echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
 						echo "</p>";
 						exit;
 					}
-					$fila = @mysqli_fetch_assoc($resultado);
-					echo "<img class='detailPicture' src='$fila[Fichero]' alt='$fila[Descripcion]'/>";
+					
+					echo "<ul>";
+					while ($fila = @mysqli_fetch_assoc($resultado)){
+						echo "<li>";
+							echo "<img src='$fila[Fichero]' alt='Perro 1'/>  ";
+							echo "<a class='titleImage' href='detailpicture.php?id=$fila[idFoto]'><span class='titleImage'>Title: $fila[Titulo]</span></a> ";
+							echo "<p><b class='titlePrint'><a href='detailpicture.php?id=$i'>Title: $fila[Titulo]</a></b> <b>Date:</b> $fila[Fecha] <b>Country:</b> $fila[NombrePais] </p>";
+						echo "</li>";
+					}
+					echo "</ul>";
+			
+			
 				?>
+				
 			
 							
-				<span class="info"><b>Title:</b> <?php $t='fotos.'.'Titulo';echo "$fila[Titulo] ";?><b>Date:</b> <?php echo "$fila[Fecha] ";?> <b>Country:</b> <?php echo "$fila[NombrePais] ";?> </span>
+				<!--<span class="info"><b>Title:</b> <?php $t='fotos.'.'Titulo';echo "$fila[Titulo] ";?><b>Date:</b> <?php echo "$fila[Fecha] ";?> <b>Country:</b> <?php echo "$fila[NombrePais] ";?> </span>
 				<span class="authors">
 					<b>From the album:</b> <a href="#" class="detailAhref"> <?php echo "$fila[TituloAlbum] ";?></a> <br>
 					<b>From the user:</b> <a href="#" class="detailAhref"> <?php echo "$fila[NomUsuario] ";?></a> 	
-				</span>
+				</span>-->
 							
 			</div>			
 		</section>

@@ -168,6 +168,7 @@ header{
 	top:-17px;
 	width:120px;
 	text-shadow: 0 1px 1px rgba(0,0,0,0.7);
+	
 }
 
 
@@ -177,6 +178,7 @@ header{
 	padding-left:5px;
 	padding-top:8px;
 }
+
 
 .detailPicture{
 	display: block;
@@ -189,13 +191,13 @@ header{
 }
 
 .picDet{
-	margin-top: -57px;
+	margin-top: -40px;
 	margin-right: auto;
 	margin-left: auto;
 	margin-bottom:0;
 	background-color: #212124;	
-	overflow:hidden
-	
+	overflow:hidden;
+	min-height:500px;
 }
 
 .picDet span{
@@ -1070,3 +1072,37 @@ input[type=radio]:checked + .radiolabel:before {
 	left: 30px;
 	font-style: italic;
 }
+
+ .albumMenu{
+	font-size: 15px;
+	background-color:#80D1B9;
+	border-radius:0 0 4px 4px;
+	position:relative;
+	width: 280px;
+	height: 40px;
+	color: white;	
+	font-family: Vollkorn, serif;
+	display:inline-block;
+	left:40px;
+ }
+ 
+ .goBack{
+	display:inline-block;
+	height:39px;
+	margin-left:15px;
+	margin-top:-10px;
+}
+.goBack a, .addPhoto {
+	color:white;
+}
+ .addPhoto{
+	display:inline-block;
+	float:right;
+	height:39px;
+	margin-right:15px;
+	margin-top:-10px;
+ }
+ 
+ .wrapperAddPhoto{
+	height:400px;
+ }

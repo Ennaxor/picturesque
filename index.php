@@ -26,6 +26,7 @@
             $extra = 'index.php';
             header("Location: http://$host$uri/$extra");
         }
+		
 	?>
 
 	<body>
@@ -82,7 +83,7 @@
 		<section>			
 			<div class="boxPics"> <h2>Last pics <i class="fa fa-camera-retro"></i></h2> </div>	
 			
-			<ul>
+			<!--<ul>
 				<li>
 					<img src="Resources/Images/perro1.jpg" alt="Perro 1"/>
 					<a class="titleImage" href="detailpicture.php?id=01"><span class="titleImage">Title: Perro 1</span></a>
@@ -109,8 +110,36 @@
 					<a class="titleImage" href="detailpicture.php?id=05"><span class="titleImage">Title: Perro 5</span></a>
 					<p><b class="titlePrint"><a href="detailpicture.php?id=05">Title: Perro 5</a></b> <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </p>
 				</li>
-			</ul>
-
+			</ul>-->
+			<?php 
+				$identificador = @mysqli_connect('localhost','web','','pibd');
+				$i=0;
+				if(!$identificador){
+					echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+					echo "</p>";
+					exit;
+				}
+				
+				$sentencia= "select * from fotos, paises where fotos.pais=paises.idPais order by fRegistro desc limit 5";
+				
+				if(!($resultado = @mysqli_query($identificador,$sentencia))){
+					echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+					echo "</p>";
+					exit;
+				}
+				
+				echo "<ul>";
+				while ($fila = @mysqli_fetch_assoc($resultado)){
+					echo "<li>";
+						echo "<img src='$fila[Fichero]' alt='Perro 1'/>  ";
+						echo "<a class='titleImage' href='detailpicture.php?id=$fila[idFoto]'><span class='titleImage'>Title: $fila[Titulo]</span></a> ";
+						echo "<p><b class='titlePrint'><a href='detailpicture.php?id=$i'>Title: $fila[Titulo]</a></b> <b>Date:</b> $fila[Fecha] <b>Country:</b> $fila[NombrePais] </p>";
+					echo "</li>";
+				}
+				echo "</ul>";
+			
+			
+			?>
 						
 		</section>
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
