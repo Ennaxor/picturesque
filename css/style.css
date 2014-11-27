@@ -139,7 +139,7 @@ header{
 .searchRes li{
 	list-style-type: none;  
 	display: inline-block;
-	margin-left: 3%;
+	margin-left: 5%;
 	margin-bottom: 3%;
 	font-size: 21px;
 }
@@ -184,8 +184,14 @@ header{
 	border:1px solid #d8d8d8;
 	border-radius:3px;
 	box-shadow:inset 0 0 0 1px #fff;
+	margin-top: 40px;
+	margin-bottom: 20px;
 	margin-right: auto;
 	margin-left: auto;
+	max-width:  620px;
+    max-height: 430px;
+    background-repeat:   no-repeat;
+    background-size:     cover;
 }
 
 .picDet{
@@ -206,6 +212,10 @@ header{
 .authors{
 	margin-top: -22px;
 	float: right;
+}
+
+.detailAhref{
+	color: #F37A29;
 }
 
 section{
@@ -232,7 +242,7 @@ section li{
 	border-radius:3px;
 	box-shadow:inset 0 0 0 1px #fff;
 	cursor:pointer;
-	height:216px;
+	height:200px;
 	margin-bottom:5px;
 	padding:1px;
 	position:relative;
@@ -242,20 +252,26 @@ section li{
 section li:hover:after{	
 	background-color:rgba(0,0,0,0.3);
 	content:"";
-	height:100%;
+	height:200px;
 	position:absolute;
 	top:0;
-	width:100%;
+	width:260px;
 }
 
 section li img{
-	max-height:100%;
-	max-width:100%;
+	width:  260px;
+    height: 200px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
 }
 
 section li p{
-	background-color: #EBEBEB;
+	background-color: #A7A7B5;
+	color: white;
+	font-style: italic;
 	margin-top: -7px;	
+	text-align: center;
 }
 
 .WSadvanced{
@@ -302,6 +318,12 @@ section li p{
 	float: right;
 	margin-top: -3px !important;
 }
+
+.searchAlbum{
+	float: right;
+	margin-top: -29px !important;
+}
+
 
 /* PIE DE PÁGINA */
 footer{
@@ -965,7 +987,7 @@ input[type=radio]:checked + .radiolabel:before {
 
 .titleProfiles{
 	position: relative;
-	left: 81px;
+	margin-left: 81px;
 	color: #1A1A1A;
 
 	font-family: Vollkorn, serif;
@@ -976,6 +998,10 @@ input[type=radio]:checked + .radiolabel:before {
 	position: relative;
 	left: 81px;
 	
+}
+
+.info{
+	font-style: italic;
 }
 
 #photoUser{
@@ -1069,4 +1095,18 @@ input[type=radio]:checked + .radiolabel:before {
 	top: 65px;
 	left: 30px;
 	font-style: italic;
+}
+
+.noPhotos{
+	font-size: 25px;
+	font-style: italic;
+	display: block;
+	margin-top: 90px;
+	margin-left: 40%;
+	margin-bottom: 80px;
+	
+}
+
+.wrapperAddPhoto{
+	height: 490px !important;
 }

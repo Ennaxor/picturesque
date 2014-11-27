@@ -1,34 +1,48 @@
 <?php    
-        if(isset($_POST["usernameL"]) && isset($_POST["passwordL"])){
-            $u = $_POST["usernameL"];
-            $p = $_POST["passwordL"];  
+    $identificador = @mysqli_connect('localhost','web','','pibd');
+    $i=0;
+    if(!$identificador){
+        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+        echo "</p>";
+        exit;
+    }   
 
-            if(($u =="Pepe" && $p =="123") || ($u =="Pepa" && $p =="123")){
-                if(isset($_POST["remember"]) && $_POST["remember"] == true){
-                    $cookie_name = 'authenticated';
-					$cookie_date_name = 'date';
-					$cookie_time_name = 'time';
-                    $cookie_value = $u;
-					$cookie_date_value = date('d/m/Y', time());
-					$cookie_time_value = date('H:i:s', time());
-                    setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/');
-					setcookie($cookie_date_name,$cookie_date_value,time()+(86400*30),'/');
-					setcookie($cookie_time_name,$cookie_time_value,time()+(86400*30),'/');
-                }  
+    if(isset($_POST["usernameL"]) && isset($_POST["passwordL"])){
+        $u = $_POST["usernameL"];
+        $p = $_POST["passwordL"];  
+        $sentencia = "select * from usuarios where NomUsuario = '$_POST[usernameL]' AND Clave = '$_POST[passwordL]'";
+        if(!($resultado = @mysqli_query($identificador,$sentencia))){
+            echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+            echo "</p>";
+            exit;
+        }
+        $row = mysqli_fetch_array($resultado) ;
+        if(!empty($row['NomUsuario']) AND !empty($row['Clave'])){
+            if(isset($_POST["remember"]) && $_POST["remember"] == true){
+                $cookie_name = 'authenticated';
+				$cookie_date_name = 'date';
+				$cookie_time_name = 'time';
+                $cookie_value = $u;
+				$cookie_date_value = date('d/m/Y', time());
+				$cookie_time_value = date('H:i:s', time());
+                setcookie($cookie_name, $cookie_value, time() + (86400 * 30), '/');
+				setcookie($cookie_date_name,$cookie_date_value,time()+(86400*30),'/');
+				setcookie($cookie_time_name,$cookie_time_value,time()+(86400*30),'/');
+            }  
 
-                $_SESSION["authenticated"] = $u;              
+            $_SESSION["authenticated"] = $u;              
 
-                $host = $_SERVER['HTTP_HOST'];
-                $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-                $extra = 'profile.php';
-                header("Location: http://$host$uri/$extra");
-                exit;
-            }
-            else{
-               $info = "Wrong parameters - No such user";
-            }
-            echo '<script>document.onreadystatechange = function(){ showLogin(); }</script>';
-        }      
+            $host = $_SERVER['HTTP_HOST'];
+            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            $extra = 'profile.php';
+            header("Location: http://$host$uri/$extra");
+            exit;
+        }
+        else{
+           $info = "Wrong parameters - No such user";
+        }
+        echo '<script>document.onreadystatechange = function(){ showLogin(); }</script>';
+    }      
         
 ?>
   
@@ -58,6 +72,8 @@
             <span id="infoerror">
                 <?php 
                     if(isset($info)) echo $info;
+                    mysql_free_result($resultado);
+                    mysql_close($identificador);
                 ?>
             </span>
 

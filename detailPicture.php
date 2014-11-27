@@ -55,31 +55,44 @@
 
 		<section>
 			<div class="boxPics"> <a class="back" href="index.php"><h2>&lt;- Go back</h2></a></div>
-			<div class="padding picDet">
-				<img class="detailPicture" src="Resources/Images/perro1.jpg" alt="Perro 1"/>			
-				<span class="info"><b>Title:</b> Perro 1 <b>Date:</b> 20/05/2014 <b>Country:</b> Spain </span>
+
+			<div class="padding picDet">				
+                <?php
+                    $identificador = @mysqli_connect('localhost','web','','pibd');
+                    $i=0;
+                    if(!$identificador){
+                        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+                        echo "</p>";
+                        exit;
+                    }
+                    $sentencia= "select * from fotos,paises,albumes,usuarios where idFoto=$_GET[id] and fotos.pais=paises.idPais and fotos.Album=albumes.idAlbum and usuarios.idUsuario=albumes.Usuario";
+                    if(!($resultado = @mysqli_query($identificador,$sentencia))){
+                        echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+                        echo "</p>";
+                        exit;
+                    }
+                    $fila = @mysqli_fetch_assoc($resultado);
+                    echo "<img class='detailPicture' src='$fila[Fichero]' alt='$fila[Descripcion]'/>";
+                ?>
+				<span class="info">
+					 By <?php $t='fotos.'.'Titulo';echo "$fila[Titulo]";?>, the <?php echo "$fila[Fecha] ";?> 
+					in <?php echo "$fila[NombrePais] ";?> 
+				</span>
+
 				<span class="authors">
-					<b>From the album:</b> <a href="#" class="detailAhref"> Pets</a> <br>
-					<b>From the user:</b> <a href="#" class="detailAhref"> Pepito</a> 	
+					<b>From the album:</b> <?php echo"<a href='detailalbum.php?id=$fila[idAlbum]' class='detailAhref'>";  echo "$fila[TituloAlbum]";?></a> <br>
+                    <b>From the user:</b> <?php echo"<a href='#' class='detailAhref'>"; echo "$fila[NomUsuario]";
+                    	mysql_free_result($resultado);
+						mysql_close($identificador);
+                    ?></a>     
+	
 				</span>
 							
 			</div>			
 		</section>
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
-
-		<footer id="FootDetailPicture">
-			
-			<div class="padding">
-				<h3>Main pages</h3>
-				<ul>
-					<li><a href="index.php">Home Page</a></li>
-					<li><a href="register.html">Register now</a></li>
-					<li><a href="searchpro.html">Advanced Search</a></li>
-				</ul>
-				<span class="rights printOut">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
-		
-			</div>	
-		</footer>
-		
+		<?php
+			require_once("footer.php");
+		?>	
 	</body>	
 </html>

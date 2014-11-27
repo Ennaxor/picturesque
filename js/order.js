@@ -67,22 +67,22 @@ var showCaret = function(object){
 			document.getElementById("orderCountry").innerHTML = "Country ~"
 			document.getElementById("orderDate").innerHTML = "Date ~"
 
-		  	if(orderType == 0) object.innerHTML = "Title ▲";
-		  	else  object.innerHTML = "Title ▼";
+		  	if(orderType == 0) object.innerHTML = "Title <i class='fa fa-caret-up'></i>";
+		  	else  object.innerHTML = "Title <i class='fa fa-caret-down'></i>";
 			break;
 		case "orderDate":
 			document.getElementById("orderCountry").innerHTML = "Country ~"
 			document.getElementById("orderTitle").innerHTML = "Title ~"
 
-		  	if(orderType == 0) object.innerHTML = "Date ▲";
-		  	else  object.innerHTML = "Date ▼";
+		  	if(orderType == 0) object.innerHTML = "Date <i class='fa fa-caret-up'></i>";
+		  	else  object.innerHTML = "Date <i class='fa fa-caret-down'></i>";
 			break;
 		case "orderCountry":
 			document.getElementById("orderTitle").innerHTML = "Title ~"
 			document.getElementById("orderDate").innerHTML = "Date ~"
 
-		  	if(orderType == 0) object.innerHTML = "Country ▲";
-		  	else  object.innerHTML = "Country ▼";
+		  	if(orderType == 0) object.innerHTML = "Country <i class='fa fa-caret-up'></i>";
+		  	else  object.innerHTML = "Country <i class='fa fa-caret-down'></i>";
 			break;
 	}
 }

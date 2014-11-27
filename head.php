@@ -3,7 +3,7 @@
 ?>
 
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-type" content="text/html" charset="utf-8_unicode" />
 	<title>
 	<?php 
 		if(isset($webTitle)) echo $webTitle;

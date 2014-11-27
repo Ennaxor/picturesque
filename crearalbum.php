@@ -49,7 +49,7 @@
 								</p>   
 								<p>     
 									<label for="title"><b>DESCRIPTION: </b> </label> <br>
-									<textarea rows="4" cols="50" name="description" id="description" form="albumform">  </textarea>							
+									<textarea placeholder="E.G: My visit last summer..." rows="4" cols="50" name="description" id="description" form="albumform"></textarea>							
 								</p>   
 								<p id="dateFields">     
 									<label for="dateFrom" id="dateTitle"><b>DATE: </b> </label>                  
@@ -63,10 +63,36 @@
 								
 								<p>     
 									<label for="title"><b>COUNTRY: </b> </label>                      
-									<input type="text" name="country" id="country" placeholder="E.G: Ireland"/>                         
+									<?php
+										$identificador = @mysqli_connect('localhost','web','','pibd');
+										$i=0;
+										if(!$identificador){
+											echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+											echo "</p>";
+											exit;
+										}
+
+										$sentencia= "select * from paises";
+
+										if(!($resultado = @mysqli_query($identificador,$sentencia))){
+											echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+											echo "</p>";
+											exit;
+										}
+
+										echo "<select name='country' id='country'>";
+										while ($fila = @mysqli_fetch_assoc($resultado)){
+											echo "<option value='$fila[idPais]'> $fila[NombrePais] </option>";
+										}
+
+										echo "</select>";
+										mysql_free_result($resultado);
+										mysql_close($identificador);
+									?>      
+                                     
 								</p>   
 
-								<p class="button printOut"><input class="searchR" type="submit" value="Create!"/> </p>
+								<p class="button printOut"><input class="searchAlbum" type="submit" value="Create!"/> </p>
 								<button class="printIn">Create!</button>
 													 
 							</div> 

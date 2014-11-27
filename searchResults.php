@@ -38,13 +38,23 @@
 				<ul class="searchRes">			
 					<li><b>TITLE</b><br> 
 					<?php 
-						
+						//Conectar con la base de datos y hacer la consulta
+						$identificador = @mysqli_connect('localhost','web','','pibd');
+						$i=0;
+						if(!$identificador){
+							echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+							echo "</p>";
+							exit;
+						}
+						$title = null;						
 						if(empty($_GET["searchInput"])==0){
 							print_r($_GET["searchInput"]);
+                            $title=$_GET["searchInput"];
 						}
 						else{
 							if(empty($_GET["title"])==0){
 								print_r($_GET["title"]);
+                                $title=$_GET["title"];
 							}
 							else{
 								echo ('empty') ;
@@ -56,6 +66,7 @@
 					From:
 					<?php 
 						$montharrya = array("January","February","March","April","May","June","July","August","September","October","November","December");
+						$datefrom=null;
 						if(empty($_GET["dayfrom"])==0 || empty($_GET["monthfrom"])==0 || empty($_GET["yearfrom"])==0){
 							print_r($_GET["dayfrom"]);
 							echo("/");
@@ -66,6 +77,7 @@
 								}
 							}
 							print_r($_GET["yearfrom"]);
+							$datefrom=$_GET["yearfrom"]."-".$mes."-".$_GET["dayfrom"];
 						}
 						else{
 							echo ('empty') ;
@@ -74,6 +86,7 @@
 					?> 
 					- To: 
 					<?php 
+						$dateto=null;
 						if(empty($_GET["dayto"])==0 || empty($_GET["monthto"])==0 || empty($_GET["yearto"])==0){
 							print_r($_GET["dayto"]);
 							echo("/");
@@ -84,6 +97,7 @@
 								}
 							}
 							print_r($_GET["yearto"]);
+							$dateto=$_GET["yearto"]."-".$mes."-".$_GET["dayto"];
 						}
 						else{
 							echo("empty");
@@ -92,15 +106,37 @@
 					</li>					
 					<li><b>COUNTRY</b> <br>
 					<?php 
-						//print_r(empty($_GET["title"]));
+						$country=null;
 						if(empty($_GET["country"])==0){
-							print_r($_GET["country"]);
+							$sentenciaCountry = "select NombrePais from paises where idPais = '$_GET[country]'";
+							if(!($resultadoCountry = @mysqli_query($identificador,$sentenciaCountry))){
+								echo "<p>Error al ejecutar la sentencia <b>$sentenciaCountry</b>: ". mysqli_error($identificador);
+								echo "</p>";
+								exit;
+							}
+							$fila = @mysqli_fetch_assoc($resultadoCountry);
+							print_r("$fila[NombrePais]");
+							$country="$fila[NombrePais]";
 						}
 						else{
 							echo ('empty') ;
 						}
 					?></li>
-					<li><b>MATCHES</b> <br> 5 results</li>		
+					<?php
+						$sentencia= "select * from fotos, paises where fotos.pais=paises.idPais";
+						if($title != null)	$sentencia.=" and Titulo LIKE '%$title%'";
+						if($datefrom !=null) $sentencia.=" and Fecha>='$datefrom'";
+						if($dateto !=null) $sentencia.=" and Fecha<='$dateto'";
+						if($country != null) $sentencia.=" and NombrePais='$country'";
+						if(!($resultado = @mysqli_query($identificador,$sentencia))){
+							echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+							echo "</p>";
+							exit;
+						}
+						$cont=mysqli_num_rows($resultado);
+					?>
+					<li><b>MATCHES</b> <br> <?php echo " $cont " ?>results</li>        
+		
 										
 				</ul>			
 			</div>						
@@ -116,40 +152,21 @@
 			</span>
 			<br>
 			<br>
-
-			<ul id="searchResults">
-				<li>
-					<img src="Resources/Images/perro1.jpg" alt="Perro 1"/>
-					<a href="detailpicture.php?id=boba"><span class="titleImage">Boba</span></a>
-					<p><b class="titlePrint">Title: Perro 1</b> <b>Date: </b><span class="dateField">20/05/2014</span><b> Country:</b> 
-					<span class="countryField">Spain</span></p>
-				</li>
-				<li>
-					<img src="Resources/Images/perro2.jpg" alt="Perro 2"/>
-					<a href="detailpicture.php?id=bubita"><span class="titleImage">Bubita</span></a>
-					<p><b class="titlePrint">Title: Perro 2</b> <b>Date: </b><span class="dateField">01/01/1993</span><b> Country:</b> 
-					<span class="countryField">England</span> </p>
-				</li>
-				<li>
-					<img src="Resources/Images/perro3.jpg" alt="Perro 3"/>
-					<a href="detailpicture.php?id=salomon"><span class="titleImage">Salomón</span></a>
-					
-					<p><b class="titlePrint">Title: Perro 3 </b><b>Date: </b><span class="dateField">19/05/2014</span><b> Country:</b> 
-					<span class="countryField">Mars</span> </p>
-				</li>
-				<li>
-					<img src="Resources/Images/perro4.jpg" alt="Perro 4"/>
-					<a href="detailpicture.php?id=ciguena"><span class="titleImage">Cigüeña</span></a>
-					<p><b class="titlePrint">Title: Perro 4 </b><b>Date: </b><span class="dateField">18/05/2014</span><b> Country:</b> 
-					<span class="countryField">Spaniard</span></p>
-				</li>
-				<li>
-					<img src="Resources/Images/perro5.jpg" alt="Perro 5"/>
-					<a href="detailpicture.php?id=salmy"><span class="titleImage">Salmy</span></a>
-					<p><b class="titlePrint">Title: Perro 5 </b> <b>Date: </b><span class="dateField">12/03/2014</span><b> Country:</b> 
-					<span class="countryField">Canada</span> </p>
-				</li>
-			</ul>
+			<?php 				
+				echo "<ul id='searchResults'>";
+				while ($fila = @mysqli_fetch_assoc($resultado)){
+					echo "<li>";
+						echo "<img src='$fila[Fichero]' alt='Perro 1'/>  ";
+						echo "<a class='titleImage' href='detailpicture.php?id=$fila[idFoto]'><span class='titleImage'>Title: $fila[Titulo]</span></a> ";
+						echo "<p><b class='titlePrint'><a href='detailpicture.php?id=$i'>Title: <span class='titleImage'>$fila[Titulo]</span></a></b>
+						made on the <span class='dateField'>$fila[Fecha]</span> in <span class='countryField'>$fila[NombrePais]</span> </p>";
+					echo "</li>";
+				}
+				echo "</ul>";
+				
+	            mysql_free_result($resultado);
+	            mysql_close($identificador);			
+			?>
 					
 		</section>
 		
