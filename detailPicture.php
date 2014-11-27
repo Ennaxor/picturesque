@@ -41,7 +41,7 @@
 				<form enctype="multipart/form-data" method="get" action="searchresults.php">					
 						<div class="searchContainer">							
 							<img class="lupa" src="Resources/Images/search-icon.png" alt="search icon" />
-							<input class="search" type="search" name="searchInput" placeholder="Search..." />
+							<input required="" class="search" type="search" name="searchInput" placeholder="Search..." />
 
 							<input class="btn btn-login" type="submit" value="Go!"/>
 							<a class= "btn btn-login searchAdvanced" href="searchpro.php">
@@ -82,8 +82,8 @@
 				<span class="authors">
 					<b>From the album:</b> <?php echo"<a href='detailalbum.php?id=$fila[idAlbum]' class='detailAhref'>";  echo "$fila[TituloAlbum]";?></a> <br>
                     <b>From the user:</b> <?php echo"<a href='#' class='detailAhref'>"; echo "$fila[NomUsuario]";
-                    	mysql_free_result($resultado);
-						mysql_close($identificador);
+                    	mysqli_free_result($resultado);
+						mysqli_close($identificador);
                     ?></a>     
 	
 				</span>

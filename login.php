@@ -72,8 +72,6 @@
             <span id="infoerror">
                 <?php 
                     if(isset($info)) echo $info;
-                    mysql_free_result($resultado);
-                    mysql_close($identificador);
                 ?>
             </span>
 

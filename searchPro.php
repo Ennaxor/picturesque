@@ -91,8 +91,8 @@
 
 										echo "</select>";
 										
-					                    mysql_free_result($resultado);
-					                    mysql_close($identificador);
+					                    mysqli_free_result($resultado);
+					                    mysqli_close($identificador);
 									?>      
               
 								</p>                     

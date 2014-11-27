@@ -77,9 +77,9 @@
 	                    }
 	                echo "</ul>";
                 }
-                mysql_free_result($resultado);
-                mysql_free_result($resultado2);
-				mysql_close($identificador);
+                mysqli_free_result($resultado);
+                mysqli_free_result($resultado2);
+				mysqli_close($identificador);
             ?>
 			
 		</section>

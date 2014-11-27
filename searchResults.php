@@ -152,20 +152,25 @@
 			</span>
 			<br>
 			<br>
-			<?php 				
-				echo "<ul id='searchResults'>";
-				while ($fila = @mysqli_fetch_assoc($resultado)){
-					echo "<li>";
-						echo "<img src='$fila[Fichero]' alt='Perro 1'/>  ";
-						echo "<a class='titleImage' href='detailpicture.php?id=$fila[idFoto]'><span class='titleImage'>Title: $fila[Titulo]</span></a> ";
-						echo "<p><b class='titlePrint'><a href='detailpicture.php?id=$i'>Title: <span class='titleImage'>$fila[Titulo]</span></a></b>
-						made on the <span class='dateField'>$fila[Fecha]</span> in <span class='countryField'>$fila[NombrePais]</span> </p>";
-					echo "</li>";
+			<?php 
+				if (mysqli_num_rows($resultado) == 0) { 
+   					echo "<span class='noPhotos'>No results with this search</span>";
 				}
-				echo "</ul>";
+				else{				
+					echo "<ul id='searchResults'>";
+					while ($fila = @mysqli_fetch_assoc($resultado)){
+						echo "<li>";
+							echo "<img src='$fila[Fichero]' alt='Perro 1'/>  ";
+							echo "<a class='titleImage' href='detailpicture.php?id=$fila[idFoto]'><span class='titleImage'>Title: $fila[Titulo]</span></a> ";
+							echo "<p><b class='titlePrint'><a href='detailpicture.php?id=$i'>Title: <span class='titleImage'>$fila[Titulo]</span></a></b>
+							made on the <span class='dateField'>$fila[Fecha]</span> in <span class='countryField'>$fila[NombrePais]</span> </p>";
+						echo "</li>";
+					}
+					echo "</ul>";
+				}
 				
-	            mysql_free_result($resultado);
-	            mysql_close($identificador);			
+	            mysqli_free_result($resultado);
+	            mysqli_close($identificador);			
 			?>
 					
 		</section>
