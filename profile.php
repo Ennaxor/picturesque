@@ -9,6 +9,8 @@
             $extra = 'index.php';
             header("Location: http://$host$uri/$extra");
 		}
+		
+		
 		//Conectar con la base de datos
         $identificador = @mysqli_connect('localhost','web','','pibd');
         if(!$identificador){

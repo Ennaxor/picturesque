@@ -10,7 +10,7 @@
             header("Location: http://$host$uri/$extra");
 		}
 		//Conectar con la base de datos
-		$i=0;
+		
         $identificador = @mysqli_connect('localhost','web','','pibd');
         if(!$identificador){
             echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
