@@ -492,8 +492,13 @@ li:hover .titleImage{
 	font-size: 14px;
 }
 
-
-
+.btnMR{
+	width:150px;
+}
+.btnMR a{	
+	text-decoration:none;
+	color: white;
+}
 .btnModify{
 	margin-top: -13px;
 	width: 80px;
@@ -1106,7 +1111,18 @@ input[type=radio]:checked + .radiolabel:before {
 	margin-bottom: 80px;
 	
 }
-
+f
 .wrapperAddPhoto{
 	height: 490px !important;
+}
+
+#backResults, #moreResults{
+	display:inline-block;
+	margin-left:10px;
+}
+
+#btnPages{
+	display:inline-block;
+	margin-left:80%;
+	margin-bottom:20px;
 }

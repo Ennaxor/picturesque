@@ -10,21 +10,51 @@
             header("Location: http://$host$uri/$extra");
 		}
 		//Conectar con la base de datos
-		
+		$i=0;
+		$min=0;
         $identificador = @mysqli_connect('localhost','web','','pibd');
         if(!$identificador){
             echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
             echo "</p>";
             exit;
         }
-        
-        $sentencia= "select * from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id]";
+		 $sentencia= "select * from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id] order by idFoto";
+			
+		//echo "$_GET['lp']";
+		
+		
+        if(empty($_GET['lp'] ) ){
+			$lp=0;
+			$bp=0;
+			$lpMax=0;
+			
+			$sentenciaMax = "select max(idFoto) as max from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id]";
+			if(!($resultado3 = @mysqli_query($identificador,$sentenciaMax))){
+				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+				echo "</p>";
+				exit;
+			}
+			$fila = @mysqli_fetch_assoc($resultado3);
+			$lpMax=$fila['max'];
+			mysqli_free_result($resultado3);
+			
+			$sentencia.=" limit 5";
+		}
+		else{
+			$lp=$_GET['lp'];
+			$bp=$lp-5;
+			$lpMax=$_GET['lpMax'];
+			$sentencia.=" limit $lp,5";
+		}		
+		
         $sentenciaAlbum = "select TituloAlbum, idAlbum from albumes where idAlbum = $_GET[id]";
-		if(!($resultado = @mysqli_query($identificador,$sentencia)) || !($resultado2 = @mysqli_query($identificador,$sentenciaAlbum)) ){
+		if(!($resultado = @mysqli_query($identificador,$sentencia)) || !($resultado2 = @mysqli_query($identificador,$sentenciaAlbum))){
             echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
             echo "</p>";
             exit;
         }
+		
+		
 
 	?>
 	<body>				
@@ -63,26 +93,48 @@
 			?>
 			
 			 <?php 
+			
 			 	if (mysqli_num_rows($resultado) == 0) { 
-   					echo "<span class='noPhotos'>No photos in this album</span>";
+					if($lp<$lpMax){
+						echo "<span class='noPhotos'>No more photos to show in this album</span>";
+					}
+					else{
+						echo "<span class='noPhotos'>No photos in this album</span>";
+					}
+					$resultRows=0;
 				}
 				else{
+					
 	                echo "<ul>";
 	                    while ($fila = @mysqli_fetch_assoc($resultado)){
+						$lp+=1;
 	                        echo "<li>";
 	                            echo "<img src='$fila[Fichero]' alt='$fila[Fichero]'/>  ";
 	                            echo "<a class='titleImage' href='detailpicture.php?id=$fila[idFoto]'><span class='titleImage'>Title: $fila[Titulo]</span></a> ";
 	                            echo "<p><b class='titlePrint'><a href='detailpicture.php?id=$i'>Title: $fila[Titulo]</a></b> <b>Date:</b> $fila[Fecha] <b>Country:</b> $fila[NombrePais] </p>";
 	                        echo "</li>";
+							
 	                    }
 	                echo "</ul>";
+					$resultRows=1;
                 }
                 mysqli_free_result($resultado);
                 mysqli_free_result($resultado2);
 				mysqli_close($identificador);
+				
+				echo "<div id='btnPages'>";
+				if($resultRows==1){
+					echo "<button class='btn btn-login btnMR' id='moreResults'><a href='detailalbum.php?id=$_GET[id]&lp=$lp&lpMax=$lpMax'>More Results</a></button>";
+					echo "<button class='btn btn-login btnMR' id='backResults'><a href='detailalbum.php?id=$_GET[id]&lp=$bp&lpMax=$lpMax'>Back</a></button>";
+				}
+				else{
+					echo "<button class='btn btn-login btnMR' id='backResults'><a href='detailalbum.php?id=$_GET[id]&lp=$bp&lpMax=$lpMax'>Back</a></button>";
+				}
+				echo "</div>";
             ?>
-			
 		</section>
+		
+		
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
 		<?php
 			require_once("footer.php");
