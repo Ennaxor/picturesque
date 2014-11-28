@@ -27,8 +27,9 @@
 			$lp=0;
 			$bp=0;
 			$lpMax=0;
+			$cont=0;
 			
-			$sentenciaMax = "select max(idFoto) as max from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id]";
+			$sentenciaMax = "select max(idFoto) as max,count(*) as cont from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id]";
 			if(!($resultado3 = @mysqli_query($identificador,$sentenciaMax))){
 				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
 				echo "</p>";
@@ -36,6 +37,7 @@
 			}
 			$fila = @mysqli_fetch_assoc($resultado3);
 			$lpMax=$fila['max'];
+			$cont=$fila['cont'];
 			mysqli_free_result($resultado3);
 			
 			$sentencia.=" limit 5";
@@ -43,6 +45,9 @@
 		else{
 			$lp=$_GET['lp'];
 			$bp=$lp-5;
+			if($bp<0){
+				$bp=0;
+			}
 			$lpMax=$_GET['lpMax'];
 			$sentencia.=" limit $lp,5";
 		}		
@@ -123,9 +128,9 @@
 				mysqli_close($identificador);
 				
 				echo "<div id='btnPages'>";
-				if($resultRows==1){
-					echo "<button class='btn btn-login btnMR' id='moreResults'><a href='detailalbum.php?id=$_GET[id]&lp=$lp&lpMax=$lpMax'>More Results</a></button>";
+				if($cont>0){
 					echo "<button class='btn btn-login btnMR' id='backResults'><a href='detailalbum.php?id=$_GET[id]&lp=$bp&lpMax=$lpMax'>Back</a></button>";
+					echo "<button class='btn btn-login btnMR' id='moreResults'><a href='detailalbum.php?id=$_GET[id]&lp=$lp&lpMax=$lpMax'>More Results</a></button>";
 				}
 				else{
 					echo "<button class='btn btn-login btnMR' id='backResults'><a href='detailalbum.php?id=$_GET[id]&lp=$bp&lpMax=$lpMax'>Back</a></button>";
