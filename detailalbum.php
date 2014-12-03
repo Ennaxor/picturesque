@@ -18,10 +18,7 @@
             echo "</p>";
             exit;
         }
-		 $sentencia= "select * from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id] order by idFoto";
-			
-		//echo "$_GET['lp']";
-		
+		$sentencia= "select * from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id] order by idFoto";
 		
         if(empty($_GET['lp'] ) ){
 			$lp=0;
@@ -50,7 +47,7 @@
 			$sentencia.=" limit $lp,5";
 		}		
 		
-        $sentenciaAlbum = "select TituloAlbum, idAlbum from albumes where idAlbum = $_GET[id]";
+        $sentenciaAlbum = "select TituloAlbum, idAlbum, Usuario from albumes where idAlbum = $_GET[id]";
 		if(!($resultado = @mysqli_query($identificador,$sentencia)) || !($resultado2 = @mysqli_query($identificador,$sentenciaAlbum))){
             echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
             echo "</p>";
@@ -88,10 +85,11 @@
 			<br>
 			<h2 class="titleProfiles">Photos from 
 			<?php 
-			 	while ($fila = @mysqli_fetch_assoc($resultado2)){
+				while ($fila = @mysqli_fetch_assoc($resultado2)){
 					echo "$fila[TituloAlbum]"; 
-				 	echo " <i class='fa fa-camera'></i> <button class='btn btn-login btnNew'><i class='fa fa-plus'></i><a href='addphoto.php?id=$fila[idAlbum]'> Add Photo</a></button>
-					</h2>";
+				 	echo " <i class='fa fa-camera'></i>";
+				 	if($fila["Usuario"] == $_SESSION["idUsu"]) echo " <button class='btn btn-login btnNew'><i class='fa fa-plus'></i><a href='addphoto.php?id=$fila[idAlbum]'> Add Photo</a></button>";
+					echo "</h2>";
 				}
 			?>
 			
@@ -127,8 +125,8 @@
 				
 				echo "<div id='btnPages'>";
 				if($resultRows==1){
-					echo "<button class='btn btn-login btnMR' id='backResults'><a href='detailalbum.php?id=$_GET[id]&lp=$bp&lpMax=$lpMax'>Back</a></button>";
-					echo "<button class='btn btn-login btnMR' id='moreResults'><a href='detailalbum.php?id=$_GET[id]&lp=$lp&lpMax=$lpMax'>More Results</a></button>";
+					echo "<button class='btn btn-login btnMR' id='backResults'><a href='detailalbum.php?id=$_GET[id]&lp=$bp&lpMax=$lpMax'>Prev</a></button>";
+					echo "<button class='btn btn-login btnMR' id='moreResults'><a href='detailalbum.php?id=$_GET[id]&lp=$lp&lpMax=$lpMax'>Next</a></button>";
 				}
 				else{
 					echo "<button class='btn btn-login btnMR' id='backResults'><a href='detailalbum.php?id=$_GET[id]&lp=$bp&lpMax=$lpMax'>Back</a></button>";

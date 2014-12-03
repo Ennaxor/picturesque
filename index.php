@@ -32,14 +32,15 @@
 		<div id="popUpLogin">
 			<?php
       			if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) include 'login.php';   
-      			else if(isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) include 'rememberlogin.php';			     			
+      			else if(isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) include 'rememberlogin.php';	
+
     		?>
 
 		</div>
 
 		<div id="overlay-back"></div>
 
-		<header>				
+		<header>		
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	

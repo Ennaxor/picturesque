@@ -56,7 +56,7 @@
 		</header>	
 	
 		<section>			
-			<div class="boxPics"> <h2>My profile <i class="fa fa-thumb-tack"></i></h2> </div>	
+			<div class="boxPics profileBox"> <h2>My profile <i class="fa fa-thumb-tack"></i></h2> </div>	
 
 			
 			<h2 class="titleProfiles">My Account <i class="fa fa-database"></i>
@@ -92,7 +92,7 @@
 			<br>
 			<h2 class="titleProfiles">My Albums <i class="fa fa-picture-o"></i>
 			<button class="btn btn-login btnNew">
-			 <i class="fa fa-plus"></i><a href="crearalbum.php"> New Album</a></button>
+			 <i class="fa fa-plus"></i><a href="crearalbum.php"> New Album </a></button>
 			</h2>
 			
 			<?php 

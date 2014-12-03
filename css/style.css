@@ -246,7 +246,7 @@ section li{
 	margin-bottom:5px;
 	padding:1px;
 	position:relative;
-	width:260px;
+	width:280px;
 }
 
 section li:hover:after{	
@@ -255,11 +255,11 @@ section li:hover:after{
 	height:200px;
 	position:absolute;
 	top:0;
-	width:260px;
+	width:280px;
 }
 
 section li img{
-	width:  260px;
+	width:  280px;
     height: 200px;
     background-position: 50% 50%;
     background-repeat:   no-repeat;
@@ -334,7 +334,8 @@ footer{
 	background-color:#D2D7DB;
 	border-top:5px solid #80D1B9;	
 	width:100%;
-	height: 100%;
+
+	bottom: 0;
 }
 
 footer h3{
@@ -346,7 +347,6 @@ footer ul{
 	list-style-type: none;
 	margin-left: 180px;
 	margin-top: -17px;
-
 }
 
 footer a{
@@ -493,7 +493,7 @@ li:hover .titleImage{
 }
 
 .btnMR{
-	width:150px;
+	width:75px;
 }
 .btnMR a{	
 	text-decoration:none;
@@ -508,7 +508,7 @@ li:hover .titleImage{
 
 .btnNew{
 	margin-top: -13px;
-	width: 100px;
+	width: 110px;
 	font-size: 14px;
 	display: inline-block;
 }
@@ -857,6 +857,7 @@ input[type=radio]:checked + .radiolabel:before {
 
 
 .registerButton{	
+	font-size: 14px;
 	display: inline-block;
 	margin-top: 5px;
 }
@@ -1111,7 +1112,6 @@ input[type=radio]:checked + .radiolabel:before {
 	margin-bottom: 80px;
 	
 }
-f
 .wrapperAddPhoto{
 	height: 490px !important;
 }
@@ -1123,6 +1123,9 @@ f
 
 #btnPages{
 	display:inline-block;
-	margin-left:80%;
+	margin-left:85%;
 	margin-bottom:20px;
+}
+.profileBox{
+	width: 140px;
 }
