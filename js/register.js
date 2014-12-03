@@ -293,8 +293,10 @@ function reseting(object){
 				break;
 			case "password":
 				document.getElementById("passwordRegisterError").innerHTML = "";
+				document.getElementById("repeatPasswordRegisterError").innerHTML = "";
 				break;
 			case "password2":
+				document.getElementById("passwordRegisterError").innerHTML = "";
 				document.getElementById("repeatPasswordRegisterError").innerHTML = "";
 				break;	
 			case "email":

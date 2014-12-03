@@ -6,7 +6,7 @@
 		exit;
 	}
 
-	$sentencia= "select * from paises";
+	$sentencia= "select * from paises order by NombrePais";
 
 	if(!($resultado = @mysqli_query($identificador,$sentencia))){
 		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
