@@ -39,7 +39,7 @@
 			<div class="boxPics"> <a class="back" href="profile.php"><h2><i class="fa fa-arrow-left"></i>  Go back</h2></a></div>
 			<div class="wrapper ASWrapper">
                 <div class="login WSadvanced">				
-					<form autocomplete="on" method="get" id="addPhotoform" action="addphoto.php" > 
+					<form autocomplete="on" method="post" id="addPhotoform" action="addphoto.php" name="photoform"> 
                         <div class="wrapperSearch wrapperAddPhoto">
                             <span class="titleh1">Complete the fields... </span> 
                             <div class="usuRegistro"> 
@@ -48,8 +48,8 @@
                                     <input type="text" name="title" id="title" placeholder="E.G: landscape"/>                         
                                 </p>   
                                 <p>     
-                                    <label for="title"><b>DESCRIPTION: </b> </label> <br>
-                                    <textarea placeholder="E.G: My visit last summer..." rows="4" cols="50" name="description" id="description" form="albumform"></textarea>                   
+                                    <label for="description"><b>DESCRIPTION: </b> </label> <br>
+                                    <textarea placeholder="E.G: My visit last summer..." rows="4" cols="50" name="description" id="descriptiona"></textarea>                   
                                 </p>   
                                 <p id="dateFields">     
                                     <label for="dateFrom" id="dateTitle"><b>DATE: </b> </label>                  
@@ -58,7 +58,17 @@
                                             <select id="monthfrom" name="monthfrom" onchange="reseting(this)">
                                             </select>
                                             <select id="yearfrom" name="yearfrom" onchange="reseting(this)">
-                                            </select> <br>         
+                                            </select> <br>   
+                                            <?php
+                                                if(isset($_POST['CreatePhoto']) && isset($_POST['dayfrom']) && isset($_POST['monthfrom']) && isset($_POST['yearfrom']) ){   
+                                                    $months =["January" => 1,"February" => 2,"March" => 3,"April" => 4,"May" => 5,"June" => 6,"July" => 7,"August" => 8,"September" => 9,"October" => 10,"November" => 11,"December" => 12];
+                                                    $str=$months[$_POST['monthfrom']];
+                                                    $foo=checkdate($str,$_POST["dayfrom"],$_POST["yearfrom"]);
+                                                    if($foo==TRUE){
+                                                        $DateValidation=TRUE;
+                                                    }
+                                                }
+                                            ?>             
                                 </p>   
                                 
                                 <p>     
@@ -96,13 +106,11 @@
                                                 else echo "<option value='$fila2[idAlbum]'> $fila2[TituloAlbum] </option>";
                                             }
                                         
-                                        echo "</select>";               
-                                        mysqli_free_result($resultado2);
-                                        mysqli_close($identificador);
+                                        echo "</select>";           
                                     ?>                       
                                 </p>               
 
-                                <p class="button printOut"><input class="searchR" type="submit" value="Add!"/> </p>
+                                <p class="button printOut"><input class="searchR" type="submit" name="CreatePhoto" value="Add!"/> </p>
                                 <button class="printIn">Add!</button>                                                     
                             </div> 
                         </div>                      
@@ -114,6 +122,34 @@
         	</div>
 	
 		</section>
+        <?php 
+            if(isset($_POST['CreatePhoto'])){
+                $identificador = @mysqli_connect('localhost','web','','pibd');
+                if(!$identificador){
+                    echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+                    echo "</p>";
+                    exit;
+                }
+                $date = $_POST['yearfrom'].'-'.$str.'-'.$_POST['dayfrom'];
+                $insercionFoto = "insert into fotos (Titulo, Descripcion, Fecha, Pais, Album, Fichero, FRegistro) VALUES ('$_POST[title]', '$_POST[description]',
+                                    '$date', $_POST[country], '$_POST[albumes]','$_POST[picture]', NOW())"; 
+                if( !($resultado_p = @mysqli_query($identificador,$insercionFoto)) ){
+                        echo "<p>Error al ejecutar la sentencia <b>$insercionFoto</b>: ". mysqli_error($identificador);
+                        echo "</p>";
+                        exit;
+                }
+                $_SESSION["photo_title"]= $_POST['title'];  
+                $_SESSION["photo_description"]= $_POST['description'];
+                $_SESSION["photo_date"]= $date;
+                $_SESSION["photo_country"]= $_POST['country'];
+
+                echo "<script>document.location.href = \"photoresult.php\";</script>";
+
+                mysqli_free_result($resultado2);
+                mysqli_close($identificador);
+            }
+        ?>
+
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
 		<?php
 			require_once("footer.php");

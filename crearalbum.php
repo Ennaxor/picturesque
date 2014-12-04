@@ -43,8 +43,7 @@
 								</p>   
 								<p>     
 									<label for="description"><b>DESCRIPTION: </b> </label> <br>
-
-									<textarea placeholder="E.G: My visit last summer..." rows="4" cols="50" name="description" id="descriptiona"></textarea>							
+                                    <textarea placeholder="E.G: My visit last summer..." rows="4" cols="50" name="description" id="descriptiona"></textarea>                   
 								</p>   
 								<p id="dateFields">     
 									<label for="dateFrom" id="dateTitle"><b>DATE: </b> </label>                  
