@@ -8,6 +8,7 @@
 		$DateValidation=FALSE;
 		$GenderValidation=FALSE;
 		$auxCountry=FALSE;
+		echo"<input type='hidden' name='genderType'>";
 	
 		$identificador = @mysqli_connect('localhost','web','','pibd');
 		$i=0;
@@ -80,7 +81,7 @@
                         <div class="usuRegistro"> 
 	                        <p>     
 	                        	<label for="username">User name*: </label>                        
-	                            <input type="text" name="username"  id="username" value='<?php echo "$user[NomUsuario]";?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/> 
+	                            <input type="text" name="username"  id="username" value='<?php if(!empty($_POST["username"])){ echo "$_POST[username]";} else{echo "$user[NomUsuario]";}?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/> 
 								<span id="usernameRegisterError">
 								<?php 
 									if(isset($_POST['Register']) && isset($_POST['username']) ){				
@@ -112,7 +113,7 @@
 	                        </p>                        
 	                        <p>          
 	                        	<label for="password">Password**: </label>                                              
-	                            <input type="password" name="password"  id="password" value='<?php echo "$user[Clave]"; ?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
+	                            <input type="password" name="password"  id="password"  value='<?php if(!empty($_POST["password"])){ echo "$_POST[password]";} else{echo "$user[Clave]";}?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
 								<span id="passwordRegisterError">
 								<?php 
 									if(isset($_POST['Register']) && isset($_POST['password']) ){				
@@ -170,7 +171,7 @@
 	                        </p>  
 	                        <p>          
 	                        	<label for="password2">Repeat Password*: </label>                                              
-	                            <input type="password" name="password2"  id="password2" value='<?php echo "$user[Clave]";?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
+	                            <input type="password" name="password2"  id="password2" value='<?php if(!empty($_POST["password"])){ echo "$_POST[password]";} else{echo "$user[Clave]";}?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
 								<span id="repeatPasswordRegisterError">
 								<?php 
 									if(isset($_POST['Register']) && !empty($_POST['password2']) ){				
@@ -189,7 +190,7 @@
 	                        </p>  	
 	                        <p>          
 	                        	<label for="email">Email*: </label>                                              
-	                            <input type="text" name="email"  id="email" value='<?php echo "$user[Email]"; ?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
+	                            <input type="text" name="email"  id="email" value='<?php if(!empty($_POST["email"])){ echo "$_POST[email]";} else{echo "$user[Email]";}?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
 								<span id="emailRegisterError">
 								<?php	
 									if(isset($_POST['Register']) && isset($_POST['email']) ){				
@@ -225,9 +226,9 @@
 	                        <p class="radio">          
 	                        	<label>Gender*: </label>  
 								
-	                        	<input id="man" type="radio" name="genderType" value="Man" <?php if( $user["Sexo"] == 1 ){?> checked <?php }?>>
+	                        	<input id="man" type="radio" name="genderType" value="Man" <?php if(!empty($_POST['genderType'])){ if($_POST['genderType']=="Man"){?>checked<?php }}else{ $user["Sexo"] == 1?> checked <?php }?>>
 	                        	<label for="man" class="radiolabel"> Man </label>
-								<input id="woman" type="radio" name="genderType" value="Woman" <?php if($user["Sexo"] == 2 ){?> checked <?php }?>>  
+								<input id="woman" type="radio" name="genderType" value="Woman" <?php if(!empty($_POST['genderType'])) {if($_POST['genderType']=="Woman"){?>checked<?php }}else{ $user["Sexo"] == 2?> checked <?php }?>>
 								<label for="woman" class="radiolabel">Woman </label>
 								
 								
@@ -310,7 +311,7 @@
 	                        </p>  
 	                        <p>          
 	                        	<label for="picture">Picture: </label>                                              
-	                            <input type="file" name="picture" id="picture"/>
+	                            <input type="text" name="picture" id="picture"/> 
 	                        </p>    
 	                        <p><span class="obligated">*Obligatory fields</span></p>  
 	                        <p><span class="obligated">**Password must contain at least One UpperCase letter, One LowerCase letter and One Number</span></p>                 
@@ -326,6 +327,7 @@
 		</section>
 		
 		<?php
+		
 			//Validacion
 			if(isset($_POST['Register'])){
 				if($NameValidation==TRUE && $PassValidation==true && $GenderValidation==true && $DateValidation==true){
@@ -357,6 +359,9 @@
 					if(!empty($_POST["country"]) &&  $_POST["country"]!=$user["Pais"] ){
 						$update.=" ,Pais=\"$_POST[country]\"";
 					}
+					if(!empty($_POST["picture"]) &&  $_POST["picture"]!=$user["Fichero"] ){
+						$update.=" ,Fichero=\"$_POST[picture]\"";
+					}
 					$update.=";";
 					if( !($resultado4 = @mysqli_query($identificador,$update)) ){
 			            echo "<p>Error al ejecutar la sentencia <b>$update</b>: ". mysqli_error($identificador);
@@ -371,8 +376,6 @@
 			        $_SESSION["registered_date"]= $date;
 			        $_SESSION["registered_city"]= $_POST['city'];
 			        $_SESSION["registered_country"]= $_POST['country'];
-
-
 
 					echo "<script>document.location.href = \"registerresult.php\";</script>";
 				}
