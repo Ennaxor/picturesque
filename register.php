@@ -12,11 +12,18 @@
 	$DateValidation=FALSE;
 	$GenderValidation=FALSE;
 	$identificador = @mysqli_connect('localhost','web','','pibd');
-	    if(!$identificador){
-	        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
-	        echo "</p>";
-	        exit;
-	    }
+    if(!$identificador){
+        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+        echo "</p>";
+        exit;
+    }
+	$sentencia= "select * from usuarios where NomUsuario = '$_POST[username]'";
+	if( !($resultado = @mysqli_query($identificador,$sentencia)) ){
+		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+		echo "</p>";
+		exit;
+	}
+	$user=mysqli_fetch_assoc($resultado);
 
 ?>
 <!DOCTYPE html>
@@ -65,12 +72,7 @@
 								<span id="usernameRegisterError">
 								<?php 
 									if(isset($_POST['Register']) && isset($_POST['username']) ){ 
-										$sentencia= "select * from usuarios where NomUsuario = '$_POST[username]'";
-               							if( !($resultado = @mysqli_query($identificador,$sentencia)) ){
-								            echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
-								            echo "</p>";
-								            exit;
-								        }
+								
 										$count = mysqli_num_rows($resultado);	
 										if($count > 0){
 											echo "This username is already taken*";
@@ -230,7 +232,13 @@
 										}
 									}
 									else{
-										echo"<input type='hidden' name='genderType'>";
+										if( $user["Sexo"] == 1 ){
+											echo"<input type='hidden' name='genderType' value='Man'>";
+										}
+										
+										if( $user["Sexo"] == 2 ){
+											echo"<input type='hidden' name='genderType' value='Woman'>";
+										}
 									}
 								
 								?>

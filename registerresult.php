@@ -37,8 +37,7 @@
 		</header>
 		<section>
 			<div class="wrapper loginR">
-                <div class="login auxRS">
-                
+                <div class="login auxRS">                
 					  <?php
 						if(
 							isset($_SESSION["registered_username"]) && 
