@@ -2,7 +2,13 @@
 <html lang="es">
 	<?php 
 		require_once 'head.php'; 
-		$webTitle = "Create your album- Picturesque";		
+		$webTitle = "Create your album- Picturesque";
+		$identificador = @mysqli_connect('localhost','web','','pibd');
+	    if(!$identificador){
+	        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+	        echo "</p>";
+	        exit;
+	    }		
 	?>
 
 	<body onLoad="fillAlbumDate()">		
@@ -45,7 +51,7 @@
 							<div class="usuRegistro"> 
 								<p>     
 									<label for="title"><b>TITLE: </b> </label>                      
-									<input type="text" name="title" id="title" placeholder="E.G: landscape"/>                         
+									<input type="text" name="title" id="title" placeholder="E.G: landscape" required="required"/>                         
 								</p>   
 								<p>     
 									<label for="title"><b>DESCRIPTION: </b> </label> <br>
