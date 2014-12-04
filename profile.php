@@ -74,7 +74,7 @@
 			<div class="userInfo">
 				<?php 
                     $user = mysqli_fetch_assoc($resultado2);
-                    if($user['Foto']==null){
+                    if( strlen($user['Foto']) == 0 ){
                         echo "<img id='photoUser' src='Resources/Images/add_user.png' alt='User avatar'/>";
                     }
                     else{
@@ -104,6 +104,8 @@
 			</h2>
 			
 			<?php 
+				$count = mysqli_num_rows($resultado);		
+				if($count == 0) echo "<span class='noPhotos'>No albums created</span>";
                 echo "<ul>";
                 while ($fila = @mysqli_fetch_assoc($resultado)){
                     echo "<li>";

@@ -28,7 +28,7 @@
 		}
 		 echo "</ul>";
 	}else{
-	    echo "<span class='noPhotos'>No more photos to show in this album</span>";
+	    echo "<span class='noPhotos'>No photos to show in this album</span>";
 	}
 ?>
 

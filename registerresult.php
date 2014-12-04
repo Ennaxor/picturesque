@@ -75,12 +75,9 @@
 						}
 						else{
 							require_once("registroerroneo.html");
-						}
+						}					
 						
-						
-					?>
-
-						
+					?>						
                     
         		</div>
         	</div>
@@ -92,4 +89,4 @@
 		<script src="js/register.js"></script>
 		
 	</body>
-	</html>
+</html>

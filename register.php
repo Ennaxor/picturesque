@@ -317,8 +317,6 @@
 			        $_SESSION["registered_city"]= $_POST['city'];
 			        $_SESSION["registered_country"]= $_POST['country'];
 
-
-
 					echo "<script>document.location.href = \"registerresult.php\";</script>";
 
 				}

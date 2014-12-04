@@ -26,7 +26,8 @@
             echo "</p>";
             exit;
         }
-		$count = mysqli_num_rows($resultado);		
+		$count = mysqli_num_rows($resultado);
+		$paginationCount = 0;		
 		if($count > 0) $paginationCount=getPagination($count);
 	?>
 	<body>				

@@ -49,28 +49,6 @@ function closeDeleceAccountPopUp(){
 		plantilla.style.visibility = "hidden";
 	}
 }
-function showAlbum(){
-	var div=document.getElementById("popUpAlbum");
-	var plantilla=document.getElementById("overlay-back");
-	var close=document.getElementById("closePopUp");
-
-	div.className = "visible";
-	plantilla.style.visibility = "visible";
-
-
-	plantilla.onclick = function()
-	{
-		div.className = "";
-		plantilla.style.visibility = "hidden";
-		return true;
-	}
-
-	close.onclick = function(){
-		div.className = "";
-		plantilla.style.visibility = "hidden";
-		return true;
-	}
-}
 
 function goBack(object){
 

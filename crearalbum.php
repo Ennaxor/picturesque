@@ -2,22 +2,10 @@
 <html lang="es">
 	<?php 
 		require_once 'head.php'; 
-		$webTitle = "Create your album- Picturesque";
-		$identificador = @mysqli_connect('localhost','web','','pibd');
-	    if(!$identificador){
-	        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
-	        echo "</p>";
-	        exit;
-	    }		
+		$webTitle = "Create your album- Picturesque";		
 	?>
 
 	<body onLoad="fillAlbumDate()">		
-		<div id="popUpAlbum">
-			<?php
-      			include 'album.html';  
-    		?>
-		</div>
-		<div id="overlay-back"></div>
 		<header>				
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
@@ -45,7 +33,7 @@
 			<div class="boxPics"> <a class="back" href="profile.php"><h2><i class="fa fa-arrow-left"></i>  Go back</h2></a></div>
 			<div class="wrapper ASWrapper">
                 <div class="login WSadvanced">				
-					<form autocomplete="on" method="get" id="albumform" onsubmit="showAlbum(); return false" > 
+					<form autocomplete="on" method="post" action="crearalbum.php" name="albumform"> 
 						<div class="wrapperSearch">
 							<span class="titleh1">Complete the fields... </span> 
 							<div class="usuRegistro"> 
@@ -54,8 +42,9 @@
 									<input type="text" name="title" id="title" placeholder="E.G: landscape" required="required"/>                         
 								</p>   
 								<p>     
-									<label for="title"><b>DESCRIPTION: </b> </label> <br>
-									<textarea placeholder="E.G: My visit last summer..." rows="4" cols="50" name="description" id="description" form="albumform"></textarea>							
+									<label for="description"><b>DESCRIPTION: </b> </label> <br>
+
+									<textarea placeholder="E.G: My visit last summer..." rows="4" cols="50" name="description" id="descriptiona"></textarea>							
 								</p>   
 								<p id="dateFields">     
 									<label for="dateFrom" id="dateTitle"><b>DATE: </b> </label>                  
@@ -64,7 +53,18 @@
 											<select id="monthfrom" name="monthfrom" onchange="reseting(this)">
 											</select>
 											<select id="yearfrom" name="yearfrom" onchange="reseting(this)">
-											</select> <br>         
+											</select> <br> 
+
+											<?php
+												if(isset($_POST['CreateAlbum']) && isset($_POST['dayfrom']) && isset($_POST['monthfrom']) && isset($_POST['yearfrom']) ){	
+													$months =["January" => 1,"February" => 2,"March" => 3,"April" => 4,"May" => 5,"June" => 6,"July" => 7,"August" => 8,"September" => 9,"October" => 10,"November" => 11,"December" => 12];
+													$str=$months[$_POST['monthfrom']];
+													$foo=checkdate($str,$_POST["dayfrom"],$_POST["yearfrom"]);
+													if($foo==TRUE){
+														$DateValidation=TRUE;
+													}
+												}
+											?>        
 								</p>   
 								
 								<p>     
@@ -75,7 +75,7 @@
                                      
 								</p>   
 
-								<p class="button printOut"><input class="searchAlbum" type="submit" value="Create!"/> </p>
+								<p class="button printOut"><input class="searchAlbum" name="CreateAlbum" type="submit" value="Create!"/> </p>
 								<button class="printIn">Create!</button>
 													 
 							</div> 
@@ -87,6 +87,31 @@
         	</div>
 	
 		</section>
+		<?php 
+			if(isset($_POST['CreateAlbum'])){
+				$identificador = @mysqli_connect('localhost','web','','pibd');
+			    if(!$identificador){
+			        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+			        echo "</p>";
+			        exit;
+			    }
+			    $date = $_POST['yearfrom'].'-'.$str.'-'.$_POST['dayfrom'];
+				$insercionAlbum = "insert into albumes (TituloAlbum, Descripcion, Fecha, Pais, Usuario) VALUES ('$_POST[title]', '$_POST[description]',
+									'$date', $_POST[country], '$_SESSION[idUsu]')"; 
+				if( !($resultado = @mysqli_query($identificador,$insercionAlbum)) ){
+			            echo "<p>Error al ejecutar la sentencia <b>$insercionAlbum</b>: ". mysqli_error($identificador);
+			            echo "</p>";
+			            exit;
+			    }
+			    $_SESSION["album_title"]= $_POST['title'];	
+		        $_SESSION["album_description"]= $_POST['description'];
+		        $_SESSION["album_date"]= $date;
+		        $_SESSION["album_country"]= $_POST['country'];
+
+				echo "<script>document.location.href = \"albumresult.php\";</script>";
+			}
+		?>
+
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
 		<?php
 			require_once("footer.php");
