@@ -326,11 +326,6 @@
 		</section>
 		
 		<?php
-		echo "Name: $NameValidation";
-		echo "Pass: $PassValidation";
-		echo "Gender: $GenderValidation";
-		echo "Date: $DateValidation";
-		print ($_POST['country']);
 			//Validacion
 			if(isset($_POST['Register'])){
 				if($NameValidation==TRUE && $PassValidation==true && $GenderValidation==true && $DateValidation==true){
