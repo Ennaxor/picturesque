@@ -33,8 +33,6 @@
 
 	$alphabet= "/^[a-zA-Z0-9]+$/";
 	
-	echo "$alphabet <br>";
-	
 	if(preg_match($alphabet,$_POST["username"],$res)){
 		$len=strlen($res[0]);
 		if($len<3 || $len>15){

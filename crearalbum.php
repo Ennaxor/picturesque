@@ -39,7 +39,7 @@
 			<div class="boxPics"> <a class="back" href="profile.php"><h2><i class="fa fa-arrow-left"></i>  Go back</h2></a></div>
 			<div class="wrapper ASWrapper">
                 <div class="login WSadvanced">				
-					<form autocomplete="on" method="get" id="albumform" onsubmit="showAlbum();return false" > 
+					<form autocomplete="on" method="get" id="albumform" onsubmit="showAlbum(); return false" > 
 						<div class="wrapperSearch">
 							<span class="titleh1">Complete the fields... </span> 
 							<div class="usuRegistro"> 

@@ -29,7 +29,15 @@
         }
 
 	?>
-	<body>		
+	<body>	
+		<div id="popUpDeleteAccount">
+			<?php
+				include 'deleteaccount.html';	
+
+    		?>
+
+		</div>
+		<div id="overlay-back"></div>
 		
 		<header>				
 			<a href="index.php"> 
@@ -109,7 +117,11 @@
             ?>
 
 
-			<a href="#" id="deleteUser">Delete account</a>		
+			<!--<a href="#" id="deleteUser">Delete account</a>	-->
+			<h2> 
+			<button class="btn btn-login btnNew btnDA" onclick="showDeleteAccount()">Delete account</button>
+			</h2>
+			
 			<br><br>	
 		</section>
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>

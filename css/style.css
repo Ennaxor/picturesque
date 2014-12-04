@@ -516,6 +516,10 @@ li:hover .titleImage{
 	color: white;
 	text-decoration: none;
 }
+.btnDA{
+	width: 130px;
+	margin-left:40px;
+}
 
 #deleteUser{
 	margin-left: 75px;
@@ -645,7 +649,7 @@ p.login.button{
 .loginR, .wrapperR{
 	width:550px;
 }
-#popUpLogin{
+#popUpLogin, #popUpDeleteAccount{
 	visibility: hidden;
 	background-color:#FBCAAA;
 	border-radius:5px;	
@@ -663,7 +667,7 @@ p.login.button{
 	-webkit-transform: translateY(-500px);
 }
 
-#popUpLogin.visible{
+#popUpLogin.visible, #popUpDeleteAccount.visible{
 	visibility: visible;
 	opacity:1;
 	-webkit-transform: translateY(0px);
@@ -705,6 +709,12 @@ p.login.button{
 	text-decoration: none;
 	color: white;
 	display: inline-block;
+}
+
+#closePopUpDA{
+	float:right;
+	margin-top:-15px;
+	
 }
 
 .usernameContainer, .passContainer {
@@ -1128,4 +1138,20 @@ input[type=radio]:checked + .radiolabel:before {
 }
 .profileBox{
 	width: 140px;
+}
+
+#pickDelete{
+	margin-top:70px;
+}
+.btnpD{
+	width:210px;
+	margin-left:2px;
+}
+
+#CQ{
+	margin-top:60px;
+	font-style: italic;
+	font-size:20px;
+	text-align:center;
+
 }
