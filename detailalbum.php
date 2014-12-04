@@ -2,6 +2,7 @@
 <html lang="es">
 	<?php 
 		require_once 'head.php';
+		require_once 'pagination.php';
 		$webTitle = "Album Detail - Picturesque";	
 		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
 			$host = $_SERVER['HTTP_HOST'];
@@ -10,52 +11,23 @@
             header("Location: http://$host$uri/$extra");
 		}
 		//Conectar con la base de datos
-		$i=0;
-		$min=0;
         $identificador = @mysqli_connect('localhost','web','','pibd');
         if(!$identificador){
             echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
             echo "</p>";
             exit;
         }
-		$sentencia= "select * from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id] order by idFoto";
+		$sentencia= "select * from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id] order by idFoto desc";
 		
-        if(empty($_GET['lp'] ) ){
-			$lp=0;
-			$bp=0;
-			$lpMax=0;
-			
-			$sentenciaMax = "select max(idFoto) as max from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id]";
-			if(!($resultado3 = @mysqli_query($identificador,$sentenciaMax))){
-				echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
-				echo "</p>";
-				exit;
-			}
-			$fila = @mysqli_fetch_assoc($resultado3);
-			$lpMax=$fila['max'];
-			mysqli_free_result($resultado3);
-			
-			$sentencia.=" limit 5";
-		}
-		else{
-			$lp=$_GET['lp'];
-			$bp=$lp-5;
-			if($bp<0){
-				$bp=0;
-			}
-			$lpMax=$_GET['lpMax'];
-			$sentencia.=" limit $lp,5";
-		}		
-		
+        
         $sentenciaAlbum = "select TituloAlbum, idAlbum, Usuario from albumes where idAlbum = $_GET[id]";
 		if(!($resultado = @mysqli_query($identificador,$sentencia)) || !($resultado2 = @mysqli_query($identificador,$sentenciaAlbum))){
             echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
             echo "</p>";
             exit;
         }
-		
-		
-
+		$count = mysqli_num_rows($resultado);		
+		if($count > 0) $paginationCount=getPagination($count);
 	?>
 	<body>				
 		<header>				
@@ -91,55 +63,93 @@
 				 	if($fila["Usuario"] == $_SESSION["idUsu"]) echo " <button class='btn btn-login btnNew'><i class='fa fa-plus'></i><a href='addphoto.php?id=$fila[idAlbum]'> Add Photo</a></button>";
 					echo "</h2>";
 				}
-			?>
 			
-			 <?php 
-			
-			 	if (mysqli_num_rows($resultado) == 0) { 
-					if($lp<$lpMax){
-						echo "<span class='noPhotos'>No more photos to show in this album</span>";
-					}
-					else{
-						echo "<span class='noPhotos'>No photos in this album</span>";
-					}
-					$resultRows=0;
-				}
-				else{
-					
-	                echo "<ul>";
-	                    while ($fila = @mysqli_fetch_assoc($resultado)){
-						$lp+=1;
-	                        echo "<li>";
-	                            echo "<img src='$fila[Fichero]' alt='$fila[Fichero]'/>  ";
-	                            echo "<a class='titleImage' href='detailpicture.php?id=$fila[idFoto]'><span class='titleImage'>Title: $fila[Titulo]</span></a> ";
-	                            echo "<p><b class='titlePrint'><a href='detailpicture.php?id=$i'>Title: $fila[Titulo]</a></b> <b>Date:</b> $fila[Fecha] <b>Country:</b> $fila[NombrePais] </p>";
-	                        echo "</li>";
-							
-	                    }
-	                echo "</ul>";
-					$resultRows=1;
-                }
-                mysqli_free_result($resultado);
-                mysqli_free_result($resultado2);
-				mysqli_close($identificador);
-				
-				echo "<div id='btnPages'>";
-				if($resultRows==1){
-					echo "<button class='btn btn-login btnMR' id='backResults'><a href='detailalbum.php?id=$_GET[id]&lp=$bp&lpMax=$lpMax'>Prev</a></button>";
-					echo "<button class='btn btn-login btnMR' id='moreResults'><a href='detailalbum.php?id=$_GET[id]&lp=$lp&lpMax=$lpMax'>Next</a></button>";
-				}
-				else{
-					echo "<button class='btn btn-login btnMR' id='backResults'><a href='detailalbum.php?id=$_GET[id]&lp=$bp&lpMax=$lpMax'>Back</a></button>";
-				}
-				echo "</div>";
+			 	
             ?>
+            <div id="imageList"></div>
+            <div id='btnPages'>
+	            <button class='btn btn-login btnMR' id='backResults' onclick="prevPage()">Prev</button>
+	            <?php 
+	            	for($i=0;$i<$paginationCount;$i++) echo "<button class='btn btn-login btnP' onclick=\"gotoPage($i)\">$i</button>"
+	            ?>
+	            <button class='btn btn-login btnMR' id='moreResults' onclick="nextPage()">Next</button>
+            </div>
+
 		</section>
 		
 		
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
 		<?php
+			mysqli_free_result($resultado);
+            mysqli_free_result($resultado2);
+			mysqli_close($identificador);
 			require_once("footer.php");
-		?>		
+
+			echo "<script>
+				var maxPage = $paginationCount;
+				//alert(maxPage);
+			</script>";
+		?>
+
+		<script type="text/javascript">
+			var pageNumber = 0;
+			var fetchImageList = function(pageNumber){
+				
+				var albumId = 0;
+				if( window.location.search.substring(1).split("=")[0] == "id") albumId = window.location.search.substring(1).split("=")[1];
+
+				var params = "pageId="+pageNumber;
+				var imageListContainer = document.getElementById("imageList");
+				var httpRequest = new XMLHttpRequest();
+				httpRequest.onreadystatechange = function (e) { 
+					if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+						imageListContainer.innerHTML = httpRequest.responseText;
+					}
+				}
+				httpRequest.open("POST", "loadData.php?id="+albumId, true);
+				//httpRequest.setRequestHeader("Content-length", params.length);
+	 			httpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	 			httpRequest.send(params);
+ 			}
+ 			fetchImageList(pageNumber);
+
+ 			var nextPage = function(){
+ 				if(pageNumber < maxPage-1) pageNumber++;
+ 				fetchImageList(pageNumber);
+ 				updateButtons();
+ 			}
+
+ 			var prevPage = function(){
+ 				if(pageNumber > 0) pageNumber--;
+ 				fetchImageList(pageNumber);
+ 				updateButtons();
+ 			}
+
+ 			var gotoPage = function(page){
+ 				pageNumber = page;
+ 				fetchImageList(pageNumber);
+ 				updateButtons();
+ 			}
+
+ 			var updateButtons = function(){
+ 				if(pageNumber == 0) document.getElementById("backResults").disabled = true;
+ 				else document.getElementById("backResults").disabled = false;
+ 				if(pageNumber < maxPage-1) document.getElementById("moreResults").disabled = false;
+ 				else document.getElementById("moreResults").disabled = true;
+ 				var buttonContainer = document.getElementById("btnPages");
+ 				var buttonArray = buttonContainer.querySelectorAll(".btnP");
+ 				var i;
+				for (i = 0; i < buttonArray.length; i++) {
+					if(buttonArray[i].innerHTML == pageNumber) buttonArray[i].disabled = true;
+					else buttonArray[i].disabled = false;
+				}
+ 			}
+
+ 			updateButtons();
+
+
+
+		</script>
 		
 		<script src="js/login.js"></script>
 	</body>	

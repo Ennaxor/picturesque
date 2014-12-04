@@ -495,6 +495,27 @@ li:hover .titleImage{
 .btnMR{
 	width:75px;
 }
+.btnP{
+	width: 40px;
+	margin-left: 10px;
+}
+.btnP:disabled{
+	background: gray;
+	opacity: 0.5;
+}
+
+.btnMR:disabled{
+	background: gray;
+	opacity: 0.5;
+}
+
+.btnMR:disabled:hover{
+	background: gray;
+	opacity: 0.5;
+	cursor: default;
+	color: white;btnPages
+}
+
 .btnMR a{	
 	text-decoration:none;
 	color: white;
@@ -1132,8 +1153,9 @@ input[type=radio]:checked + .radiolabel:before {
 }
 
 #btnPages{
-	display:inline-block;
-	margin-left:85%;
+	display:block;
+	position: relative;
+	text-align: center;
 	margin-bottom:20px;
 }
 .profileBox{

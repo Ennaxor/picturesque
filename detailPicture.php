@@ -65,12 +65,17 @@
                         echo "</p>";
                         exit;
                     }
-                    $sentencia= "select * from fotos,paises,albumes,usuarios where idFoto=$_GET[id] and fotos.pais=paises.idPais and fotos.Album=albumes.idAlbum and usuarios.idUsuario=albumes.Usuario";
+                    $sentencia= "select f.Fichero, f.Descripcion, f.Titulo, f.Fecha, p.NombrePais, a.idAlbum, a.TituloAlbum, u.NomUsuario from fotos f,paises p,albumes a,usuarios u 
+                    			where idFoto=$_GET[id] and f.pais=p.idPais and f.Album=a.idAlbum and u.idUsuario=a.Usuario";
                     if(!($resultado = @mysqli_query($identificador,$sentencia))){
                         echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
                         echo "</p>";
                         exit;
                     }
+					/*if(mysql_num_rows($resultado)===0){
+						echo "NO PHOTO WITH THIS ID";
+					}*/
+
                     $fila = @mysqli_fetch_assoc($resultado);
                     echo "<img class='detailPicture' src='$fila[Fichero]' alt='$fila[Descripcion]'/>";
                 ?>
