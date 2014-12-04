@@ -9,8 +9,8 @@
 
     if(isset($_POST["usernameL"]) && isset($_POST["passwordL"])){
         $u = $_POST["usernameL"];
-        $p = $_POST["passwordL"];  
-        $sentencia = "select * from usuarios where NomUsuario = '$_POST[usernameL]' AND Clave = '$_POST[passwordL]'";
+        $p = md5($_POST["passwordL"]);  
+        $sentencia = "select * from usuarios where NomUsuario = '$u' AND Clave = '$p'";
         if(!($resultado = @mysqli_query($identificador,$sentencia))){
             echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
             echo "</p>";

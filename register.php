@@ -1,13 +1,27 @@
+<?php 
+	require_once 'head.php'; 
+	if (isset($_SESSION['authenticated'])){
+ 			$host = $_SERVER['HTTP_HOST'];
+            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            $extra = 'index.php';
+            header("Location: http://$host$uri/$extra");
+	}
+	$webTitle = "Register - Picturesque";
+	$NameValidation=FALSE;
+	$PassValidation=FALSE;
+	$DateValidation=FALSE;
+	$GenderValidation=FALSE;
+	$identificador = @mysqli_connect('localhost','web','','pibd');
+	    if(!$identificador){
+	        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+	        echo "</p>";
+	        exit;
+	    }
+
+?>
 <!DOCTYPE html>
 <html lang="es">
-	<?php 
-		require_once 'head.php'; 
-		$webTitle = "Register - Picturesque";
-		$NameValidation=FALSE;
-		$PassValidation=FALSE;
-		$DateValidation=FALSE;
-		$GenderValidation=FALSE;
-	?>
+	
 	<body onload="fillDate();">
 
 		<div id="popUpLogin">
@@ -42,32 +56,44 @@
 			<div class="wrapper loginR">
                 <div class="login aux">
 				<!--onSubmit="return checkform(this);"-->
-                    <form autocomplete="on"  action="register.php" method="post"> 
+                    <form autocomplete="on" action="register.php" method="post"> 
                         <span class="titleh1">Register as a new user</span> 
                         <div class="usuRegistro"> 
 	                        <p>     
 	                        	<label for="username">User name*: </label>                        
-	                            <input type="text" name="username"  id="username" value='<?php if(!empty($_POST["username"])){ echo "$_POST[username]";} ?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/> 
+	                            <input type="text" name="username" id="username" value='<?php if(!empty($_POST["username"])){ echo "$_POST[username]";} ?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/> 
 								<span id="usernameRegisterError">
 								<?php 
-									if(isset($_POST['Register']) && isset($_POST['username']) ){				
-										$alphabet= "/^[a-zA-Z0-9]+$/";
-										$len= strlen($_POST["username"]);
-										if(empty($_POST['username'])){
-											echo "Please provide your username*";
+									if(isset($_POST['Register']) && isset($_POST['username']) ){ 
+										$sentencia= "select * from usuarios where NomUsuario = '$_POST[username]'";
+               							if( !($resultado = @mysqli_query($identificador,$sentencia)) ){
+								            echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+								            echo "</p>";
+								            exit;
+								        }
+										$count = mysqli_num_rows($resultado);	
+										if($count > 0){
+											echo "This username is already taken*";
 										}
-										else {
-											if($len<3 || $len>15){
-												echo "Username has to be between 3 and 15 characters*";
-											}
-											if(!preg_match_all($alphabet,$_POST["username"],$res)){
-												echo "Please use English alphabet*";											
-											}
-											else{
-												$NameValidation= TRUE;
-											}
-										}
-									}
+										else{	
+	                                        $alphabet= "/^[a-zA-Z0-9]+$/";
+	                                        $len= strlen($_POST["username"]);
+	                                        if(empty($_POST['username'])){
+	                                            echo "Please provide your username*";
+	                                        }
+	                                        else {
+	                                            if($len<3 || $len>15){
+	                                                echo "Username has to be between 3 and 15 characters*";
+	                                            }
+	                                            if(!preg_match_all($alphabet,$_POST["username"],$res)){
+	                                                echo "Please use English alphabet*";                                            
+	                                            }
+	                                            else{
+	                                                $NameValidation= TRUE;
+	                                            }
+	                                        }
+	                                    }
+                                    }
 								?>
 								</span>								
 	                        </p>                        
@@ -186,9 +212,9 @@
 	                        <p class="radio">          
 	                        	<label>Gender*: </label>  
 								
-	                        	<input id="man" type="radio" name="genderType" value="Man" <?php if(!empty($_POST['genderType'])){if( $_POST['genderType']=="Man" ){?> checked <?php }}?>>
+	                        	<input id="man" type="radio" name="genderType" value="1" <?php if(!empty($_POST['genderType'])){if( $_POST['genderType']=="Man" ){?> checked <?php }}?>>
 	                        	<label for="man" class="radiolabel"> Man </label>
-								<input id="woman" type="radio" name="genderType" value="Woman" <?php if(!empty($_POST['genderType'])){if( $_POST['genderType']=="Woman" ){?> checked <?php }}?>>  
+								<input id="woman" type="radio" name="genderType" value="2" <?php if(!empty($_POST['genderType'])){if( $_POST['genderType']=="Woman" ){?> checked <?php }}?>>  
 								<label for="woman" class="radiolabel">Woman </label>
 								
 								
@@ -244,8 +270,8 @@
 								?>
 	                        </p>  
 	                        <p>          
-	                        	<label for="picture">Picture: </label>                                              
-	                            <input type="file" name="picture" id="picture"/>
+	                        	<label for="picture">Picture (URL): </label>        
+	                        	<input type="text" name="picture" id="picture"/>  
 	                        </p>    
 	                        <p><span class="obligated">*Obligatory fields</span></p>  
 	                        <p><span class="obligated">**Password must contain at least One UpperCase letter, One LowerCase letter and One Number</span></p>                 
@@ -266,8 +292,35 @@
 		<?php
 			//Validacion
 			if(isset($_POST['Register'])){
-				if($NameValidation==TRUE && $PassValidation==true && $GenderValidation==true && $DateValidation==true){
-					header("Location: registerresult.php");
+				if($NameValidation==true && $PassValidation==true && $GenderValidation==true && $DateValidation==true){
+					$identificador = @mysqli_connect('localhost','web','','pibd');
+				    if(!$identificador){
+				        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+				        echo "</p>";
+				        exit;
+				    }
+					$md5Pass = md5($_POST['password']);
+					$date = $_POST['year'].'-'.$str.'-'.$_POST['day'];
+					$insercionUsuario= "insert into usuarios (NomUsuario, Clave, Email, Sexo, FNacimiento, Ciudad, Pais, Foto, FRegistro)
+										VALUES ('$_POST[username]', '$md5Pass', '$_POST[email]', '$_POST[genderType]', '$date',
+												'$_POST[city]', $_POST[country], '$_POST[picture]', NOW())";
+					if( !($resultado = @mysqli_query($identificador,$insercionUsuario)) ){
+			            echo "<p>Error al ejecutar la sentencia <b>$insercionUsuario</b>: ". mysqli_error($identificador);
+			            echo "</p>";
+			            exit;
+			        }
+			        $_SESSION["registered_username"]= $_POST['username'];	
+			        $_SESSION["registered_pass"]= substr($_POST['password'], 0,3).'***';
+			        $_SESSION["registered_email"]= $_POST['email'];
+			        $_SESSION["registered_gender"]= $_POST['genderType'];
+			        $_SESSION["registered_date"]= $date;
+			        $_SESSION["registered_city"]= $_POST['city'];
+			        $_SESSION["registered_country"]= $_POST['country'];
+
+
+
+					echo "<script>document.location.href = \"registerresult.php\";</script>";
+
 				}
 			}
 		?>

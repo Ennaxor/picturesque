@@ -40,40 +40,32 @@
                 <div class="login auxRS">
                 
 					  <?php
-						if($_POST["username"]!="Pepe" && $_POST["username"]!="Pepa"){
+						if(
+							isset($_SESSION["registered_username"]) && 
+							isset($_SESSION["registered_pass"]) &&  
+							isset($_SESSION["registered_email"]) &&  
+							isset($_SESSION["registered_gender"]) &&
+							isset($_SESSION["registered_date"]) &&
+							isset($_SESSION["registered_city"]) &&
+							isset($_SESSION["registered_country"])
+							){
 					   ?>
 		   	            	<span class="titleh1">Success on your registration!</span>						
 							<p class="registerCorrect">
-								<?php echo "Username: " ;	
-								print_r($_POST["username"]);
+								<?php echo "Username: ".($_SESSION["registered_username"]);
+								echo "<br>";
+								echo "Password: ".($_SESSION["registered_pass"]);
 								echo "<br>";
 								
-								echo "Email: " ;	
-								print_r($_POST["email"]);
+								echo "Email: ".($_SESSION["registered_email"]);
 								echo "<br>";
 								
-								echo "Birth date: " ;	
-								print_r($_POST["day"]);
-								echo "/";
-								print_r($_POST["month"]);
-								echo "/";
-								print_r($_POST["year"]);
+								echo "Birth date: ".($_SESSION["registered_date"]);	
 								echo "<br>";
 								
-								echo "Gender: " ;	
-								print_r($_POST["genderType"]);
-								echo "<br>";
-
-								if($_POST["city"] != null) {
-									echo "City: " ;	
-									print_r($_POST["city"]);
-									echo "<br>";
-								}
-								if($_POST["country"] != null){
-									echo "Country: " ;	
-									print_r($_POST["country"]);
-									echo "<br>";
-								}
+								/*echo "Gender: ".($_SESSION["registered_gender"]);
+								echo "<br>";*/							
+								
 							?>
 							<a class="btn btn-login btnHome" href="index.php"> Go to Home Page </a></p>
 
