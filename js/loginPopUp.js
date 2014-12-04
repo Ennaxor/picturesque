@@ -85,9 +85,12 @@ function closePopUpAlbum(){
 }
 
 function deleteUser(){
-
 	document.location.href = "deleteaccount.php";
+}
 
+
+function modifyProfile(){
+	document.location.href = "modifydata.php";
 }
 /* FADE IN STUFF */
 
