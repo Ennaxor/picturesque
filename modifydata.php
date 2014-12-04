@@ -7,6 +7,7 @@
 		$PassValidation=FALSE;
 		$DateValidation=FALSE;
 		$GenderValidation=FALSE;
+		$auxCountry=FALSE;
 	
 		$identificador = @mysqli_connect('localhost','web','','pibd');
 		$i=0;
@@ -49,6 +50,11 @@
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
 			</a>	
+			<?php if (isset($_SESSION['authenticated'])) include 'logged.html';   ?>	
+
+			<?php if (!isset($_SESSION['authenticated'])) 
+			echo "<button id=\"loginPopUp\" onClick=\"showLogin();\"><i class=\"fa fa-sign-in\"></i> Sign in! </button>" ?>
+			
 			<div class="currentStyle">
 				<button class="btn btn-login btnStyle" id="cangestyle">Style</button>
 				<ul id="webstyle">
@@ -61,7 +67,6 @@
 				<button class="btn btn-login btnStyle" id="principalA" onclick="getStringFromObject(this)" >Principal </button>
 				<button class="btn btn-login btnStyle" id="accesibleA" onclick="getStringFromObject(this)" >Accesible </button>
 			</div>
-			<button id="loginPopUp" onClick="showLogin();"><i class="fa fa-sign-in"></i> Sign in! </button>
 			<div class="padding headerContent">				
 					<h1>DISCOVER &amp; SHARE</h1>				
 			</div>						
@@ -98,7 +103,7 @@
 										
 										while($users=mysqli_fetch_assoc($resultado2)){
 											if($users["NomUsuario"]==$_POST['username'] && $users["NomUsuario"]!=$user["NomUsuario"]){
-												echo "The username already exists. Please choose another one*";
+												echo "The username is already taken*";
 											}
 										}
 									}
@@ -281,12 +286,22 @@
 	                        	<label for="country">Country: </label>                                              
 								<?php
 									echo "<select name='country' id='country'>";
-									while ($fila = @mysqli_fetch_assoc($resultado)){
-										if($user["Pais"]==$fila["idPais"]){
-											echo "<option value='$fila[idPais]'> $fila[NombrePais] checked </option>";
+									while ($fila = @mysqli_fetch_assoc($resultado3)){
+										if($user["Pais"] == $fila["idPais"] && !isset($_POST['Register']) ){
+											echo "<option value='$fila[idPais]' selected> $fila[NombrePais]</option>";
 										}
 										else{
-											echo "<option value='$fila[idPais]'> $fila[NombrePais] </option>";
+											if(!empty($_POST["country"])){
+												if($_POST['country'] == $fila["idPais"] ){
+													echo "<option value='$fila[idPais]' selected> $fila[NombrePais]</option>";
+												}
+												else{
+													echo "<option value='$fila[idPais]'> $fila[NombrePais] </option>";
+												}
+											}
+											else{
+												echo "<option value='$fila[idPais]'> $fila[NombrePais] </option>";
+											}
 										}
 									}
 
@@ -315,10 +330,56 @@
 		echo "Pass: $PassValidation";
 		echo "Gender: $GenderValidation";
 		echo "Date: $DateValidation";
+		print ($_POST['country']);
 			//Validacion
 			if(isset($_POST['Register'])){
 				if($NameValidation==TRUE && $PassValidation==true && $GenderValidation==true && $DateValidation==true){
+					$date = $_POST['year'].'-'.$str.'-'.$_POST['day'];
+					$update="update usuarios set idUsuario=\"$_SESSION[idUsu]\"";
+					if(!empty($_POST["username"]) &&  $_POST["username"]!=$user["NomUsuario"]){
+						$update.=" ,NomUsuario=\"$_POST[username]\"";
+					}
+					if(!empty($_POST["password"]) &&  $_POST["password"]!=$user["Clave"]){
+						$update.=" ,Clave=\"$_POST[password]\"";
+					}
+					if(!empty($_POST["email"]) &&  $_POST["email"]!=$user["Email"]){
+						$update.=" ,NomUsuario=\"$_POST[email]\"";
+					}
+					if(!empty($_POST["genderType"])){
+						if($_POST["genderType"]=="Man"){
+							$update.=" ,Sexo=\"1\"";
+						}
+						else{
+							$update.=" ,Sexo=\"2\"";
+						}
+					}
+					if(!empty($_POST["day"]) && !empty($_POST["month"]) && !empty($_POST["year"]) &&  $date!=$user["FNacimiento"]){
+						$update.=" ,FNacimiento=\"$date\"";
+					}
+					if(!empty($_POST["city"]) &&  $_POST["city"]!=$user["Ciudad"] ){
+						$update.=" ,Ciudad=\"$_POST[city]\"";
+					}
+					if(!empty($_POST["country"]) &&  $_POST["country"]!=$user["Pais"] ){
+						$update.=" ,Pais=\"$_POST[country]\"";
+					}
+					$update.=";";
+					if( !($resultado4 = @mysqli_query($identificador,$update)) ){
+			            echo "<p>Error al ejecutar la sentencia <b>$update</b>: ". mysqli_error($identificador);
+			            echo "</p>";
+			            exit;
+			        }
 					
+					$_SESSION["registered_username"]= $_POST['username'];	
+			        $_SESSION["registered_pass"]= substr($_POST['password'], 0,3).'***';
+			        $_SESSION["registered_email"]= $_POST['email'];
+			        $_SESSION["registered_gender"]= $_POST['genderType'];
+			        $_SESSION["registered_date"]= $date;
+			        $_SESSION["registered_city"]= $_POST['city'];
+			        $_SESSION["registered_country"]= $_POST['country'];
+
+
+
+					echo "<script>document.location.href = \"registerresult.php\";</script>";
 				}
 			}
 		mysqli_free_result($resultado);
