@@ -1108,6 +1108,8 @@ input[type=radio]:checked + .radiolabel:before {
 	width: 150px !important;
 	float: right;
 	margin-top: -25px;
+	color: white !important;
+	text-decoration: none !important;
 	
 }
 
