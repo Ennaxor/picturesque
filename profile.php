@@ -68,7 +68,7 @@
 
 			
 			<h2 class="titleProfiles">My Account <i class="fa fa-database"></i>
-			<button class="btn btn-login btnModify"><i class="fa fa-pencil-square-o"></i>
+			<button class="btn btn-login btnModify" onclick="modifyProfile()"><i class="fa fa-pencil-square-o"></i>
 			 Modify</button>
  			</h2>
 			<div class="userInfo">

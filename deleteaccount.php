@@ -58,4 +58,6 @@
             header("Location: http://$host$uri/$extra");
 	
 	header("Location: index.php");
+	mysqli_free_result($resultado);
+	mysqli_close($identificador);
 ?>
