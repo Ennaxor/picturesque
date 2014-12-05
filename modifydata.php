@@ -2,7 +2,7 @@
 <html lang="es">
 	<?php 
 		require_once 'head.php'; 
-		$webTitle = "Register - Picturesque";
+		$webTitle = "Modify - Picturesque";
 		$NameValidation=FALSE;
 		$PassValidation=FALSE;
 		$DateValidation=FALSE;
@@ -74,17 +74,16 @@
 		</header>
 		<section>
 			<div class="wrapper loginR">
-                <div class="login aux">
-				<!--onSubmit="return checkform(this);"-->
-                    <form autocomplete="on"  action="modifydata.php" method="post"> 
-                        <span class="titleh1">Modify your user data</span> 
+                <div class="login aux" >
+                    <form autocomplete="on" action="modifydata.php" method="post"> 
+                        <span class="titleh1">Modify your personnal info</span> 
                         <div class="usuRegistro"> 
 	                        <p>     
 	                        	<label for="username">User name*: </label>                        
 	                            <input type="text" name="username"  id="username" value='<?php if(!empty($_POST["username"])){ echo "$_POST[username]";} else{echo "$user[NomUsuario]";}?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/> 
 								<span id="usernameRegisterError">
 								<?php 
-									if(isset($_POST['Register']) && isset($_POST['username']) ){				
+									if(isset($_POST['Modify']) && isset($_POST['username']) ){				
 										$alphabet= "/^[a-zA-Z0-9]+$/";
 										$len= strlen($_POST["username"]);
 										if(empty($_POST['username'])){
@@ -113,10 +112,10 @@
 	                        </p>                        
 	                        <p>          
 	                        	<label for="password">Password**: </label>                                              
-	                            <input type="password" name="password"  id="password"  value='<?php if(!empty($_POST["password"])){ echo "$_POST[password]";} else{echo "$user[Clave]";}?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
+	                            <input type="password" name="password"  id="password" onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
 								<span id="passwordRegisterError">
 								<?php 
-									if(isset($_POST['Register']) && isset($_POST['password']) ){				
+									if(isset($_POST['Modify']) && isset($_POST['password']) ){				
 										$alphabetm= "/^[a-z]+$/";
 										$contm=0;
 										$alphabetM= "/^[A-Z]+$/";
@@ -171,10 +170,10 @@
 	                        </p>  
 	                        <p>          
 	                        	<label for="password2">Repeat Password*: </label>                                              
-	                            <input type="password" name="password2"  id="password2" value='<?php if(!empty($_POST["password"])){ echo "$_POST[password]";} else{echo "$user[Clave]";}?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
+	                            <input type="password" name="password2"  id="password2" onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
 								<span id="repeatPasswordRegisterError">
 								<?php 
-									if(isset($_POST['Register']) && !empty($_POST['password2']) ){				
+									if(isset($_POST['Modify']) && !empty($_POST['password2']) ){				
 										if( !empty($_POST['password']) && !empty($_POST['password2'])){
 											if($_POST['password']!=$_POST['password2']){
 												echo "Password doesn't match*";
@@ -193,7 +192,7 @@
 	                            <input type="text" name="email"  id="email" value='<?php if(!empty($_POST["email"])){ echo "$_POST[email]";} else{echo "$user[Email]";}?>' onkeyup="nospaces(this)" onkeydown="reseting(this)"/>
 								<span id="emailRegisterError">
 								<?php	
-									if(isset($_POST['Register']) && isset($_POST['email']) ){				
+									if(isset($_POST['Modify']) && isset($_POST['email']) ){				
 										if(empty($_POST['email'])){
 											echo "Please provide your email*";
 										}
@@ -226,30 +225,21 @@
 	                        <p class="radio">          
 	                        	<label>Gender*: </label>  
 								
-	                        	<input id="man" type="radio" name="genderType" value="Man" <?php if(!empty($_POST['genderType'])){ if($_POST['genderType']=="Man"){?>checked<?php }}else{ $user["Sexo"] == 1?> checked <?php }?>>
+	                        	<input id="man" type="radio" name="genderType" value="1">
 	                        	<label for="man" class="radiolabel"> Man </label>
-								<input id="woman" type="radio" name="genderType" value="Woman" <?php if(!empty($_POST['genderType'])) {if($_POST['genderType']=="Woman"){?>checked<?php }}else{ $user["Sexo"] == 2?> checked <?php }?>>
+								<input id="woman" type="radio" name="genderType" value="2">
 								<label for="woman" class="radiolabel">Woman </label>
 								
 								
 								<span id="genderRegisterError">
 								<?php
-									if(isset($_POST['Register']) && isset($_POST['genderType']) ){				
+									if(isset($_POST['Modify']) && isset($_POST['genderType']) ){				
 										if( empty($_POST['genderType'])){
 											echo "Please provide your gender*";
 										}
 										else {
 											echo"";
 											$GenderValidation=TRUE;
-										}
-									}
-									else{
-										if( $user["Sexo"] == 1 ){
-											echo"<input type='hidden' name='genderType' value='Man'>";
-										}
-										
-										if( $user["Sexo"] == 2 ){
-											echo"<input type='hidden' name='genderType' value='Woman'>";
 										}
 									}
 								
@@ -268,7 +258,7 @@
 								</select>
 								<span id="dateRegisterError">
 								<?php
-									if(isset($_POST['Register']) && isset($_POST['day']) && isset($_POST['month']) && isset($_POST['year']) ){	
+									if(isset($_POST['Modify']) && isset($_POST['day']) && isset($_POST['month']) && isset($_POST['year']) ){	
 										$months =["January" => 1,"February" => 2,"March" => 3,"April" => 4,"May" => 5,"June" => 6,"July" => 7,"August" => 8,"September" => 9,"October" => 10,"November" => 11,"December" => 12];
 										$str=$months[$_POST['month']];
 										$foo=checkdate($str,$_POST["day"],$_POST["year"]);
@@ -281,14 +271,14 @@
 	                        </p>    
 	                         <p>          
 	                        	<label for="city">City: </label>                                              
-	                            <input type="text" name="city" id="city"/>
+	                            <input type="text" name="city" id="city" value='<?php if(!empty($_POST["city"])){ echo "$_POST[city]";} else{echo "$user[Ciudad]";}?>'/>
 	                        </p>    
 	                        <p>          
 	                        	<label for="country">Country: </label>                                              
 								<?php
 									echo "<select name='country' id='country'>";
 									while ($fila = @mysqli_fetch_assoc($resultado3)){
-										if($user["Pais"] == $fila["idPais"] && !isset($_POST['Register']) ){
+										if($user["Pais"] == $fila["idPais"] && !isset($_POST['Modify']) ){
 											echo "<option value='$fila[idPais]' selected> $fila[NombrePais]</option>";
 										}
 										else{
@@ -311,14 +301,14 @@
 	                        </p>  
 	                        <p>          
 	                        	<label for="picture">Picture: </label>                                              
-	                            <input type="text" name="picture" id="picture"/> 
+	                            <input type="text" name="picture" id="picture" value='<?php if(!empty($_POST["picture"])){ echo "$_POST[picture]";} else{echo "$user[Foto]";}?>'/> 
 	                        </p>    
 	                        <p><span class="obligated">*Obligatory fields</span></p>  
 	                        <p><span class="obligated">**Password must contain at least One UpperCase letter, One LowerCase letter and One Number</span></p>                 
                         </div> 
                 
                         <p class="login button printOut buttonR"> 
-                            <input id="RegNow" type="submit" name="Register" value="Modify!"/> 
+                            <input id="RegNow" type="submit" name="Modify" value="Modify!"/> 
 						</p>
 
                     </form>
@@ -329,57 +319,34 @@
 		<?php
 		
 			//Validacion
-			if(isset($_POST['Register'])){
+			if(isset($_POST['Modify'])){
 				if($NameValidation==TRUE && $PassValidation==true && $GenderValidation==true && $DateValidation==true){
 					$date = $_POST['year'].'-'.$str.'-'.$_POST['day'];
-					$update="update usuarios set idUsuario=\"$_SESSION[idUsu]\"";
-					if(!empty($_POST["username"]) &&  $_POST["username"]!=$user["NomUsuario"]){
-						$update.=" ,NomUsuario=\"$_POST[username]\"";
-					}
-					if(!empty($_POST["password"]) &&  $_POST["password"]!=$user["Clave"]){
-						$update.=" ,Clave=\"$_POST[password]\"";
-					}
-					if(!empty($_POST["email"]) &&  $_POST["email"]!=$user["Email"]){
-						$update.=" ,NomUsuario=\"$_POST[email]\"";
-					}
-					if(!empty($_POST["genderType"])){
-						if($_POST["genderType"]=="Man"){
-							$update.=" ,Sexo=\"1\"";
-						}
-						else{
-							$update.=" ,Sexo=\"2\"";
-						}
-					}
-					if(!empty($_POST["day"]) && !empty($_POST["month"]) && !empty($_POST["year"]) &&  $date!=$user["FNacimiento"]){
-						$update.=" ,FNacimiento=\"$date\"";
-					}
-					if(!empty($_POST["city"]) &&  $_POST["city"]!=$user["Ciudad"] ){
-						$update.=" ,Ciudad=\"$_POST[city]\"";
-					}
-					if(!empty($_POST["country"]) &&  $_POST["country"]!=$user["Pais"] ){
-						$update.=" ,Pais=\"$_POST[country]\"";
-					}
-					if(!empty($_POST["picture"]) &&  $_POST["picture"]!=$user["Fichero"] ){
-						$update.=" ,Fichero=\"$_POST[picture]\"";
-					}
-					$update.=";";
+					$md5Pass = md5($_POST['password']);
+					$update ="update usuarios set NomUsuario=\"$_POST[username]\", 
+								Clave=\"$md5Pass\", 
+								Email=\"$_POST[email]\",
+								Sexo=\"$_POST[genderType]\", FNacimiento = \"$date\", Ciudad=\"$_POST[city]\", Pais=\"$_POST[country]\", Foto=\"$_POST[picture]\"
+							   where '$_SESSION[idUsu]' = idUsuario;";
+					
 					if( !($resultado4 = @mysqli_query($identificador,$update)) ){
 			            echo "<p>Error al ejecutar la sentencia <b>$update</b>: ". mysqli_error($identificador);
 			            echo "</p>";
 			            exit;
 			        }
 					
-					$_SESSION["registered_username"]= $_POST['username'];	
-			        $_SESSION["registered_pass"]= substr($_POST['password'], 0,3).'***';
-			        $_SESSION["registered_email"]= $_POST['email'];
-			        $_SESSION["registered_gender"]= $_POST['genderType'];
-			        $_SESSION["registered_date"]= $date;
-			        $_SESSION["registered_city"]= $_POST['city'];
-			        $_SESSION["registered_country"]= $_POST['country'];
+					$_SESSION["modified_username"]= $_POST['username'];	
+			        $_SESSION["modified_pass"]= substr($_POST['password'], 0,3).'***';
+			        $_SESSION["modified_email"]= $_POST['email'];
+			        $_SESSION["modified_gender"]= $_POST['genderType'];
+			        $_SESSION["modified_date"]= $date;
+			        $_SESSION["modified_city"]= $_POST['city'];
+			        $_SESSION["modified_country"]= $_POST['country'];
 
-					echo "<script>document.location.href = \"registerresult.php\";</script>";
+					echo "<script>document.location.href = \"modifyresult.php\";</script>";
 				}
 			}
+			
 		mysqli_free_result($resultado);
 		mysqli_free_result($resultado2);
 		mysqli_close($identificador);

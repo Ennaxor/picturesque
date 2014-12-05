@@ -1109,8 +1109,14 @@ input[type=radio]:checked + .radiolabel:before {
 	float: right;
 	margin-top: -25px;
 	color: white !important;
-	text-decoration: none !important;
-	
+	text-decoration: none !important;	
+}
+.btnModifyProfile{
+	width: 150px !important;
+	float: right;
+	margin-top: -45px;
+	color: white !important;
+	text-decoration: none !important;	
 }
 
 .checkBox{

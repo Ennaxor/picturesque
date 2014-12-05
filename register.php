@@ -17,13 +17,7 @@
         echo "</p>";
         exit;
     }
-	$sentencia= "select * from usuarios where NomUsuario = '$_POST[username]'";
-	if( !($resultado = @mysqli_query($identificador,$sentencia)) ){
-		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
-		echo "</p>";
-		exit;
-	}
-	$user=mysqli_fetch_assoc($resultado);
+    $user = 0;
 
 ?>
 <!DOCTYPE html>
@@ -72,7 +66,13 @@
 								<span id="usernameRegisterError">
 								<?php 
 									if(isset($_POST['Register']) && isset($_POST['username']) ){ 
-								
+										$sentencia= "select * from usuarios where NomUsuario = '$_POST[username]'";
+	if( !($resultado = @mysqli_query($identificador,$sentencia)) ){
+		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+		echo "</p>";
+		exit;
+	}
+	$user=mysqli_fetch_assoc($resultado);
 										$count = mysqli_num_rows($resultado);	
 										if($count > 0){
 											echo "This username is already taken*";
@@ -232,12 +232,12 @@
 										}
 									}
 									else{
-										if( $user["Sexo"] == 1 ){
-											echo"<input type='hidden' name='genderType' value='Man'>";
+										if($user["Sexo"] == 1 ){
+											echo"<input type='hidden' name='genderType' value='1'>";
 										}
 										
-										if( $user["Sexo"] == 2 ){
-											echo"<input type='hidden' name='genderType' value='Woman'>";
+										if($user["Sexo"] == 2 ){
+											echo"<input type='hidden' name='genderType' value='2'>";
 										}
 									}
 								
