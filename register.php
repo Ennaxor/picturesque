@@ -308,13 +308,15 @@
 					echo "No hay Foto, error: ".$_FILES["picturefile"]["error"];
 				}
 				else{
-					$nombreFoto=$_POST["username"].$_FILES["picturefile"]["name"];
-					echo " $nombreFoto ";
-					if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"],"c:xampp\\htdocs\\Picturesque\\Resources\\Avatar\\".$nombreFoto)){
-						//echo "La foto se ha movido efectivamente";
-					}
-					else{
-						echo "Error al mover la foto a la direccion especificada";
+					if($_FILES["picturefile"]["type"]=="image/jpg" || $_FILES["picturefile"]["type"]=="image/jpeg" || $_FILES["picturefile"]["type"]=="image/png"){
+						$nombreFoto=$_POST["username"].$_FILES["picturefile"]["name"];
+						echo " $nombreFoto ";
+						if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"],"c:xampp\\htdocs\\Picturesque\\Resources\\Avatar\\".$nombreFoto)){
+							//echo "La foto se ha movido efectivamente";
+						}
+						else{
+							echo "Error al mover la foto a la direccion especificada";
+						}
 					}
 				}
 			}
@@ -322,6 +324,7 @@
 				$nombreFoto=$_POST["picture"];
 			}
 						
+					
 				if($NameValidation==true && $PassValidation==true && $GenderValidation==true && $DateValidation==true){
 					$identificador = @mysqli_connect('localhost','web','','pibd');
 				    if(!$identificador){
@@ -336,7 +339,7 @@
 												'$_POST[city]', '$_POST[country]'";
 					//Anyadir la imagen  ", '$_POST[picture]'";
 					
-					if(empty($_POST["picture"])){
+					if(empty($_POST["picture"]) && $nombreFoto!="" ){
 						$insercionUsuario.=", 'Resources/Avatar/$nombreFoto'";
 					}
 					else{

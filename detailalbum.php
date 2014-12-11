@@ -61,7 +61,7 @@
 				while ($fila = @mysqli_fetch_assoc($resultado2)){
 					echo "$fila[TituloAlbum]"; 
 				 	echo " <i class='fa fa-camera'></i>";
-				 	if($fila["Usuario"] == $_SESSION["idUsu"]) echo " <button class='btn btn-login btnNew'><i class='fa fa-plus'></i><a href='addphoto.php?id=$fila[idAlbum]'> Add Photo</a></button>";
+				 	if($fila["Usuario"] == $_SESSION["idUsu"]) echo " <button class='btn btn-login btnNew'><i class='fa fa-plus'></i><a href='addphoto.php?id=$fila[idAlbum]&er=0'> Add Photo</a></button>";
 					echo "</h2>";
 				}
 			
