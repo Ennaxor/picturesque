@@ -39,7 +39,7 @@
 			<div class="boxPics"> <a class="back" href="profile.php"><h2><i class="fa fa-arrow-left"></i>  Go back</h2></a></div>
 			<div class="wrapper ASWrapper">
                 <div class="login WSadvanced">				
-					<form autocomplete="on" method="post" id="addPhotoform" action="addphoto.php" name="photoform"> 
+					<form autocomplete="on" method="post" id="addPhotoform" action="addphoto.php" name="photoform" enctype="multipart/form-data"> 
                         <div class="wrapperSearch wrapperAddPhoto">
                             <span class="titleh1">Complete the fields... </span> 
                             <div class="usuRegistro"> 
@@ -80,7 +80,9 @@
                                 </p>   
                                 <p>
                                 	<label for="picture"><b>PICTURE (URL):</b> </label>
-                                	<input type="text" name="picture" id="picture" placeholder="Paste your URL here"/>    
+                                	<input type="text" name="picture" id="picture" placeholder="Paste your URL here"/>
+									<input type="file" name="picturefile" id="picturefile"/>
+									
                                 </p>   
                                 <p>     
                                     <label for="title"><b>ALBUM: </b> </label>                      
@@ -124,6 +126,30 @@
 		</section>
         <?php 
             if(isset($_POST['CreatePhoto'])){
+			
+
+			$nombreFoto;
+			
+			if(empty($_POST["picture"])){
+				if($_FILES["picturefile"]["error"]){
+					echo "No hay Foto, error: ".$_FILES["picturefile"]["error"];
+				}
+				else{
+					$nombreFoto=$_SESSION["authenticated"].$_FILES["picturefile"]["name"];
+					echo " $nombreFoto ";
+					if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"],"c:xampp\\htdocs\\Picturesque\\Resources\\AvatarImages\\".$nombreFoto)){
+						//echo "La foto se ha movido efectivamente";
+					}
+					else{
+						echo "Error al mover la foto a la direccion especificada";
+					}
+				}
+			}
+			else{
+				$nombreFoto=$_POST["picture"];
+			}
+			
+			
                 $identificador = @mysqli_connect('localhost','web','','pibd');
                 if(!$identificador){
                     echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
@@ -132,7 +158,19 @@
                 }
                 $date = $_POST['yearfrom'].'-'.$str.'-'.$_POST['dayfrom'];
                 $insercionFoto = "insert into fotos (Titulo, Descripcion, Fecha, Pais, Album, Fichero, FRegistro) VALUES ('$_POST[title]', '$_POST[description]',
-                                    '$date', $_POST[country], '$_POST[albumes]','$_POST[picture]', NOW())"; 
+                                    '$date', $_POST[country], '$_POST[albumes]'"; 
+									
+				//Anyadir la imagen  ", '$_POST[picture]'";
+					
+					if(empty($_POST["picture"])){
+						$insercionFoto.=", 'Resources/AvatarImages/$nombreFoto'";
+					}
+					else{
+						$insercionFoto.=", '$nombreFoto'";
+					}
+					
+					//anyadir la fecha 
+					$insercionFoto.=", NOW())";	
                 if( !($resultado_p = @mysqli_query($identificador,$insercionFoto)) ){
                         echo "<p>Error al ejecutar la sentencia <b>$insercionFoto</b>: ". mysqli_error($identificador);
                         echo "</p>";

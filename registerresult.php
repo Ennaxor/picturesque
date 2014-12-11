@@ -39,6 +39,8 @@
 			<div class="wrapper loginR">
                 <div class="login auxRS">                
 					  <?php
+					  
+						
 						if(
 							isset($_SESSION["registered_username"]) && 
 							isset($_SESSION["registered_pass"]) &&  
@@ -49,7 +51,8 @@
 							isset($_SESSION["registered_country"])
 							){
 					   ?>
-		   	            	<span class="titleh1">Success on your registration!</span>						
+		   	            	<span class="titleh1">Success on your registration!</span>	
+						
 							<p class="registerCorrect">
 								<?php echo "Username: ".($_SESSION["registered_username"]);
 								echo "<br>";
@@ -61,7 +64,7 @@
 								
 								echo "Birth date: ".($_SESSION["registered_date"]);	
 								echo "<br>";
-								
+								print_r($_FILES);							
 								/*echo "Gender: ".($_SESSION["registered_gender"]);
 								echo "<br>";*/							
 								

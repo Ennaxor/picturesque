@@ -57,7 +57,7 @@
 			<div class="wrapper loginR">
                 <div class="login aux">
 				<!--onSubmit="return checkform(this);"-->
-                    <form autocomplete="on" action="register.php" method="post"> 
+                    <form autocomplete="on" action="register.php" method="post" enctype="multipart/form-data"> 
                         <span class="titleh1">Register as a new user</span> 
                         <div class="usuRegistro"> 
 	                        <p>     
@@ -67,12 +67,12 @@
 								<?php 
 									if(isset($_POST['Register']) && isset($_POST['username']) ){ 
 										$sentencia= "select * from usuarios where NomUsuario = '$_POST[username]'";
-	if( !($resultado = @mysqli_query($identificador,$sentencia)) ){
-		echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
-		echo "</p>";
-		exit;
-	}
-	$user=mysqli_fetch_assoc($resultado);
+										if( !($resultado = @mysqli_query($identificador,$sentencia)) ){
+											echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+											echo "</p>";
+											exit;
+										}
+										$user=mysqli_fetch_assoc($resultado);
 										$count = mysqli_num_rows($resultado);	
 										if($count > 0){
 											echo "This username is already taken*";
@@ -279,7 +279,8 @@
 	                        </p>  
 	                        <p>          
 	                        	<label for="picture">Picture (URL): </label>        
-	                        	<input type="text" name="picture" id="picture"/>  
+	                        	<input type="text" name="picture" id="picture"/> 
+								<input type="file" name="picturefile" id="picturefile"/>
 	                        </p>    
 	                        <p><span class="obligated">*Obligatory fields</span></p>  
 	                        <p><span class="obligated">**Password must contain at least One UpperCase letter, One LowerCase letter and One Number</span></p>                 
@@ -300,6 +301,27 @@
 		<?php
 			//Validacion
 			if(isset($_POST['Register'])){
+			$nombreFoto;
+			
+			if(empty($_POST["picture"])){
+				if($_FILES["picturefile"]["error"]){
+					echo "No hay Foto, error: ".$_FILES["picturefile"]["error"];
+				}
+				else{
+					$nombreFoto=$_POST["username"].$_FILES["picturefile"]["name"];
+					echo " $nombreFoto ";
+					if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"],"c:xampp\\htdocs\\Picturesque\\Resources\\Avatar\\".$nombreFoto)){
+						//echo "La foto se ha movido efectivamente";
+					}
+					else{
+						echo "Error al mover la foto a la direccion especificada";
+					}
+				}
+			}
+			else{
+				$nombreFoto=$_POST["picture"];
+			}
+						
 				if($NameValidation==true && $PassValidation==true && $GenderValidation==true && $DateValidation==true){
 					$identificador = @mysqli_connect('localhost','web','','pibd');
 				    if(!$identificador){
@@ -311,7 +333,18 @@
 					$date = $_POST['year'].'-'.$str.'-'.$_POST['day'];
 					$insercionUsuario= "insert into usuarios (NomUsuario, Clave, Email, Sexo, FNacimiento, Ciudad, Pais, Foto, FRegistro)
 										VALUES ('$_POST[username]', '$md5Pass', '$_POST[email]', '$_POST[genderType]', '$date',
-												'$_POST[city]', $_POST[country], '$_POST[picture]', NOW())";
+												'$_POST[city]', '$_POST[country]'";
+					//Anyadir la imagen  ", '$_POST[picture]'";
+					
+					if(empty($_POST["picture"])){
+						$insercionUsuario.=", 'Resources/Avatar/$nombreFoto'";
+					}
+					else{
+						$insercionUsuario.=", '$nombreFoto'";
+					}
+					
+					//anyadir la fecha 
+					$insercionUsuario.=", NOW())";	
 					if( !($resultado = @mysqli_query($identificador,$insercionUsuario)) ){
 			            echo "<p>Error al ejecutar la sentencia <b>$insercionUsuario</b>: ". mysqli_error($identificador);
 			            echo "</p>";
