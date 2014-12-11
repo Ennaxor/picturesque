@@ -80,6 +80,7 @@
                     else{
                         echo "<img id='photoUser' src='$user[Foto]' alt='User avatar'/>";
                     }               
+					
                 ?>
 
 				<span class="usernameUser">

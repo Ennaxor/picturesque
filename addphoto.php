@@ -110,8 +110,15 @@
                                         
                                         echo "</select>";           
                                     ?>                       
-                                </p>               
-
+                                </p>   
+								<span id="imageError">
+								<?php
+									if($_GET["er"]==1){
+										echo "Please enter a valid image type: jpg,png or jpeg";
+									}
+								
+								?>
+								</span>
                                 <p class="button printOut"><input class="searchR" type="submit" name="CreatePhoto" value="Add!"/> </p>
                                 <button class="printIn">Add!</button>                                                     
                             </div> 
@@ -135,13 +142,15 @@
 					echo "No hay Foto, error: ".$_FILES["picturefile"]["error"];
 				}
 				else{
-					$nombreFoto=$_SESSION["authenticated"].$_FILES["picturefile"]["name"];
-					echo " $nombreFoto ";
-					if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"],"c:xampp\\htdocs\\Picturesque\\Resources\\AvatarImages\\".$nombreFoto)){
-						//echo "La foto se ha movido efectivamente";
-					}
-					else{
-						echo "Error al mover la foto a la direccion especificada";
+					if($_FILES["picturefile"]["type"]=="image/jpg" || $_FILES["picturefile"]["type"]=="image/jpeg" || $_FILES["picturefile"]["type"]=="image/png"){
+						$nombreFoto=$_SESSION["authenticated"].$_FILES["picturefile"]["name"];
+						echo " $nombreFoto ";
+						if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"],"c:xampp\\htdocs\\Picturesque\\Resources\\AvatarImages\\".$nombreFoto)){
+							//echo "La foto se ha movido efectivamente";
+						}
+						else{
+							echo "Error al mover la foto a la direccion especificada";
+						}
 					}
 				}
 			}
@@ -149,42 +158,46 @@
 				$nombreFoto=$_POST["picture"];
 			}
 			
-			
-                $identificador = @mysqli_connect('localhost','web','','pibd');
-                if(!$identificador){
-                    echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
-                    echo "</p>";
-                    exit;
-                }
-                $date = $_POST['yearfrom'].'-'.$str.'-'.$_POST['dayfrom'];
-                $insercionFoto = "insert into fotos (Titulo, Descripcion, Fecha, Pais, Album, Fichero, FRegistro) VALUES ('$_POST[title]', '$_POST[description]',
-                                    '$date', $_POST[country], '$_POST[albumes]'"; 
-									
-				//Anyadir la imagen  ", '$_POST[picture]'";
-					
-					if(empty($_POST["picture"])){
-						$insercionFoto.=", 'Resources/AvatarImages/$nombreFoto'";
+				if($nombreFoto!=""){
+					$identificador = @mysqli_connect('localhost','web','','pibd');
+					if(!$identificador){
+						echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+						echo "</p>";
+						exit;
 					}
-					else{
-						$insercionFoto.=", '$nombreFoto'";
+					$date = $_POST['yearfrom'].'-'.$str.'-'.$_POST['dayfrom'];
+					$insercionFoto = "insert into fotos (Titulo, Descripcion, Fecha, Pais, Album, Fichero, FRegistro) VALUES ('$_POST[title]', '$_POST[description]',
+										'$date', $_POST[country], '$_POST[albumes]'"; 
+										
+					//Anyadir la imagen  ", '$_POST[picture]'";
+						
+						if(empty($_POST["picture"]) && $nombreFoto!=""){
+							$insercionFoto.=", 'Resources/AvatarImages/$nombreFoto'";
+						}
+						else{
+							$insercionFoto.=", '$nombreFoto'";
+						}
+						
+						//anyadir la fecha 
+						$insercionFoto.=", NOW())";	
+					if( !($resultado_p = @mysqli_query($identificador,$insercionFoto)) ){
+							echo "<p>Error al ejecutar la sentencia <b>$insercionFoto</b>: ". mysqli_error($identificador);
+							echo "</p>";
+							exit;
 					}
-					
-					//anyadir la fecha 
-					$insercionFoto.=", NOW())";	
-                if( !($resultado_p = @mysqli_query($identificador,$insercionFoto)) ){
-                        echo "<p>Error al ejecutar la sentencia <b>$insercionFoto</b>: ". mysqli_error($identificador);
-                        echo "</p>";
-                        exit;
-                }
-                $_SESSION["photo_title"]= $_POST['title'];  
-                $_SESSION["photo_description"]= $_POST['description'];
-                $_SESSION["photo_date"]= $date;
-                $_SESSION["photo_country"]= $_POST['country'];
+					$_SESSION["photo_title"]= $_POST['title'];  
+					$_SESSION["photo_description"]= $_POST['description'];
+					$_SESSION["photo_date"]= $date;
+					$_SESSION["photo_country"]= $_POST['country'];
 
-                echo "<script>document.location.href = \"photoresult.php\";</script>";
+					echo "<script>document.location.href = \"photoresult.php\";</script>";
 
-                mysqli_free_result($resultado2);
-                mysqli_close($identificador);
+					mysqli_free_result($resultado2);
+					mysqli_close($identificador);
+				}
+				else{
+					echo "<script>document.location.href = \"addphoto.php?er=1\";</script>";
+				}
             }
         ?>
 

@@ -75,7 +75,8 @@
 		<section>
 			<div class="wrapper loginR">
                 <div class="login aux" >
-                    <form autocomplete="on" action="modifydata.php" method="post"> 
+				<!--action="modifydata.php"-->
+                    <form autocomplete="on"  method="post" enctype="multipart/form-data"> 
                         <span class="titleh1">Modify your personnal info</span> 
                         <div class="usuRegistro"> 
 	                        <p>     
@@ -302,6 +303,7 @@
 	                        <p>          
 	                        	<label for="picture">Picture: </label>                                              
 	                            <input type="text" name="picture" id="picture" value='<?php if(!empty($_POST["picture"])){ echo "$_POST[picture]";} else{echo "$user[Foto]";}?>'/> 
+								<input type="file" name="picturefile" id="picturefile"/>
 	                        </p>    
 	                        <p><span class="obligated">*Obligatory fields</span></p>  
 	                        <p><span class="obligated">**Password must contain at least One UpperCase letter, One LowerCase letter and One Number</span></p>                 
@@ -320,14 +322,45 @@
 		
 			//Validacion
 			if(isset($_POST['Modify'])){
+			$nombreFoto;
+			
+			
+			if($_FILES["picturefile"]["name"]!=""){
+				if($_FILES["picturefile"]["type"]=="image/jpg" || $_FILES["picturefile"]["type"]=="image/jpeg" || $_FILES["picturefile"]["type"]=="image/png"){
+					$nombreFoto=$_POST["username"].$_FILES["picturefile"]["name"];
+					$_POST["picture"]=$nombreFoto;
+					if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"],"c:xampp\\htdocs\\Picturesque\\Resources\\Avatar\\".$nombreFoto)){
+							//echo "La foto se ha movido efectivamente";
+					}
+				}
+			}
+			else{
+				if($_POST["picture"]!=""){
+					$nombreFoto=$_POST["picture"];
+				}
+			}
+			
+			
 				if($NameValidation==TRUE && $PassValidation==true && $GenderValidation==true && $DateValidation==true){
 					$date = $_POST['year'].'-'.$str.'-'.$_POST['day'];
 					$md5Pass = md5($_POST['password']);
 					$update ="update usuarios set NomUsuario=\"$_POST[username]\", 
 								Clave=\"$md5Pass\", 
 								Email=\"$_POST[email]\",
-								Sexo=\"$_POST[genderType]\", FNacimiento = \"$date\", Ciudad=\"$_POST[city]\", Pais=\"$_POST[country]\", Foto=\"$_POST[picture]\"
-							   where '$_SESSION[idUsu]' = idUsuario;";
+								Sexo=\"$_POST[genderType]\", FNacimiento = \"$date\", Ciudad=\"$_POST[city]\", Pais=\"$_POST[country]\"";
+
+								
+					if($nombreFoto!=""){
+					if($_FILES["picturefile"]["name"]!=""){
+						$update.=", Foto=\"Resources/Avatar/".$nombreFoto."\"";
+					}
+					else{
+						$update.=", Foto=\"".$nombreFoto."\"";
+					}
+					}									
+								
+						$update.=" where  idUsuario='$_SESSION[idUsu]';";
+					
 					
 					if( !($resultado4 = @mysqli_query($identificador,$update)) ){
 			            echo "<p>Error al ejecutar la sentencia <b>$update</b>: ". mysqli_error($identificador);
