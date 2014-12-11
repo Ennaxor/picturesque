@@ -98,29 +98,66 @@
 					echo "</p>";
 					exit;
 				}
-				
-				echo "<ul>";
-				while ($fila = @mysqli_fetch_assoc($resultado)){
-					echo "<li>";
-						echo "<img src='$fila[Fichero]' alt='$fila[Fichero]'/>  ";
-						echo "<a class='titleImage' href='detailpicture.php?id=$fila[idFoto]'><span class='titleImage'>Title: $fila[Titulo]</span></a> ";
-						echo "<p><b class='titlePrint'><a href='detailpicture.php?id=$i'>Title: $fila[Titulo]</a></b>made on the $fila[Fecha] in $fila[NombrePais] </p>";
-					echo "</li>";
+				$count=mysqli_num_rows($resultado);
+				if($count > 0){				
+					echo "<ul>";
+					while ($fila = @mysqli_fetch_assoc($resultado)){
+						echo "<li>";
+							echo "<img src='$fila[Fichero]' alt='$fila[Fichero]'/>  ";
+							echo "<a class='titleImage' href='detailpicture.php?id=$fila[idFoto]'><span class='titleImage'>Title: $fila[Titulo]</span></a> ";
+							echo "<p><b class='titlePrint'><a href='detailpicture.php?id=$i'>Title: $fila[Titulo]</a></b>made on the $fila[Fecha] in $fila[NombrePais] </p>";
+						echo "</li>";
+					}
+					echo "</ul>";
 				}
-				echo "</ul>";
-
-				mysqli_free_result($resultado);
-				mysqli_close($identificador);			
+				else{
+					echo "<span class='noPhotos'>No pictures to show...</span>";
+				}			
 			?>
 
-			<div class="boxSelectedPics"> <h2>Selected pics <i class="fa fa-trophy"></i></h2><div class="specialLine"></div> </div>	
+			<div class="boxSelectedPics"> <h2>Selected pic <i class="fa fa-trophy"></i></h2><div class="specialLine"></div> </div>	
 
-						
+			<?php
+				 if(($fichero = @file("seleccion.txt")) == false){
+			        echo "<span class='noPhotos'>No selection to show...</span>";
+			     }
+			     else{
+			     	$random = mt_rand(0, sizeof($fichero)-1);
+			     	$elemento = $fichero[$random];
+			     	$attElemento = split(';;', $elemento);
+			     	$imagenSeleccionada = "select * FROM fotos f LEFT JOIN paises p ON f.Pais = p.idPais WHERE f.idFoto = '$attElemento[0]'";
+			     	echo $attElemento[0];
+			     	if(!($resultadoSelec = @mysqli_query($identificador,$imagenSeleccionada))){
+						echo "<p>Error al ejecutar la sentencia <b>$imagenSeleccionada</b>: ". mysqli_error($identificador);
+						echo "</p>";
+						exit;
+					}
+					if(mysqli_num_rows($resultadoSelec) > 0){
+						$filaSelec = @mysqli_fetch_assoc($resultadoSelec);
+						$idSelecFoto = $filaSelec['idFoto'];
+		                $titulo = $filaSelec['Titulo'];
+		                $fecha = $filaSelec['Fecha'];
+		                $pais = $filaSelec['NombrePais'];
+		                $img = $filaSelec['Fichero'];
+					}
+					echo "<div class='selectedPhoto'>
+						<img src='$img' alt='$img'/>
+						<h2>$titulo</h2> <a class='selectedRef' href='detailpicture.php?id=$idSelecFoto'>(see in detail)</a><br>
+						<span>$fecha - $pais</span><br>
+						<span>Selected by <b>$attElemento[1]</b></span><br>
+						<span class='selectedComment'>'$attElemento[2]'</span>
+
+					</div>";
+			     }
+
+			?>						
 		</section>
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
 		
 
 		<?php
+			mysqli_free_result($resultado);
+			mysqli_close($identificador);
 			require_once("footer.php");
 		?>		
 		
