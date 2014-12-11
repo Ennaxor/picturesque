@@ -14,7 +14,8 @@
 	   $id='0';
 	}
 	$pageLimit=PAGE_PER_NO*$id;
-	$query = "select * from fotos, paises, albumes where fotos.pais=paises.idPais and fotos.album=albumes.idAlbum and fotos.album=$_GET[id] order by idFoto desc limit $pageLimit,".PAGE_PER_NO;
+	$query = "select f.Fichero, f.idFoto, f.Titulo, f.Fecha, p.NombrePais from fotos f, paises p, albumes a where 
+				f.pais=p.idPais and f.album=a.idAlbum and f.album=$_GET[id] order by idFoto desc limit $pageLimit,".PAGE_PER_NO;
 	$res=mysqli_query($identificador, $query);
 	$count=mysqli_num_rows($res);
 	if($count > 0){

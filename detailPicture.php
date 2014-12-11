@@ -72,21 +72,22 @@
                         echo "</p>";
                         exit;
                     }
-					/*if(mysql_num_rows($resultado)===0){
-						echo "NO PHOTO WITH THIS ID";
-					}*/
+					$count = mysqli_num_rows($resultado);		
+					if($count == 0) echo "<span class='noPhotos'>NO PHOTO WITH THIS ID</span>";
+					else{
+	                    $fila = @mysqli_fetch_assoc($resultado);
+	                    echo "<img class='detailPicture' src='$fila[Fichero]' alt='$fila[Descripcion]'/>";
 
-                    $fila = @mysqli_fetch_assoc($resultado);
-                    echo "<img class='detailPicture' src='$fila[Fichero]' alt='$fila[Descripcion]'/>";
                 ?>
 				<span class="info">
-					 By <?php $t='fotos.'.'Titulo';echo "$fila[Titulo]";?>, the <?php echo "$fila[Fecha] ";?> 
+					This is <?php $t='fotos.'.'Titulo';echo "$fila[Titulo]";?>, the <?php echo "$fila[Fecha] ";?> 
 					in <?php echo "$fila[NombrePais] ";?> 
 				</span>
 
 				<span class="authors">
 					<b>From the album:</b> <?php echo"<a href='detailalbum.php?id=$fila[idAlbum]' class='detailAhref'>";  echo "$fila[TituloAlbum]";?></a> <br>
-                    <b>From the user:</b> <?php echo"<a href='#' class='detailAhref'>"; echo "$fila[NomUsuario]";
+                    <b>From the user:</b> <?php echo"<a href='#' class='detailAhref'>"; echo "$fila[NomUsuario]"; 
+                    	} //END ELSE COUNT
                     	mysqli_free_result($resultado);
 						mysqli_close($identificador);
                     ?></a>     

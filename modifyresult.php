@@ -68,11 +68,10 @@
 								echo "<br>";
 								echo "City: ".($_SESSION["modified_city"]);	
 								echo "<br>";
-								while ($fila = @mysqli_fetch_assoc($resultado)){							
+								$fila = @mysqli_fetch_assoc($resultado);							
 									echo "Country: "."$fila[NombrePais]";	
-									echo "<br>";													
-									
-								}
+									echo "<br>";		
+								
 							?>
 							<a class='btn btn-login btnModifyProfile' href='profile.php'> Go to my profile </a></p>;
 						<?php 

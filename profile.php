@@ -19,8 +19,8 @@
             exit;
         }
         
-        $sentencia= "select * from albumes,usuarios where usuarios.idUsuario=albumes.Usuario and NomUsuario='$_SESSION[authenticated]'";
-        $usuario= "select * from usuarios,sexo where NomUsuario='$_SESSION[authenticated]' and usuarios.sexo=sexo.idGenero";
+        $sentencia= "select * from albumes,usuarios where usuarios.idUsuario=albumes.Usuario and idUsuario='$_SESSION[idUsu]'";
+        $usuario= "select * from usuarios,sexo where idUsuario='$_SESSION[idUsu]' and usuarios.sexo=sexo.idGenero";
                 
         if(!($resultado = @mysqli_query($identificador,$sentencia)) || !($resultado2 = @mysqli_query($identificador,$usuario)) ){
             echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
@@ -83,8 +83,18 @@
                 ?>
 
 				<span class="usernameUser">
-					<?php if(!isset($_COOKIE['authenticated']) && isset($_SESSION['authenticated'])) echo $_SESSION['authenticated'];
-						else echo $_COOKIE['authenticated'];
+					<?php
+						$sentenciaUsuarioNombre = "select NomUsuario from usuarios where idUsuario='$_SESSION[idUsu]'";
+						if(!($resultadoNombre = @mysqli_query($identificador,$sentenciaUsuarioNombre)) ){
+				            echo "<p>Error al ejecutar la sentencia <b>$sentenciaUsuarioNombre</b>: ". mysqli_error($identificador);
+				            echo "</p>";
+				            exit;
+				        }
+				        while ($filaNombre = @mysqli_fetch_assoc($resultadoNombre)){
+			        		if(!isset($_COOKIE['idUsu']) && isset($_SESSION['idUsu'])) echo $filaNombre["NomUsuario"];
+							else echo $_COOKIE['idUsu'];
+			            }
+						
 					 ?>
 
 				</span>

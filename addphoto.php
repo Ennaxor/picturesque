@@ -122,7 +122,7 @@
         	</div>
 	
 		</section>
-        <?php 
+           <?php 
             if(isset($_POST['CreatePhoto'])){
                 $identificador = @mysqli_connect('localhost','web','','pibd');
                 if(!$identificador){
@@ -149,6 +149,7 @@
                 mysqli_close($identificador);
             }
         ?>
+
 
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
 		<?php
