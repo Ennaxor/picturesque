@@ -170,6 +170,31 @@ header{
 	text-shadow: 0 1px 1px rgba(0,0,0,0.7);
 }
 
+.boxSelectedPics{
+	background-color:#F37A29;
+	border-radius: 2px 2px 2px 2px;
+	height:36px;
+	left:40px;
+	text-align: center;
+	position:relative;	
+	width:165px;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.7);
+	color:#FFF;
+	font-size:14px;
+	margin-bottom: 50px;
+}
+.boxSelectedPics h2{
+	padding-top: 4px;
+}
+
+.specialLine{
+	position: absolute;
+	top: 0px;
+	left: 150px;
+	background-color:#F37A29;
+	height: 7px;
+	width: 50px;
+}
 
 .boxPics h2{
 	color:#FFF;
@@ -228,7 +253,7 @@ section{
 
 section ul li{
 	display: inline-block;
-	margin-left: 3%;
+	margin-left: 2%;
 	margin-bottom: 3%;
 }
 

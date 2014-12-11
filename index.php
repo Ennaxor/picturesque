@@ -91,7 +91,7 @@
 					echo "</p>";
 					exit;
 				}				
-				$sentencia= "select * from fotos, paises where fotos.pais=paises.idPais order by fRegistro desc limit 5";
+				$sentencia= "select * from fotos, paises where fotos.pais=paises.idPais order by fRegistro desc limit 4";
 				
 				if(!($resultado = @mysqli_query($identificador,$sentencia))){
 					echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
@@ -112,6 +112,8 @@
 				mysqli_free_result($resultado);
 				mysqli_close($identificador);			
 			?>
+
+			<div class="boxSelectedPics"> <h2>Selected pics <i class="fa fa-trophy"></i></h2><div class="specialLine"></div> </div>	
 
 						
 		</section>

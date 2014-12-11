@@ -63,8 +63,7 @@
 								echo "<br>";
 								
 								echo "Birth date: ".($_SESSION["registered_date"]);	
-								echo "<br>";
-								print_r($_FILES);							
+								echo "<br>";						
 								/*echo "Gender: ".($_SESSION["registered_gender"]);
 								echo "<br>";*/							
 								
