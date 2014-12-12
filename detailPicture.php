@@ -38,6 +38,12 @@
 	?>
 
 	<body>
+	<div id="popUpDeletePhoto">
+		<?php
+			include 'deletephoto.html';	
+		?>
+	</div>
+	<div id="overlay-back"></div>
 		<header>				
 			<a href="index.php"> 
 				<img class="logoBox" src="Resources/Images/logo.png" alt="Logo"/> 
@@ -82,14 +88,7 @@
 		<section>
 			<div class="boxPics"> <a class="back" href="index.php"><h2>&lt;- Go back</h2></a></div>
 
-			<div id="popUpDeletePhoto">
-			<?php
-				include 'deletephoto.html';	
-
-    		?>
-
-		</div>
-		<div id="overlay-back"></div>
+			
 			
 			<div class="padding picDet">	
 				<?php
