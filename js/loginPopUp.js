@@ -104,7 +104,7 @@ function deletePhoto(){
 }
 
 function modifyProfile(){
-	document.location.href = "modifydata.php";
+	document.location.href = "modifydata.php?er=0";
 }
 /* FADE IN STUFF */
 

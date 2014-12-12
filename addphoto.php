@@ -171,15 +171,15 @@
 										
 					//Anyadir la imagen  ", '$_POST[picture]'";
 						
-						if(empty($_POST["picture"]) && $nombreFoto!=""){
-							$insercionFoto.=", 'Resources/AvatarImages/$nombreFoto'";
-						}
-						else{
-							$insercionFoto.=", '$nombreFoto'";
-						}
-						
-						//anyadir la fecha 
-						$insercionFoto.=", NOW())";	
+					if(empty($_POST["picture"]) && $nombreFoto!=""){
+						$insercionFoto.=", 'Resources/AvatarImages/$nombreFoto'";
+					}
+					else{
+						$insercionFoto.=", '$nombreFoto'";
+					}
+					
+					//anyadir la fecha 
+					$insercionFoto.=", NOW())";	
 					if( !($resultado_p = @mysqli_query($identificador,$insercionFoto)) ){
 							echo "<p>Error al ejecutar la sentencia <b>$insercionFoto</b>: ". mysqli_error($identificador);
 							echo "</p>";

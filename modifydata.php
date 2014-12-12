@@ -322,8 +322,7 @@
 		
 			//Validacion
 			if(isset($_POST['Modify'])){
-			$nombreFoto;
-			
+			$nombreFoto;	
 			
 			if($_FILES["picturefile"]["name"]!=""){
 				if($_FILES["picturefile"]["type"]=="image/jpg" || $_FILES["picturefile"]["type"]=="image/jpeg" || $_FILES["picturefile"]["type"]=="image/png"){
@@ -351,18 +350,21 @@
 
 								
 					if($nombreFoto!=""){
-					if($_FILES["picturefile"]["name"]!=""){
-						$update.=", Foto=\"Resources/Avatar/".$nombreFoto."\"";
+						if($_FILES["picturefile"]["name"]!=""){
+							$update.=", Foto=\"Resources/Avatar/".$nombreFoto."\"";
+						}
+						else{
+							$update.=", Foto=\"".$nombreFoto."\"";
+						}
 					}
 					else{
-						$update.=", Foto=\"".$nombreFoto."\"";
-					}
+						echo "<script>document.location.href = \"modifydata.php\";</script>";
 					}									
 								
 						$update.=" where  idUsuario='$_SESSION[idUsu]';";
 					
 					
-					if( !($resultado4 = @mysqli_query($identificador,$update)) ){
+					if(!($resultado4 = @mysqli_query($identificador,$update)) ){
 			            echo "<p>Error al ejecutar la sentencia <b>$update</b>: ". mysqli_error($identificador);
 			            echo "</p>";
 			            exit;

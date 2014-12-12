@@ -125,8 +125,7 @@
 			     	$random = mt_rand(0,sizeof($fichero)-1);
 			     	$linea = $fichero[$random];
 			     	$attElemento = split(';;', $linea);
-			     	$imagenSeleccionada = "select * FROM fotos f LEFT JOIN paises p ON f.Pais = p.idPais WHERE f.idFoto = '$attElemento[0]'";
-			     	
+		     		$imagenSeleccionada = "select * FROM fotos f LEFT JOIN paises p ON f.Pais = p.idPais WHERE f.idFoto = '$attElemento[0]'";			     	
 			     	if(!($resultadoSelec = @mysqli_query($identificador,$imagenSeleccionada))){
 						echo "<p>Error al ejecutar la sentencia <b>$imagenSeleccionada</b>: ". mysqli_error($identificador);
 						echo "</p>";
