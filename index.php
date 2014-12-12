@@ -118,15 +118,15 @@
 			<div class="boxSelectedPics"> <h2>Selected pic <i class="fa fa-trophy"></i></h2><div class="specialLine"></div> </div>	
 
 			<?php
-				 if(($fichero = @file("seleccion.txt")) == false){
+				 if(($fichero = @file("Resources/seleccion.txt")) == false){
 			        echo "<span class='noPhotos'>No selection to show...</span>";
 			     }
 			     else{
-			     	$random = mt_rand(0, sizeof($fichero)-1);
-			     	$elemento = $fichero[$random];
-			     	$attElemento = split(';;', $elemento);
+			     	$random = mt_rand(0,sizeof($fichero)-1);
+			     	$linea = $fichero[$random];
+			     	$attElemento = split(';;', $linea);
 			     	$imagenSeleccionada = "select * FROM fotos f LEFT JOIN paises p ON f.Pais = p.idPais WHERE f.idFoto = '$attElemento[0]'";
-			     	echo $attElemento[0];
+			     	
 			     	if(!($resultadoSelec = @mysqli_query($identificador,$imagenSeleccionada))){
 						echo "<p>Error al ejecutar la sentencia <b>$imagenSeleccionada</b>: ". mysqli_error($identificador);
 						echo "</p>";
