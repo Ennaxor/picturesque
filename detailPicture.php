@@ -9,6 +9,32 @@
             $extra = 'index.php';
             header("Location: http://$host$uri/$extra");
 		}	
+		$identificador = @mysqli_connect('localhost','web','','pibd');
+        if(!$identificador){
+            echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
+            echo "</p>";
+            exit;
+        }
+		 
+        $sentenciaAlbum = "select Album from fotos where idFoto = $_GET[id]";
+		if( !($resultado = @mysqli_query($identificador,$sentenciaAlbum))){
+            echo "<p>Error al ejecutar la sentencia <b>$sentenciaAlbum</b>: ". mysqli_error($identificador);
+            echo "</p>";
+            exit;
+        }
+		$cont=mysqli_num_rows($resultado);
+		if($cont!=0){
+			while($fila=mysqli_fetch_assoc($resultado)){
+				$idA=$fila["Album"];
+			}
+			$sentenciaUsuario = "select Usuario from albumes where idAlbum=".$idA;
+			if( !($resultado = @mysqli_query($identificador,$sentenciaUsuario))){
+				echo "<p>Error al ejecutar la sentencia <b>$sentenciaAlbum</b>: ". mysqli_error($identificador);
+				echo "</p>";
+				exit;
+			}
+		}
+
 	?>
 
 	<body>
@@ -56,15 +82,29 @@
 		<section>
 			<div class="boxPics"> <a class="back" href="index.php"><h2>&lt;- Go back</h2></a></div>
 
-			<div class="padding picDet">				
+			<div id="popUpDeletePhoto">
+			<?php
+				include 'deletephoto.html';	
+
+    		?>
+
+		</div>
+		<div id="overlay-back"></div>
+			
+			<div class="padding picDet">	
+				<?php
+				
+				while ($fila = @mysqli_fetch_assoc($resultado)){
+				 	if($fila["Usuario"] == $_SESSION["idUsu"]) echo "<button class=\"btn btn-login btnStyle\" id=\"deletePhoto\" onclick=\"showDeletePhoto($_GET[id])\">Delete</button>";
+					
+				}
+				 
+						
+					
+						
+					
+				?>
                 <?php
-                    $identificador = @mysqli_connect('localhost','web','','pibd');
-                   
-                    if(!$identificador){
-                        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
-                        echo "</p>";
-                        exit;
-                    }
                     $sentencia= "select f.Fichero, f.Descripcion, f.Titulo, f.Fecha, p.NombrePais, a.idAlbum, a.TituloAlbum, u.NomUsuario from fotos f,paises p,albumes a,usuarios u 
                     			where idFoto=$_GET[id] and f.pais=p.idPais and f.Album=a.idAlbum and u.idUsuario=a.Usuario";
                     if(!($resultado = @mysqli_query($identificador,$sentencia))){

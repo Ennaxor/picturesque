@@ -746,7 +746,7 @@ p.login.button{
 .loginR, .wrapperR{
 	width:550px;
 }
-#popUpLogin, #popUpDeleteAccount{
+#popUpLogin, #popUpDeleteAccount,#popUpDeletePhoto{
 	visibility: hidden;
 	background-color:#FBCAAA;
 	border-radius:5px;	
@@ -764,7 +764,7 @@ p.login.button{
 	-webkit-transform: translateY(-500px);
 }
 
-#popUpLogin.visible, #popUpDeleteAccount.visible{
+#popUpLogin.visible, #popUpDeleteAccount.visible,#popUpDeletePhoto.visible{
 	visibility: visible;
 	opacity:1;
 	-webkit-transform: translateY(0px);
@@ -1259,5 +1259,13 @@ input[type=radio]:checked + .radiolabel:before {
 	font-style: italic;
 	font-size:20px;
 	text-align:center;
+
+}
+
+#deletePhoto{
+	width:70px;
+	float:right;
+	margin-right:20px;
+	margin-top:20px;
 
 }
