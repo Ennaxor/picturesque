@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
@@ -39,7 +41,7 @@
 					<li><b>TITLE</b><br> 
 					<?php 
 						//Conectar con la base de datos y hacer la consulta
-						$identificador = @mysqli_connect('localhost','web','','pibd');
+						$identificador = @mysqli_connect('localhost',$MYSQL_USER,$MYSQL_PASS,$MYSQL_DB);
 						$i=0;
 						if(!$identificador){
 							echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();

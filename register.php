@@ -1,3 +1,7 @@
+<?php session_start(); ?>
+
+<!DOCTYPE html>
+<html lang="es">
 <?php 
 	require_once 'head.php'; 
 	if (isset($_SESSION['authenticated'])){
@@ -11,7 +15,7 @@
 	$PassValidation=FALSE;
 	$DateValidation=FALSE;
 	$GenderValidation=FALSE;
-	$identificador = @mysqli_connect('localhost','web','','pibd');
+	$identificador = @mysqli_connect('localhost',$MYSQL_USER,$MYSQL_PASS,$MYSQL_DB);
     if(!$identificador){
         echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
         echo "</p>";
@@ -20,8 +24,6 @@
     $user = 0;
 
 ?>
-<!DOCTYPE html>
-<html lang="es">
 	
 	<body onload="fillDate();">
 
@@ -326,7 +328,7 @@
 						
 					
 				if($NameValidation==true && $PassValidation==true && $GenderValidation==true && $DateValidation==true){
-					$identificador = @mysqli_connect('localhost','web','','pibd');
+					$identificador = @mysqli_connect('localhost',$MYSQL_USER,$MYSQL_PASS,$MYSQL_DB);
 				    if(!$identificador){
 				        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
 				        echo "</p>";

@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
@@ -87,7 +88,7 @@
                                 <p>     
                                     <label for="title"><b>ALBUM: </b> </label>                      
                                     <?php    
-										$identificador = @mysqli_connect('localhost','web','','pibd');
+										$identificador = @mysqli_connect('localhost',$MYSQL_USER,$MYSQL_PASS,$MYSQL_DB);
                                             $i=0;
                                             if(!$identificador){
                                                 echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
@@ -159,7 +160,7 @@
 			}
 			
 				if($nombreFoto!=""){
-					$identificador = @mysqli_connect('localhost','web','','pibd');
+					$identificador = @mysqli_connect('localhost',$MYSQL_USER,$MYSQL_PASS,$MYSQL_DB);
 					if(!$identificador){
 						echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
 						echo "</p>";
@@ -172,7 +173,9 @@
 					//Anyadir la imagen  ", '$_POST[picture]'";
 						
 					if(empty($_POST["picture"]) && $nombreFoto!=""){
-						$insercionFoto.=", 'Resources/AvatarImages/$nombreFoto'";
+						//$insercionFoto.=", 'Resources/AvatarImages/$nombreFoto'";
+						$insercionFoto.=", 'http://mi-tele.com/picturesque/Resources/AvatarImages/$nombreFoto'";
+
 					}
 					else{
 						$insercionFoto.=", '$nombreFoto'";

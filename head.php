@@ -1,5 +1,6 @@
 <?php 
-		session_start(); 
+		include_once("mysql_connection_data.php");
+		
 ?>
 
 <head>

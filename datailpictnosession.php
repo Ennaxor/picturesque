@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
@@ -65,7 +66,7 @@
 			
 			<div class="padding picDet bodyerror">	
 				<div class="cep">
-					<p id="errorPicture"> You can't see this picture because you don't be a member, please: </p>
+					<p id="errorPicture"> You have to log in to enter this area: </p>
 					<div id="ErrPic">
 					<button class="btn btn-login btnpD"  id="EPLogin" onclick="showLogin();"> Login </button>
 					<button class="btn btn-login btnpD"  id="EPRegister" onclick="goRegister()"> Register! </button>

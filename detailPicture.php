@@ -1,15 +1,19 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
 		require_once 'head.php'; 
 		$webTitle = "Picture Detail - Picturesque";	
 		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
-			$host = $_SERVER['HTTP_HOST'];
+			/*$host = $_SERVER['HTTP_HOST'];
             $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
             $extra = 'datailpictnosession.php';
-            header("Location: http://$host$uri/$extra");
+            header("Location: http://$host$uri/$extra");*/
+            echo "
+            	<script> document.location.href = 'datailpictnosession.php'; </script>
+            ";
 		}	
-		$identificador = @mysqli_connect('localhost','web','','pibd');
+		$identificador = @mysqli_connect('localhost',$MYSQL_USER,$MYSQL_PASS,$MYSQL_DB);
         if(!$identificador){
             echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
             echo "</p>";

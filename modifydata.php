@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
@@ -10,7 +11,7 @@
 		$auxCountry=FALSE;
 		echo"<input type='hidden' name='genderType'>";
 	
-		$identificador = @mysqli_connect('localhost','web','','pibd');
+		$identificador = @mysqli_connect('localhost',$MYSQL_USER,$MYSQL_PASS,$MYSQL_DB);
 		$i=0;
 		if(!$identificador){
 			echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();

@@ -97,7 +97,6 @@ function goRegister(){
 }
 
 function closePopUpAlbum(){
-
 	document.location.href = "index.php";
 
 }

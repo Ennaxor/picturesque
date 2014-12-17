@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
@@ -46,7 +47,7 @@
 		   	            	<span class="titleh1">Correctly modified!</span>						
 							<p class="registerCorrect">
 								<?php 
-								$identificador = @mysqli_connect('localhost','web','','pibd');
+								$identificador = @mysqli_connect('localhost',$MYSQL_USER,$MYSQL_PASS,$MYSQL_DB);
 							    if(!$identificador){
 							        echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
 							        echo "</p>";

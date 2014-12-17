@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 	<?php
@@ -13,18 +14,15 @@
 			}
 
             session_destroy(); 
-            $host = $_SERVER['HTTP_HOST'];
-            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-            $extra = 'index.php';
-            header("Location: http://$host$uri/$extra");
+            echo "
+            	<script> closePopUpAlbum(); </script>
+            ";
         }
         if(isset($_GET["signin"])){
-          	$_SESSION["authenticated"] = $_COOKIE[$cookie_name];      
-
-            $host = $_SERVER['HTTP_HOST'];
-            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-            $extra = 'index.php';
-            header("Location: http://$host$uri/$extra");
+          	$_SESSION["authenticated"] = $_COOKIE[$cookie_name];     
+             echo "
+            	<script> closePopUpAlbum(); </script>
+            ";
         }
 	?>
 
@@ -84,7 +82,7 @@
 			<div class="boxPics"> <h2>Last pics <i class="fa fa-camera-retro"></i></h2> </div>	
 			
 			<?php 
-				$identificador = @mysqli_connect('localhost','web','','pibd');
+				$identificador = @mysqli_connect('localhost',$MYSQL_USER,$MYSQL_PASS,$MYSQL_DB);
 				$i=0;
 				if(!$identificador){
 					echo "<p>Error al conectar con la base de datos: ". mysqli_connect_errno();
