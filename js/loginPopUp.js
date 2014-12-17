@@ -90,6 +90,12 @@ function goBack(object){
 
 }
 
+function goRegister(){
+
+	document.location.href = "register.php";
+
+}
+
 function closePopUpAlbum(){
 
 	document.location.href = "index.php";

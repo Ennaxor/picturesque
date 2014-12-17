@@ -6,7 +6,7 @@
 		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
 			$host = $_SERVER['HTTP_HOST'];
             $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-            $extra = 'index.php';
+            $extra = 'datailpictnosession.php';
             header("Location: http://$host$uri/$extra");
 		}	
 		$identificador = @mysqli_connect('localhost','web','','pibd');

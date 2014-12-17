@@ -1269,3 +1269,37 @@ input[type=radio]:checked + .radiolabel:before {
 	margin-top:20px;
 
 }
+ 
+ #errorPicture{
+	color:#F26507;
+	z-index:999;
+	margin-top:60px;
+	font-style: italic;
+	font-size:20px;
+	text-align:center;
+ }
+ 
+  #errorPicture a{
+	color: #F26507;
+	color: #F26507;
+	text-decoration:none;
+ }
+ 
+ #ErrPic{
+ 
+	margin-left:13px;
+	
+ }
+ 
+ .cep{
+	background-color:#FBCAAA;
+	border-radius:5px;	
+	width:460px;
+	height:180px;	
+	padding:8px;
+	margin-top:45px;
+	margin-left:auto;
+	margin-right:auto;
+	
+	
+	}
