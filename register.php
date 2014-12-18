@@ -3,14 +3,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <?php 
+	$webTitle = "Register - Picturesque";
 	require_once 'head.php'; 
 	if (isset($_SESSION['authenticated'])){
- 			$host = $_SERVER['HTTP_HOST'];
-            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-            $extra = 'index.php';
-            header("Location: http://$host$uri/$extra");
+ 			echo "
+            	<script> document.location.href = 'index.php'; </script>
+            ";
 	}
-	$webTitle = "Register - Picturesque";
 	$NameValidation=FALSE;
 	$PassValidation=FALSE;
 	$DateValidation=FALSE;
@@ -313,7 +312,7 @@
 					if($_FILES["picturefile"]["type"]=="image/jpg" || $_FILES["picturefile"]["type"]=="image/jpeg" || $_FILES["picturefile"]["type"]=="image/png"){
 						$nombreFoto=$_POST["username"].$_FILES["picturefile"]["name"];
 						echo " $nombreFoto ";
-						if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"],"c:xampp\\htdocs\\Picturesque\\Resources\\Avatar\\".$nombreFoto)){
+						if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"], "Resources/Avatar/".$nombreFoto)){
 							//echo "La foto se ha movido efectivamente";
 						}
 						else{
@@ -342,7 +341,7 @@
 					//Anyadir la imagen  ", '$_POST[picture]'";
 					
 					if(empty($_POST["picture"]) && $nombreFoto!="" ){
-						$insercionUsuario.=", 'Resources/Avatar/$nombreFoto'";
+						$insercionUsuario.=", 'http://mi-tele.com/picturesque/Resources/Avatar/$nombreFoto'";
 					}
 					else{
 						$insercionUsuario.=", '$nombreFoto'";

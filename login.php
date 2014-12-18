@@ -32,10 +32,9 @@
 
             $_SESSION["authenticated"] = $u;              
             $_SESSION["idUsu"] = $row["idUsuario"];
-            $host = $_SERVER['HTTP_HOST'];
-            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-            $extra = 'profile.php';
-            header("Location: http://$host$uri/$extra");
+            echo "
+                <script> document.location.href = 'profile.php'; </script>
+            ";
             exit;
         }
         else{

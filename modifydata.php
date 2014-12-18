@@ -2,13 +2,18 @@
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
-		require_once 'head.php'; 
 		$webTitle = "Modify - Picturesque";
+		require_once 'head.php'; 
 		$NameValidation=FALSE;
 		$PassValidation=FALSE;
 		$DateValidation=FALSE;
 		$GenderValidation=FALSE;
 		$auxCountry=FALSE;
+		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
+            echo "
+            	<script> document.location.href = 'datailpictnosession.php'; </script>
+            ";
+		}
 		echo"<input type='hidden' name='genderType'>";
 	
 		$identificador = @mysqli_connect('localhost',$MYSQL_USER,$MYSQL_PASS,$MYSQL_DB);
@@ -329,7 +334,7 @@
 				if($_FILES["picturefile"]["type"]=="image/jpg" || $_FILES["picturefile"]["type"]=="image/jpeg" || $_FILES["picturefile"]["type"]=="image/png"){
 					$nombreFoto=$_POST["username"].$_FILES["picturefile"]["name"];
 					$_POST["picture"]=$nombreFoto;
-					if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"],"c:xampp\\htdocs\\Picturesque\\Resources\\Avatar\\".$nombreFoto)){
+					if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"], "Resources/Avatar/".$nombreFoto)){
 							//echo "La foto se ha movido efectivamente";
 					}
 				}
@@ -352,7 +357,8 @@
 								
 					if($nombreFoto!=""){
 						if($_FILES["picturefile"]["name"]!=""){
-							$update.=", Foto=\"Resources/Avatar/".$nombreFoto."\"";
+							$update.=", Foto='http://mi-tele.com/picturesque/Resources/Avatar/$nombreFoto'";
+							
 						}
 						else{
 							$update.=", Foto=\"".$nombreFoto."\"";

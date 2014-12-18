@@ -1,10 +1,9 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
-	<?php 
-		require_once 'head.php'; 
+	<?php 	
 		$webTitle = "Successful Register - Picturesque";
-		
+		require_once 'head.php'; 		
 	?>
 	<body onload="fillDate();">
 

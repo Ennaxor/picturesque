@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html lang="es">
 	<?php 
+		$webTitle = "Album Detail - Picturesque";
 		require_once 'head.php';
-		require_once 'pagination.php';
-		$webTitle = "Album Detail - Picturesque";	
+		require_once 'pagination.php';			
 		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
-		 echo "
-            	<script> closePopUpAlbum(); </script>
+		  echo "
+            	<script> document.location.href = 'datailpictnosession.php'; </script>
             ";
 		}
 		//Conectar con la base de datos
