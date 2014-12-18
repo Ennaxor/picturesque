@@ -231,13 +231,51 @@
 	                        </p> 
 	                        <p class="radio">          
 	                        	<label>Gender*: </label>  
+								<?php
+	                        	$manInput= "<input id=\"man\" type=\"radio\" name=\"genderType\" value=\"1\" ";
+								$manlabel ="<label for=\"man\" class=\"radiolabel\"> Man </label>";
+								$womanInput ="<input id=\"woman\" type=\"radio\" name=\"genderType\" value=\"2\" ";
+								$womanlabel= "<label for=\"woman\" class=\"radiolabel\">Woman </label>";
 								
-	                        	<input id="man" type="radio" name="genderType" value="1">
-	                        	<label for="man" class="radiolabel"> Man </label>
-								<input id="woman" type="radio" name="genderType" value="2">
-								<label for="woman" class="radiolabel">Woman </label>
-								
-								
+								if($user["Sexo"]==1){
+									if(isset($_POST['Modify']) && isset($_POST['genderType']) ){
+										if($_POST['genderType']==1){
+											$manInput.="checked >";
+											$womanInput.=">";
+										}
+										else{
+											$womanInput.="checked >";
+											$manInput.=">";
+										}
+									}
+									else{
+										$manInput.="checked >";
+										$womanInput.=">";
+									}
+								}
+								else{
+									if(isset($_POST['Modify']) && isset($_POST['genderType']) ){
+										if($_POST['genderType']==2){
+											$womanInput.="checked >";
+											$manInput.=">";
+										}
+										else{
+											
+											$manInput.="checked >";
+											$womanInput.=">";
+										}
+									}
+									else{
+										$womanInput.="checked >";
+										$manInput.=">";
+									}
+								}
+	                        	
+								echo $manInput;
+								echo $manlabel;
+								echo $womanInput;
+								echo $womanlabel;
+								?>
 								<span id="genderRegisterError">
 								<?php
 									if(isset($_POST['Modify']) && isset($_POST['genderType']) ){				
