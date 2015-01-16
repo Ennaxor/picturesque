@@ -1,9 +1,14 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
-	<?php 
-		require_once 'head.php'; 
-		$webTitle = "Create your album- Picturesque";		
+	<?php 	
+		$webTitle = "Create your album- Picturesque";	
+		require_once 'head.php'; 	
+		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
+            echo "
+            	<script> document.location.href = 'datailpictnosession.php'; </script>
+            ";
+		}
 	?>
 
 	<body onLoad="fillAlbumDate()">		

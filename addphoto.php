@@ -1,9 +1,14 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
-	<?php 
-		require_once 'head.php'; 
-		$webTitle = "Add a photo- Picturesque";		
+	<?php 	
+		$webTitle = "Add a photo- Picturesque";
+		require_once 'head.php'; 	
+		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
+   		 	echo "
+            	<script> document.location.href = 'datailpictnosession.php'; </script>
+            ";
+		}	
 	?>
 
 	<body onLoad="fillAlbumDate()">		
@@ -146,7 +151,7 @@
 					if($_FILES["picturefile"]["type"]=="image/jpg" || $_FILES["picturefile"]["type"]=="image/jpeg" || $_FILES["picturefile"]["type"]=="image/png"){
 						$nombreFoto=$_SESSION["authenticated"].$_FILES["picturefile"]["name"];
 						echo " $nombreFoto ";
-						if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"],"c:xampp\\htdocs\\Picturesque\\Resources\\AvatarImages\\".$nombreFoto)){
+						if(@move_uploaded_file($_FILES["picturefile"]["tmp_name"], "Resources/AvatarImages/".$nombreFoto)){
 							//echo "La foto se ha movido efectivamente";
 						}
 						else{

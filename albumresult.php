@@ -1,9 +1,9 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
-	<?php 
-		require_once 'head.php'; 
-		$webTitle = "Successful album creation- Picturesque";		
+	<?php 	
+		$webTitle = "Successful album creation- Picturesque";
+		require_once 'head.php'; 		
 	?>
 
 	<body onLoad="fillAlbumDate()">		

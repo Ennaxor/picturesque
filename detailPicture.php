@@ -1,14 +1,10 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
-	<?php 
-		require_once 'head.php'; 
+	<?php 		
 		$webTitle = "Picture Detail - Picturesque";	
+		require_once 'head.php'; 
 		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
-			/*$host = $_SERVER['HTTP_HOST'];
-            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-            $extra = 'datailpictnosession.php';
-            header("Location: http://$host$uri/$extra");*/
             echo "
             	<script> document.location.href = 'datailpictnosession.php'; </script>
             ";

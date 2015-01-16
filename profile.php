@@ -1,12 +1,12 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
-	<?php 
-		require_once 'head.php';
+	<?php 	
 		$webTitle = "My Profile - Picturesque";	
+		require_once 'head.php';
 		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
-   			echo "
-            	<script> closePopUpAlbum(); </script>
+   		 	echo "
+            	<script> document.location.href = 'datailpictnosession.php'; </script>
             ";
 		}
 		

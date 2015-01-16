@@ -1,10 +1,10 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
-	<?php
-		require_once 'head.php'; 
-		
-		$webTitle = "Home Page - Picturesque";		
+
+	<?php	
+		$webTitle = "Home Page - Picturesque";
+		require_once 'head.php'; 	
  		$cookie_name = 'authenticated';
             
 		if(isset($_GET["signout"])){
@@ -31,8 +31,7 @@
 		<div id="popUpLogin">
 			<?php
       			if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) include 'login.php';   
-      			else if(isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) include 'rememberlogin.php';	
-
+      			else if(isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])) include 'rememberlogin.php';
     		?>
 
 		</div>
