@@ -149,12 +149,12 @@
 
 			?>				
 
-				<div class="boxSelectedPics"> <h2>Pictures uploaded </h2><div class="specialLine"></div> </div>	
+			<div class="boxSelectedPics2"> <h2>Pictures uploaded </h2><div class="specialLine2"></div> </div>	
 				
 				<?php
 				
 						//2015-01-03 16:32:18
-				
+					date_default_timezone_set('Europe/Madrid');
 					$now = date('Y/m/d H:i:s ', time());
 					$lweek = new Datetime($now);
 					$week =  new Datetime($now);
@@ -229,6 +229,7 @@
 					<img id="diagrama" src="<?php echo $img_src; ?>" />
 				</div>
 		</section>
+
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
 		
 
