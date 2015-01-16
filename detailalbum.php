@@ -4,7 +4,7 @@
 	<?php 
 		$webTitle = "Album Detail - Picturesque";
 		require_once 'head.php';
-		require_once 'pagination.php';			
+		require_once 'pagination.php';	
 		if (!isset($_COOKIE['authenticated']) && !isset($_SESSION['authenticated'])){
 		  echo "
             	<script> document.location.href = 'datailpictnosession.php'; </script>
@@ -61,7 +61,11 @@
 				while ($fila = @mysqli_fetch_assoc($resultado2)){
 					echo "$fila[TituloAlbum]"; 
 				 	echo " <i class='fa fa-camera'></i>";
-				 	if($fila["Usuario"] == $_SESSION["idUsu"]) echo " <button class='btn btn-login btnNew'><i class='fa fa-plus'></i><a href='addphoto.php?id=$fila[idAlbum]&er=0'> Add Photo</a></button>";
+				 	if($fila["Usuario"] == $_SESSION["idUsu"]){
+				 		 echo " <button class='btn btn-login btnNew'><i class='fa fa-plus'></i><a href='addphoto.php?id=$fila[idAlbum]&er=0'> Add Photo</a></button>";
+				 		 echo " <button class='btn btn-login btnNew'><i class='fa fa-file-pdf-o'></i><a href='makepdf.php?id=$fila[idAlbum]'> Make PDF</a></button>";
+				 	}
+
 					echo "</h2>";
 				}
 			
