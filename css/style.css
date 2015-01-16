@@ -1,4 +1,4 @@
-/*@import url(http://fonts.googleapis.com/css?family=Lobster);*/
+﻿/*@import url(http://fonts.googleapis.com/css?family=Lobster);*/
 @import url(http://fonts.googleapis.com/css?family=Amatic+SC:700);
 @import url(http://fonts.googleapis.com/css?family=Vollkorn);
 @import url(http://fonts.googleapis.com/css?family=Roboto);
@@ -589,7 +589,7 @@ li:hover .titleImage{
 	background: gray;
 	opacity: 0.5;
 	cursor: default;
-	color: white;btnPages
+	color: white;
 }
 
 .btnMR a{	
@@ -1303,3 +1303,9 @@ input[type=radio]:checked + .radiolabel:before {
 	
 	
 	}
+	
+#imgDiagram{
+	width:500px;
+	margin-left:auto;
+	margin-right:auto;
+}

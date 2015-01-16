@@ -3,6 +3,7 @@
 <html lang="es">
 	<?php
 		require_once 'head.php'; 
+		
 		$webTitle = "Home Page - Picturesque";		
  		$cookie_name = 'authenticated';
             
@@ -147,7 +148,87 @@
 					</div>";
 			     }
 
-			?>						
+			?>				
+
+				<div class="boxSelectedPics"> <h2>Pictures uploaded </h2><div class="specialLine"></div> </div>	
+				
+				<?php
+				
+						//2015-01-03 16:32:18
+				
+					$now = date('Y/m/d H:i:s ', time());
+					$lweek = new Datetime($now);
+					$week =  new Datetime($now);
+					$lweek->modify('-7 days');
+					$ago=$lweek->format('Y/m/d H:i:s ');
+					
+					
+					$sentencia= "select FRegistro,Fichero,count(*) as nfotos from fotos where FRegistro>='".$ago."' && FRegistro<='".$now."' group by FRegistro;";
+					
+				
+					if(!($resultado = @mysqli_query($identificador,$sentencia))){
+						echo "<p>Error al ejecutar la sentencia <b>$sentencia</b>: ". mysqli_error($identificador);
+						echo "</p>";
+						exit;
+					}
+					$count=mysqli_num_rows($resultado);
+					$totalPhotos=0;
+					$dateArrayProv=array();
+					if($count > 0){				
+						echo "<br>";
+						$array=array();
+						$lastdate=$lweek->format('Y-m-d ');
+						while ($fila = @mysqli_fetch_assoc($resultado)){
+						//Revisar para insertar todas las fechas intermedias
+							$photodate  = date("Y-m-d", strtotime($fila["FRegistro"]));
+							$array[]=array($photodate,$fila["nfotos"]);
+						}
+						
+						
+						
+						for($i=0;$i<count($array);$i++){
+							if($array[$i][0] != $lastdate){
+								$lastdate=$array[$i][0];
+								
+								for($j=0;$j<count($array);$j++){
+									if($lastdate == $array[$j][0]) $totalPhotos+=$array[$j][1];
+								}
+								$dateArrayProv[]=array($lastdate,$totalPhotos);
+								$totalPhotos=0;
+							}
+						
+						}
+						$lastdate=$lweek->format('Y-m-d ');
+						$finaldateArray=array();
+						
+						for($i=0;$i<=7;$i++){
+							$finaldateArray[]=array($lastdate,0);
+								
+							$lweek->modify('+1 days');
+							$lastdate=$lweek->format('Y-m-d ');
+						}
+						
+						for($i=0;$i<count($dateArrayProv);$i++){
+							for($j=0;$j<count($finaldateArray);$j++){
+								if(strtotime($dateArrayProv[$i][0]) == strtotime($finaldateArray[$j][0]))
+									$finaldateArray[$j][1]=$dateArrayProv[$i][1];
+								
+							}
+						}
+						
+					}
+					else{
+						echo "<span class='noPhotos'>No pictures to show...</span>";
+					}	
+				
+					include 'diagram.php';
+					
+					
+
+				?>	
+				<div id="imgDiagram">
+					<img id="diagrama" src="<?php echo $img_src; ?>" />
+				</div>
 		</section>
 		<span class="rights printIn">Made for an awesome subject in the University of Alicante. All Copyright reserved to Alberto Martínez Martínez and Roxanne López van Dooren</span>
 		

@@ -116,12 +116,16 @@
 			
 			<?php 
 				$count = mysqli_num_rows($resultado);		
+				include ("albumimage.php");
 				if($count == 0) echo "<span class='noPhotos'>No albums created</span>";
                 echo "<ul>";
+				$pos=0;
                 while ($fila = @mysqli_fetch_assoc($resultado)){
                     echo "<li>";
+						echo "<img src='$imageShow[$pos]' alt='album icon'/>  ";
                         echo "<a class='titleImage' href='detailalbum.php?id=$fila[idAlbum]'><span class='titleImage'>Album: $fila[TituloAlbum]</span></a>";
                     echo "</li>";
+					$pos++;
                 }
                 echo "</ul>";
                 mysqli_free_result($resultado);
