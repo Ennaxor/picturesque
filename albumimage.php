@@ -50,8 +50,12 @@
 			$minelem=0;
 			
 			$j=rand(0,count($portada)-1);
-			
-				$foto= imagecreatefromjpeg ( $portada[$j] );
+				$type=exif_imagetype ( $portada[$j]);
+				switch ($type){
+					case 2: $foto= imagecreatefromjpeg ( $portada[$j] ); break;
+					case 3: $foto= imagecreatefrompng ( $portada[$j] ); break;
+				}
+				
 				//$foto1;
 				//imagecopyresampled($foto1,$foto,0,50,50,30,150,60,imagesx($foto),imagesy($foto));
 				
